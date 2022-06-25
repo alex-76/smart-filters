@@ -3,7 +3,7 @@
 /**
  *
  * Plugin Name:       Smart Filter
- * Description:       The plugin adds attributes for external links taking into account different post types.
+ * Description:       Begin Dev Plugin...
  * Version:           1.0.0
  * Author:            Alex
  * Author URI:        Alex
@@ -19,3 +19,6 @@
 
 
 //require_once( plugin_dir_path( __FILE__ ) . 'inc/plugin_links_external.php' );
+
+
+
