@@ -35,7 +35,9 @@ class YMC_Plugin {
 
 	private function __construct() {
 
-		require_once YMC_SMART_FILTER_DIR . '/classes/YMC_init.php';
+		require_once YMC_SMART_FILTER_DIR . '/admin/classes/YMC_init.php';
+		require_once YMC_SMART_FILTER_DIR . '/admin/classes/YMC_admin_load_scripts.php';
+		require_once YMC_SMART_FILTER_DIR . '/admin/classes/YMC_Meta_Boxes.php';
 
 		//add_filter( 'the_content', array( $this, 'add_content' ));
 
@@ -46,13 +48,6 @@ class YMC_Plugin {
 		//add_filter( 'plugin_action_links', array( $this, 'links_external_plugin_setting' ), 10, 2 );
 
 	}
-
-	public function add_content( $content ) {
-
-		return YMC_SMART_FILTER_DIR . $content;
-
-	}
-
 
 
 
