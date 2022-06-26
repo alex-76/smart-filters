@@ -54,7 +54,7 @@ if ( ! class_exists( 'YMC_Smart_Filters' ) ) {
 		/**
 		 * Initialize the plugin
 		 *
-		 * Validates that LINKS_EXTERNAL is already loaded.
+		 * Validates that YMC_Smart_Filters is already loaded.
 		 *
 		 * Fired by plugins_loaded action hook.
 		 *
@@ -68,7 +68,6 @@ if ( ! class_exists( 'YMC_Smart_Filters' ) ) {
 	}
 
 	new YMC_Smart_Filters();
-
 }
 
 

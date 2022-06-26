@@ -2,7 +2,7 @@
 
 /**
  *
- * Plugin Name:       Smart Filters
+ * Plugin Name:       YMC Smart Filters
  * Description:       Begin Dev Plugin...
  * Version:           1.0.0
  * Author:            YMC

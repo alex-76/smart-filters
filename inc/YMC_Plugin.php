@@ -31,12 +31,13 @@ class YMC_Plugin {
 			self::$_instance = new self();
 		}
 		return self::$_instance;
-
 	}
 
 	private function __construct() {
 
-		add_filter( 'the_content', array( $this, 'add_content' ));
+		require_once YMC_SMART_FILTER_DIR . '/classes/YMC_init.php';
+
+		//add_filter( 'the_content', array( $this, 'add_content' ));
 
 		//add_action( 'admin_menu', array( $this, 'links_options_page' ));
 
@@ -48,9 +49,11 @@ class YMC_Plugin {
 
 	public function add_content( $content ) {
 
-		return $content . 'test... ';
+		return YMC_SMART_FILTER_DIR . $content;
 
 	}
+
+
 
 
 
