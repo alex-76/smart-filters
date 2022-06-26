@@ -74,6 +74,10 @@ $font-size: 16;
 			&__container-settings {
 				display: flex;
 				padding: 0 rem-calc(20px);
+				@media screen and (max-width: 768px) {
+					flex-direction: column;
+				}
+
 				.tab-sidebar {
 					flex: 1 1 28%;
 					min-height: 200px;
@@ -84,6 +88,7 @@ $font-size: 16;
 						.nav-item {
 							.link {
 								font-size: rem-calc(13px);
+								font-weight: 700;
 								line-height: 1.4;
 								text-transform: uppercase;
 								color: $text_color;
@@ -92,6 +97,8 @@ $font-size: 16;
 								padding: rem-calc(20px);
 								position: relative;
 								border-left: 3px solid #f0f0f1;
+								outline: none;
+								transition: .3s;
 								.info {
 									font-size: rem-calc(10px);
 									color: #949494;
@@ -109,19 +116,29 @@ $font-size: 16;
 										font-size: rem-calc(24px);
 									}
 								}
-
-								&.active {
+								&.active, &:hover {
 									background: #fff;
 									border-left-color: $color;
+									color: $color;
 								}
 							}
 						}
-
 					}
 				}
+
 				.tab-content {
 					flex: 1 1 70%;
 					background: #fff;
+					.tab-panel {
+						display: none;
+						opacity: 0;
+						transition: .3s;
+						padding: rem-calc(10px) rem-calc(20px);
+						&.active {
+							display: block;
+							opacity: 1;
+						}
+					}
 				}
 			}
 

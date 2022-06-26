@@ -32,51 +32,95 @@ class YMC_Meta_Boxes {
                 <ul class="nav-tabs" id="ymcTab">
                     <li class="nav-item">
                         <a class="link active" id="general-tab" href="#general">
-	                        <?php echo esc_html__('General','ymc-smart-filter'); ?>
+	                        <span class="text"><?php echo esc_html__('General','ymc-smart-filter'); ?></span>
                             <span class="info"><?php echo esc_html__('Post Type, Categories','ymc-smart-filter'); ?> </span>
                             <span class="dashicons dashicons-admin-tools"></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="link" id="layouts-tab" href="#layoutstab">
-			                <?php echo esc_html__('Layouts','ymc-smart-filter'); ?>
+                        <a class="link" id="layouts-tab" href="#layouts">
+                            <span class="text"><?php echo esc_html__('Layouts','ymc-smart-filter'); ?></span>
                             <span class="info"><?php echo esc_html__('Post Layout, Filter Layout','ymc-smart-filter'); ?> </span>
                             <span class="dashicons dashicons-editor-table"></span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="link" id="appearance-tab" href="#appearance">
-                            <?php echo esc_html__('Appearance','ymc-smart-filter');?>
+                            <span class="text"><?php echo esc_html__('Appearance','ymc-smart-filter');?></span>
                             <span class="info"><?php echo esc_html__('Post Layout, Filter Layout','ymc-smart-filter'); ?></span>
                             <span class="dashicons dashicons-visibility"></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="link" id="typography-tab">
-                            <?php echo esc_html__('Typography','ymc-smart-filter');?>
+                        <a class="link" id="typography-tab" href="#typography">
+                            <span class="text"><?php echo esc_html__('Typography','ymc-smart-filter');?></span>
                             <span class="info"><?php echo esc_html__('Title, Description Fonts','ymc-smart-filter'); ?></span>
                             <span class="dashicons dashicons-editor-spellcheck"></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="link" id="advanced-tab">
-                            <?php echo esc_html__('Advanced','category-ajax-filter'); ?>
+                        <a class="link" id="advanced-tab" href="#advanced">
+                            <span class="text"><?php echo esc_html__('Advanced','category-ajax-filter'); ?></span>
                             <span class="info"><?php echo esc_html__('Add Extra Classes to Post','ymc-smart-filter'); ?></span>
                             <span class="dashicons dashicons-tag"></span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="link" id="shortcode-tab" href="#shortcode">
-                            <?php echo esc_html__('Shortcode','category-ajax-filter'); ?>
+                            <span class="text"><?php echo esc_html__('Shortcode','category-ajax-filter'); ?></span>
                             <span class="info"><?php echo esc_html__('Get Your shortcode','ymc-smart-filter'); ?></span>
                             <span class="dashicons dashicons-shortcode"></span>
                         </a>
                     </li>
-
-
                 </ul>
             </div>
-            <div class="tab-content">Tab Content</div>
+
+            <div class="tab-content">
+                <div class="tab-panel active" id="general">
+                    <div class="tab-entry">
+                        <h3>General Settings</h3>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                    </div>
+
+                </div>
+                <div class="tab-panel" id="layouts">
+                    <div class="tab-entry">
+                        <h3>Layouts</h3>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                    </div>
+                </div>
+                <div class="tab-panel" id="appearance">
+                    <div class="tab-entry">
+                        <h3>Appearance</h3>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                    </div>
+                </div>
+                <div class="tab-panel" id="typography">
+                    <div class="tab-entry">
+                        <h3>Typography</h3>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                    </div>
+                </div>
+                <div class="tab-panel" id="advanced">
+                    <div class="tab-entry">
+                        <h3>Advanced</h3>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                    </div>
+                </div>
+                <div class="tab-panel" id="shortcode">
+                    <div class="tab-entry">
+                        <h3>Shortcode</h3>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                    </div>
+                </div>
+
+            </div>
         </div>
 	<?php }
 
