@@ -1,0 +1,140 @@
+@import "fontawesome5/fontawesome";
+@import "fontawesome5/brands";
+@import "fontawesome5/regular";
+@import "fontawesome5/solid";
+@import 'typography';
+
+// Variable
+$color: #1fc4ff;
+$text_color: #1f1f1f;
+
+// Convert px to (r)em
+$font-size: 16;
+
+@function rem-calc($size, $font-size : $font-size) {
+	$font-size: $font-size + 0px;
+	$remSize: $size / $font-size;
+	@return #{$remSize}rem;
+}
+
+@function em-calc($size, $font-size : $font-size) {
+	$font-size: $font-size + 0px;
+	$remSize: $size / $font-size;
+	@return #{$remSize}em;
+}
+
+
+#ymc_top_meta_box {
+	font-family: "Poppins";
+	font-weight: 500;
+	box-sizing: border-box;
+
+	.postbox-header {
+		display: none;
+	}
+	.inside {
+		padding: 0;
+		margin: 0;
+		background: #f0f0f1;
+
+
+		.ymc {
+
+			&__header {
+				display: flex;
+				padding: rem-calc(20px);
+				.logo {
+					flex: 1 1 28%;
+					img {
+						width: 100%;
+						max-width: 150px;
+					}
+				}
+				.manage-dash {
+					flex: 1 1 70%;
+					.dashicons {
+						background: $color;
+						padding: 7px;
+						border-radius: 3px;
+						margin-right: 8px;
+						display: inline-block;
+						&:before {
+							color: #fff;
+						}
+					}
+					.title {
+						font-size: rem-calc(20px);
+						font-weight: 500;
+						color: $text_color;
+						line-height: 1.4;
+					}
+				}
+			}
+
+			&__container-settings {
+				display: flex;
+				padding: 0 rem-calc(20px);
+				.tab-sidebar {
+					flex: 1 1 28%;
+					min-height: 200px;
+					.nav-tabs {
+						list-style: none;
+						margin: 0;
+						padding: 0;
+						.nav-item {
+							.link {
+								font-size: rem-calc(13px);
+								line-height: 1.4;
+								text-transform: uppercase;
+								color: $text_color;
+								text-decoration: none;
+								display: block;
+								padding: rem-calc(20px);
+								position: relative;
+								border-left: 3px solid #f0f0f1;
+								.info {
+									font-size: rem-calc(10px);
+									color: #949494;
+									font-style: normal;
+									text-transform: capitalize;
+									display: block;
+									margin-top: 2px
+								}
+								.dashicons {
+									position: absolute;
+									right: rem-calc(20px);
+									top: 50%;
+									transform: translateY(-50%);
+									&:before {
+										font-size: rem-calc(24px);
+									}
+								}
+
+								&.active {
+									background: #fff;
+									border-left-color: $color;
+								}
+							}
+						}
+
+					}
+				}
+				.tab-content {
+					flex: 1 1 70%;
+					background: #fff;
+				}
+			}
+
+
+		}
+
+
+
+
+
+	}
+
+
+}
+
+

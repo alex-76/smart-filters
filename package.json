@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "admin": "node-sass --watch inc/admin/assets/scss/admin.scss --output inc/admin/assets/css --source-map true --output-style compressed"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^5.0.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4"
+  }
+}
