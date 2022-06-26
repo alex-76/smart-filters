@@ -2,11 +2,11 @@
 
 /**
  *
- * Plugin Name:       Smart Filter
+ * Plugin Name:       Smart Filters
  * Description:       Begin Dev Plugin...
  * Version:           1.0.0
- * Author:            Alex
- * Author URI:        Alex
+ * Author:            YMC
+ * Author URI:        YMC
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       links
@@ -18,7 +18,7 @@
  */
 
 
-//require_once( plugin_dir_path( __FILE__ ) . 'inc/plugin_links_external.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'inc/plugin_smart_filters.php' );
 
 
 
