@@ -85,16 +85,17 @@ class YMC_Meta_Boxes {
                         </div>
 
                         <div class="content">
+
                             <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/default.php'; ?>
 
                             <div class="form-group">
-                                <label for="custom-post-type-select" class="form-label">
+                                <label for="ymc-cpt-select" class="form-label">
 		                            <?php echo esc_html__('Custom Post Type','ymc-smart-filter'); ?>
                                     <span class="information">
                                     <?php echo esc_html__('Select your post type to filter. Deaflut: Post','ymc-smart-filter'); ?>
                                 </span>
                                 </label>
-                                <select class="form-select" id="custom-post-type-select" name="custom-post-type-select">
+                                <select class="form-select" id="ymc-cpt-select" name="custom-post-type-select">
                                     <option value="post"><?php echo esc_html__('Post','ymc-smart-filter'); ?></option>
 		                            <?php
 		                            foreach($cpost_types as $cpost_type) {
@@ -107,18 +108,18 @@ class YMC_Meta_Boxes {
                             <hr/>
 
                             <div class="form-group">
-                                <label for="ymc-taxonomy" class="form-label">
+                                <label for="ymc-taxonomy-select" class="form-label">
 		                            <?php echo esc_html__('Taxonomy','ymc-smart-filter'); ?>
                                     <span class="information">
                                     <?php echo esc_html__('Select your taxonomy from dropdown. Deaflut: Category','ymc-smart-filter'); ?>
                                 </span>
                                 </label>
-                                <select class="form-select" id="ymc-taxonomy" name="ymc-taxonomy">
+                                <select class="form-select" id="ymc-taxonomy-select" name="ymc-taxonomy-select">
 		                            <?php
-		                            $tax = get_object_taxonomies($select);
+		                            $tax = get_object_taxonomies('post');
 		                            if($tax){
 			                            foreach($tax as $val) {
-				                            echo "<option value='"."' id='hide'>" . esc_html($val) . "</option>";
+				                            echo "<option value='" . $val . "'>" . esc_html($val) . "</option>";
 			                            }
 		                            }
 		                            ?>
@@ -130,20 +131,30 @@ class YMC_Meta_Boxes {
                             <div class="form-group">
                                 <label for="ymc-terms" class="form-label">
 		                            <?php echo esc_html__('Terms','ymc-smart-filter'); ?>
-                                    <span class="information"><?php echo esc_html__('Select Terms that you want to show on frontend. Deaflut: 5/ASC ORDER','ymc-smart-filter'); ?></span>
+                                    <span class="information"><?php echo esc_html__('Select Terms that you want to show on frontend','ymc-smart-filter'); ?></span>
                                 </label>
-                                <?php
-                                    $terms = get_terms(array('taxonomy' => $tax, 'hide_empty' => false));
-                                    if($terms) {
-	                                    //var_dump($terms);
-	                                    foreach($terms as $term) {
 
-	                                    }
-                                    }
-                                ?>
+                                <ul class="category-list" id="ymc-terms">
+                                    <li class="all-categories">
+                                        <input name='all-select' class='category-all' id='category-all-btn' type='checkbox'>
+                                        <label for='category-all-btn' class='category-all-label'>
+                                            <?php echo esc_html__('All','ymc-smart-filter'); ?>
+                                        </label>
+                                    </li>
+	                                <?php
+                                        $terms = get_terms([
+                                            'taxonomy' => 'category',
+                                            'hide_empty' => false,
+                                        ]);
+                                        if($terms) {
+                                            foreach($terms as $term) {
+                                                echo "<li><input name='category-list[]' class='category-list' id='category-id-$term->term_id' type='checkbox' value='". $term->term_id ."'>";
+                                                echo "<label for='category-id-$term->term_id' class='category-list-label'>" . esc_html($term->name) . "</label>";
+                                            }
+                                        }
+	                                ?>
+                                </ul>
                             </div>
-
-
 
                         </div>
                         <!-- END GENERAL SETTINGS TAB DATA -->

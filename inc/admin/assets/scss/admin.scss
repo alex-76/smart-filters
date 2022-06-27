@@ -159,7 +159,7 @@ $font-size: 16;
 									display: inline-block;
 									font-weight: 400;
 									font-style: italic;
-									margin-top: 1px;
+									margin: 2px;
 									color: #999;
 									font-size: rem-calc(13px);
 									.information {
@@ -173,6 +173,47 @@ $font-size: 16;
 									border: 1px solid #e0e4e9;
 									color: $text_color;
 									font-size: rem-calc(13px);
+								}
+
+								.category-list {
+									display: grid;
+									grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+									grid-gap: 5px 12px;
+									align-items: center;
+									margin: 0;
+									li {
+										display: flex;
+										align-items: center;
+										padding: 5px 10px;
+										border: 1px solid #999;
+										input[type="checkbox"] {
+											margin: 0 10px 0 0;
+											border-radius: 0;
+											border: 1px solid #999;
+											&:checked {
+												border-color: $color;
+												& + label {
+													font-weight: 600;
+												}
+											}
+										}
+										label {
+											font-weight: 400;
+											font-size: rem-calc(13px);
+										}
+										&.all-categories {
+											background: #098ab8;
+											color: #fff;
+											border: none;
+											input[type="checkbox"] {
+												border: none;
+											}
+										}
+									}
+									.notice-error {
+										border-left: 3px solid #dc3232;
+										padding: 5px;
+									}
 								}
 
 								hr {

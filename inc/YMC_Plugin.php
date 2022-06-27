@@ -38,6 +38,7 @@ class YMC_Plugin {
 		require_once YMC_SMART_FILTER_DIR . '/admin/classes/YMC_init.php';
 		require_once YMC_SMART_FILTER_DIR . '/admin/classes/YMC_admin_load_scripts.php';
 		require_once YMC_SMART_FILTER_DIR . '/admin/classes/YMC_Meta_Boxes.php';
+		require_once YMC_SMART_FILTER_DIR . '/admin/classes/YMC_admin_ajax.php';
 
 		//add_filter( 'the_content', array( $this, 'add_content' ));
 

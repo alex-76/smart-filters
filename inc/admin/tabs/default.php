@@ -18,6 +18,4 @@ unset($cpost_types[$pos]);
 ksort( $cpost_types, SORT_ASC );
 
 /*---- GENERAL TAB USED DEFAULT VARIABLES ----*/
-$select = 'post';
-$tax = 'category';
-$terms_sel = array();
+
