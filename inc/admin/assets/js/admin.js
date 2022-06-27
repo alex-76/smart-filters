@@ -7,7 +7,9 @@
 
             el.addEventListener('click',function (e) {
                 e.preventDefault();
+
                 let hash = this.hash;
+
                 let text = $(this).find('.text').text();
 
                 $('.ymc__header .manage-dash .title').text(text);
@@ -21,7 +23,6 @@
                     }
 
                 });
-
 
             });
 

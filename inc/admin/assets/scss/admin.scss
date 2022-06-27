@@ -39,7 +39,6 @@ $font-size: 16;
 
 
 		.ymc {
-
 			&__header {
 				display: flex;
 				padding: rem-calc(20px);
@@ -138,6 +137,52 @@ $font-size: 16;
 							display: block;
 							opacity: 1;
 						}
+
+						.tab-entry {
+
+							.header {
+								padding: rem-calc(15px) rem-calc(20px);
+								background: #098ab8;
+								color: #fff;
+								font-size: rem-calc(18px);
+								font-weight: 300;
+								margin-bottom: rem-calc(20px);
+							}
+
+							.content {
+
+								.form-group {
+									margin-bottom: rem-calc(25px);
+								}
+
+								.form-label {
+									display: inline-block;
+									font-weight: 400;
+									font-style: italic;
+									margin-top: 1px;
+									color: #999;
+									font-size: rem-calc(13px);
+									.information {
+										font-size: rem-calc(12px);
+									}
+								}
+
+								.form-select {
+									width: 100%;
+									text-transform: capitalize;
+									border: 1px solid #e0e4e9;
+									color: $text_color;
+									font-size: rem-calc(13px);
+								}
+
+								hr {
+									margin: rem-calc(10px) 0;
+								}
+
+							}
+						}
+
+
 					}
 				}
 			}
