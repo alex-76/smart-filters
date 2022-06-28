@@ -3,17 +3,43 @@
 class YMC_Meta_Boxes {
 
 	public function __construct() {
-		add_action( 'add_meta_boxes', array($this,'add_post_metabox'));
-		add_action( 'save_post', array($this,'wpdocs_save_meta_box'), 10, 2);
+		add_action( 'add_meta_boxes', array($this, 'add_post_metabox'));
+		add_action( 'save_post', array($this, 'save_meta_box'), 10, 2);
 	}
 
-	public function wpdocs_save_meta_box( $post_id,$post ) {}
+	public function save_meta_box( $post_id, $post ) {
+
+		if ( ! current_user_can( 'edit_page', $post_id ) ) {
+			return $post_id;
+		}
+
+		if(isset($_POST['ymc-cpt-select'])) {
+
+			$cpt_val = sanitize_text_field( $_POST['ymc-cpt-select']);
+
+			update_post_meta( $post_id, 'ymc_cpt_value', $cpt_val );
+		}
+
+		if(isset($_POST['ymc-taxonomy-select'])) {
+
+			$tax_val = sanitize_text_field( $_POST['ymc-taxonomy-select']);
+
+			update_post_meta( $post_id, 'ymc-taxonomy-select', $tax_val );
+		}
+
+		if(isset($_POST['category-list'])) {
+			$terms=sanitize_html_class( $_POST['category-list']);
+
+			update_post_meta( $post_id, 'ymc_terms', $terms );
+		}
+
+    }
 
 	public function add_post_metabox() {
 
-		add_meta_box( 'ymc_top_meta_box' , __('Settings','ymc-smart-filter'), array($this,'ymc_top_meta_box'), 'ymc_filters', 'normal', 'core'/*,array()*/);
+		add_meta_box( 'ymc_top_meta_box' , __('Settings','ymc-smart-filter'), array($this,'ymc_top_meta_box'), 'ymc_filters', 'normal', 'core');
 
-		add_meta_box( 'ymc_side_meta_box' , __('YMC Pro Features','ymc-smart-filter'), array($this,'ymc_side_meta_box'), 'ymc_filters', 'side', 'core'/*,array()*/);
+		add_meta_box( 'ymc_side_meta_box' , __('YMC Pro Features','ymc-smart-filter'), array($this,'ymc_side_meta_box'), 'ymc_filters', 'side', 'core');
 
 	}
 
@@ -76,128 +102,49 @@ class YMC_Meta_Boxes {
             </div>
 
             <div class="tab-content">
+
+	            <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/default.php'; ?>
+
                 <div class="tab-panel active" id="general">
                     <div class="tab-entry">
-
-                        <!-- START GENERAL SETTINGS TAB DATA -->
-                        <div class="header">
-	                        <?php echo esc_html__('Options','ymc-smart-filter'); ?>
-                        </div>
-
-                        <div class="content">
-
-                            <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/default.php'; ?>
-
-                            <div class="form-group">
-                                <label for="ymc-cpt-select" class="form-label">
-		                            <?php echo esc_html__('Custom Post Type','ymc-smart-filter'); ?>
-                                    <span class="information">
-                                    <?php echo esc_html__('Select your post type to filter. Deaflut: Post','ymc-smart-filter'); ?>
-                                </span>
-                                </label>
-                                <select class="form-select" id="ymc-cpt-select" name="custom-post-type-select">
-                                    <option value="post"><?php echo esc_html__('Post','ymc-smart-filter'); ?></option>
-		                            <?php
-		                            foreach($cpost_types as $cpost_type) {
-			                            echo "<option value='" . $cpost_type ."'>" . esc_html($cpost_type) . "</option>";
-		                            }
-		                            ?>
-                                </select>
-                            </div>
-
-                            <hr/>
-
-                            <div class="form-group">
-                                <label for="ymc-taxonomy-select" class="form-label">
-		                            <?php echo esc_html__('Taxonomy','ymc-smart-filter'); ?>
-                                    <span class="information">
-                                    <?php echo esc_html__('Select your taxonomy from dropdown. Deaflut: Category','ymc-smart-filter'); ?>
-                                </span>
-                                </label>
-                                <select class="form-select" id="ymc-taxonomy-select" name="ymc-taxonomy-select">
-		                            <?php
-		                            $tax = get_object_taxonomies('post');
-		                            if($tax){
-			                            foreach($tax as $val) {
-				                            echo "<option value='" . $val . "'>" . esc_html($val) . "</option>";
-			                            }
-		                            }
-		                            ?>
-                                </select>
-                            </div>
-
-                            <hr/>
-
-                            <div class="form-group">
-                                <label for="ymc-terms" class="form-label">
-		                            <?php echo esc_html__('Terms','ymc-smart-filter'); ?>
-                                    <span class="information"><?php echo esc_html__('Select Terms that you want to show on frontend','ymc-smart-filter'); ?></span>
-                                </label>
-
-                                <ul class="category-list" id="ymc-terms">
-                                    <li class="all-categories">
-                                        <input name='all-select' class='category-all' id='category-all-btn' type='checkbox'>
-                                        <label for='category-all-btn' class='category-all-label'>
-                                            <?php echo esc_html__('All','ymc-smart-filter'); ?>
-                                        </label>
-                                    </li>
-	                                <?php
-                                        $terms = get_terms([
-                                            'taxonomy' => 'category',
-                                            'hide_empty' => false,
-                                        ]);
-                                        if($terms) {
-                                            foreach($terms as $term) {
-                                                echo "<li><input name='category-list[]' class='category-list' id='category-id-$term->term_id' type='checkbox' value='". $term->term_id ."'>";
-                                                echo "<label for='category-id-$term->term_id' class='category-list-label'>" . esc_html($term->name) . "</label>";
-                                            }
-                                        }
-	                                ?>
-                                </ul>
-                            </div>
-
-                        </div>
-                        <!-- END GENERAL SETTINGS TAB DATA -->
+                    <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/general.php'; ?>
                     </div>
-
                 </div>
+
                 <div class="tab-panel" id="layouts">
                     <div class="tab-entry">
-                        <h3>Layouts</h3>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+	                    <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/layouts.php'; ?>
                     </div>
                 </div>
+
                 <div class="tab-panel" id="appearance">
                     <div class="tab-entry">
-                        <h3>Appearance</h3>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+	                    <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/appearance.php'; ?>
                     </div>
                 </div>
+
                 <div class="tab-panel" id="typography">
                     <div class="tab-entry">
-                        <h3>Typography</h3>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+	                    <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/typography.php'; ?>
                     </div>
                 </div>
+
                 <div class="tab-panel" id="advanced">
                     <div class="tab-entry">
-                        <h3>Advanced</h3>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+	                    <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/advanced.php'; ?>
                     </div>
                 </div>
+
                 <div class="tab-panel" id="shortcode">
                     <div class="tab-entry">
-                        <h3>Shortcode</h3>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+	                    <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/shortcode.php'; ?>
                     </div>
                 </div>
+
             </div>
+
         </div>
+
 	<?php }
 
 	public function ymc_side_meta_box() { ?>

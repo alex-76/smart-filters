@@ -40,6 +40,8 @@ class YMC_Plugin {
 		require_once YMC_SMART_FILTER_DIR . '/admin/classes/YMC_Meta_Boxes.php';
 		require_once YMC_SMART_FILTER_DIR . '/admin/classes/YMC_admin_ajax.php';
 
+		require_once YMC_SMART_FILTER_DIR . '/front/classes/YMC_shortcode.php';
+
 		//add_filter( 'the_content', array( $this, 'add_content' ));
 
 		//add_action( 'admin_menu', array( $this, 'links_options_page' ));

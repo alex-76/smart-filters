@@ -18,4 +18,17 @@ unset($cpost_types[$pos]);
 ksort( $cpost_types, SORT_ASC );
 
 /*---- GENERAL TAB USED DEFAULT VARIABLES ----*/
+$select = 'post';
+$tax = 'category';
+$terms_sel = array();
 
+/*---- GENERAL TAB SUBMITTED VARIABLE VALUES ----*/
+if(get_post_meta($post->ID, 'ymc_cpt_value')) {
+	$select = get_post_meta($post->ID, 'ymc_cpt_value', true);
+}
+if(get_post_meta($post->ID, 'ymc-taxonomy-select')) {
+	$tax = get_post_meta($post->ID, 'ymc-taxonomy-select', true);
+}
+if(get_post_meta($post->ID,'ymc_terms')) {
+	$terms_sel = get_post_meta($post->ID, 'ymc_terms', true);
+}

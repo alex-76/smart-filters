@@ -157,13 +157,16 @@ $font-size: 16;
 
 								.form-label {
 									display: inline-block;
-									font-weight: 400;
-									font-style: italic;
+									font-weight: 600;
 									margin: 2px;
-									color: #999;
+									color: #000;
 									font-size: rem-calc(13px);
 									.information {
+										display: block;
 										font-size: rem-calc(12px);
+										font-style: italic;
+										font-weight: 400;
+										color: #999;
 									}
 								}
 
@@ -214,6 +217,16 @@ $font-size: 16;
 										border-left: 3px solid #dc3232;
 										padding: 5px;
 									}
+								}
+
+								.random-shortcode {
+									outline: 0;
+									border: none;
+									border-radius: 0;
+									width: 100%;
+									padding: 5px 10px;
+									font-size: rem-calc(13px);
+									font-weight: 300;
 								}
 
 								hr {
