@@ -127,10 +127,41 @@
                     console.log( obj, err );
                 }
             });
-
-
         });
 
+        // Selected All Terms
+        $(document).on('click','.ymc__container-settings #general #ymc-terms .category-all-label',function (e) {
+
+            let label = $(e.target);
+            let input = label.siblings();
+
+            if( ! input.is(':checked') ) {
+
+                let li = label.closest('.all-categories').siblings();
+
+                li.each(function () {
+
+                    let checkbox = $(this).find('input[type="checkbox"]');
+
+                    if( ! checkbox.is(':checked') ) {
+                        checkbox.prop( "checked", true );
+                    }
+                });
+            }
+            else  {
+
+                let li = label.closest('.all-categories').siblings();
+
+                li.each(function () {
+
+                    let checkbox = $(this).find('input[type="checkbox"]');
+
+                    if( checkbox.is(':checked') ) {
+                        checkbox.prop( "checked", false );
+                    }
+                });
+            }
+        });
 
 
 
