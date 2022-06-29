@@ -15,24 +15,24 @@ class YMC_Meta_Boxes {
 
 		if(isset($_POST['ymc-cpt-select'])) {
 
-			$cpt_val = sanitize_text_field( $_POST['ymc-cpt-select']);
+			$cpt_val = sanitize_text_field( $_POST['ymc-cpt-select'] );
 
 			update_post_meta( $post_id, 'ymc_cpt_value', $cpt_val );
 		}
 
-		if(isset($_POST['ymc-taxonomy'])) {
+		//if(isset($_POST['ymc-taxonomy'])) {
 
-			$tax_val = sanitize_html_class( $_POST['ymc-taxonomy']);
+			$tax_val = sanitize_html_class( $_POST['ymc-taxonomy'] );
 
 			update_post_meta( $post_id, 'ymc_taxonomy', $tax_val );
-		}
+		//}
 
-		if(isset($_POST['category-list'])) {
+		//if(isset($_POST['category-list'])) {
 
-			$terms = sanitize_html_class( $_POST['category-list']);
+			$terms = sanitize_html_class( $_POST['category-list'] );
 
 			update_post_meta( $post_id, 'ymc_terms', $terms );
-		}
+		//}
 
     }
 

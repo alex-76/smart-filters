@@ -31,7 +31,7 @@
         // CPT Event
         $(document).on('change','.ymc__container-settings #general #ymc-cpt-select',function (e) {
 
-            let taxonomyWrp = $('#ymc-taxonomy-select');
+            let taxonomyWrp = $('#ymc-tax-checkboxes');
             let termWrp     = $('#ymc-terms');
 
             const data = {
@@ -49,34 +49,21 @@
                 success: function (res) {
 
                     // Get Taxonomies
-                    if( res.data.tax.length ) {
+                    if( res.data.length ) {
 
                         taxonomyWrp.html('');
+                        termWrp.html('').closest('.wrapper-terms').addClass('hidden');
 
-                        res.data.tax.forEach((el) => {
-                            taxonomyWrp.append("<option value='"+el+"'>"+el+"</option>");
+                        res.data.forEach((el) => {
+                            taxonomyWrp.append(`<div class="group-elements">
+                            <input id="id-${el}" type="checkbox" name="ymc-taxonomy[]" value="${el}">
+                            <label for="id-${el}">${el}</label>
+                            </div>`);
                         });
                     }
                     else {
-                        taxonomyWrp.html('').append("<option selected disabled value='0'>No data for Post Type / Taxonomy</option>");
-                    }
-
-                    // Get Terms
-                    if( res.data.terms.length ) {
-
-                        termWrp.html('');
-
-                        termWrp.append(`<li class="all-categories">
-                                        <input name='all-select' class='category-all' id='category-all-btn' type='checkbox'>
-                                        <label for='category-all-btn' class='category-all-label'>All</label></li>`);
-
-                        res.data.terms.forEach((el) => {
-                            termWrp.append(`<li><input name="category-list[]" class="category-list" id="category-id-${el.term_id}" type="checkbox" value="${el.term_id}">
-                            <label for='category-id-${el.term_id}' class='category-list-label'>${el.name}</label></li>`);
-                        });
-                    } else  {
-                        termWrp.html('');
-                        termWrp.html('').append("<span class='notice-error'>no data for Post Type / Taxonomy</span>");
+                        taxonomyWrp.html('').append(`<span class="notice">No data for Post Type / Taxonomy</span>`);
+                        termWrp.html('').closest('.wrapper-terms').addClass('hidden');
                     }
                 },
                 error: function (obj, err) {
@@ -86,80 +73,96 @@
 
         });
 
+
         // Taxonomy Event
-        $(document).on('change','.ymc__container-settings #general #ymc-taxonomy-select',function (e) {
+        $(document).on('click','.ymc__container-settings #general #ymc-tax-checkboxes input[type="checkbox"]',function (e) {
 
             let termWrp = $('#ymc-terms');
 
-            const data = {
-                'action': 'ymc_get_terms',
-                'nonce_code' : _global_object.nonce,
-                'taxonomy' : $(this).val()
-            };
+            let val = '';
 
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: _global_object.ajax_url,
-                data: data,
-                beforeSend: function () {},
-                success: function (res) {
+            if($(e.target).is(':checked')) {
 
-                    // Get Terms
-                    if( res.data.terms.length ) {
+                val = $(e.target).val();
 
-                        termWrp.html('');
+                const data = {
+                    'action': 'ymc_get_terms',
+                    'nonce_code' : _global_object.nonce,
+                    'taxonomy' : val
+                };
 
-                        termWrp.append(`<li class="all-categories">
-                                        <input name='all-select' class='category-all' id='category-all-btn' type='checkbox'>
-                                        <label for='category-all-btn' class='category-all-label'>All</label></li>`);
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: _global_object.ajax_url,
+                    data: data,
+                    beforeSend: function () {},
+                    success: function (res) {
 
-                        res.data.terms.forEach((el) => {
-                            termWrp.append(`<li><input name="category-list[]" class="category-list" id="category-id-${el.term_id}" type="checkbox" value="${el.term_id}">
-                            <label for='category-id-${el.term_id}' class='category-list-label'>${el.name}</label></li>`);
-                        });
-                    } else  {
-                        termWrp.html('');
-                        termWrp.html('').append("<span class='notice-error'>no data for Post Type / Taxonomy</span>");
-                    }
-                },
-                error: function (obj, err) {
-                    console.log( obj, err );
-                }
-            });
-        });
+                        if($(e.target).closest('.ymc-tax-checkboxes').find('input[type="checkbox"]:checked').length > 0) {
+                            $('.ymc__container-settings #general .wrapper-terms').removeClass('hidden');
+                        } else {
+                            $('.ymc__container-settings #general .wrapper-terms').addClass('hidden');
+                        }
 
-        // Selected All Terms
-        $(document).on('click','.ymc__container-settings #general #ymc-terms .category-all-label',function (e) {
+                        // Get Terms
+                        if( res.data.terms.length ) {
 
-            let label = $(e.target);
-            let input = label.siblings();
+                            let output = '';
 
-            if( ! input.is(':checked') ) {
+                            output += `<article class="group-term item-${val}">
+                                       <div class="item-inner all-categories">
+                                       <header class="header-tax">Taxonomy: ${val}</header>
+                                       <input name='all-select' class='category-all' id='category-all-${val}' type='checkbox'>
+                                       <label for='category-all-${val}' class='category-all-label'>All</label></div>`;
 
-                let li = label.closest('.all-categories').siblings();
+                            res.data.terms.forEach((el) => {
+                                output += `<div class='item-inner'><input name="category-list[]" class="category-list" id="category-id-${el.term_id}" type="checkbox" value="${el.term_id}">
+                                <label for='category-id-${el.term_id}' class='category-list-label'>${el.name}</label></div>`;
+                            });
 
-                li.each(function () {
+                            output += `</article>`;
 
-                    let checkbox = $(this).find('input[type="checkbox"]');
+                            termWrp.append(output);
 
-                    if( ! checkbox.is(':checked') ) {
-                        checkbox.prop( "checked", true );
+                            output = '';
+
+                        } else  {
+                            termWrp.append(`<article class="group-term item-${val}"><div class='item-inner notice-error'>No terms for taxonomy ${val}</div></article>`);
+                        }
+                    },
+                    error: function (obj, err) {
+                        console.log( obj, err );
                     }
                 });
             }
+            else {
+                console.log('.item-'+$(e.target).val());
+                termWrp.find('.item-'+$(e.target).val()).remove();
+            }
+
+
+
+
+
+        });
+
+
+        // Selected All Terms
+        $(document).on('click','.ymc__container-settings #general #ymc-terms .all-categories input[type="checkbox"]',function (e) {
+
+            let input = $(e.target);
+
+            let checkbox = input.closest('.all-categories').siblings().find('input[type="checkbox"]');
+
+            if( input.is(':checked') ) {
+
+                if( ! checkbox.is(':checked') ) {
+                    checkbox.prop( "checked", true );
+                }
+            }
             else  {
-
-                let li = label.closest('.all-categories').siblings();
-
-                li.each(function () {
-
-                    let checkbox = $(this).find('input[type="checkbox"]');
-
-                    if( checkbox.is(':checked') ) {
-                        checkbox.prop( "checked", false );
-                    }
-                });
+                checkbox.prop( "checked", false );
             }
         });
 

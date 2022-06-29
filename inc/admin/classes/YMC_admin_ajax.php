@@ -19,20 +19,7 @@ class YMC_admin_ajax {
 			$cpt = sanitize_text_field($_POST["cpt"]);
 		}
 
-		$data['tax'] = get_object_taxonomies($cpt);
-		$data['tax1'] = $data['tax'][0];
-
-		if( $data['tax1'] ) {
-
-			$terms = get_terms([
-				'taxonomy' => $data['tax1'],
-				'hide_empty' => false,
-			]);
-			$data['terms'] = $terms;
-		}
-		else {
-			$data['terms'] = '';
-		}
+		$data = get_object_taxonomies($cpt);
 
 		$data = array(
 			'data' => $data
