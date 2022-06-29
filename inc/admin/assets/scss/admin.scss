@@ -178,6 +178,17 @@ $font-size: 16;
 									font-size: rem-calc(13px);
 								}
 
+								.ymc-tax-checkboxes {
+									padding: 5px 0;
+									display: flex;
+									flex-wrap: wrap;
+									align-items: center;
+									.group-elements {
+										margin-right: 20px;
+										margin-bottom: 15px;
+									}
+								}
+
 								.category-list {
 									display: grid;
 									grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -189,21 +200,7 @@ $font-size: 16;
 										align-items: center;
 										padding: 5px 10px;
 										border: 1px solid #999;
-										input[type="checkbox"] {
-											margin: 0 10px 0 0;
-											border-radius: 0;
-											border: 1px solid #999;
-											&:checked {
-												border-color: $color;
-												& + label {
-													font-weight: 600;
-												}
-											}
-										}
-										label {
-											font-weight: 400;
-											font-size: rem-calc(13px);
-										}
+
 										&.all-categories {
 											background: #098ab8;
 											color: #fff;
@@ -227,6 +224,23 @@ $font-size: 16;
 									padding: 5px 10px;
 									font-size: rem-calc(13px);
 									font-weight: 300;
+								}
+
+								input[type="checkbox"] {
+									margin: 0 5px 0 0;
+									border-radius: 0;
+									border: 1px solid #999;
+									&:checked {
+										border-color: $color;
+										& + label {
+											font-weight: 600;
+										}
+									}
+								}
+
+								label {
+									font-weight: 400;
+									font-size: rem-calc(13px);
 								}
 
 								hr {

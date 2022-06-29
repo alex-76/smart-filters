@@ -38,9 +38,9 @@
         </span>
 	</label>
 
-	<select class="form-select" id="ymc-taxonomy-select" name="ymc-taxonomy-select">
+	<!--<select class="form-select" id="ymc-taxonomy-select" name="ymc-taxonomy-select">-->
 		<?php
-		$taxo = get_object_taxonomies($select);
+		/*$taxo = get_object_taxonomies($select);
 		if($taxo){
 			foreach($taxo as $val) {
 				if($tax === $val) {
@@ -50,9 +50,44 @@
 				}
 				echo "<option value='" . $val . "' $sl>" . esc_html($val) . "</option>";
 			}
-		}
+		}*/
 		?>
-	</select>
+	<!--</select>-->
+
+
+    <div id="ymc-tax-checkboxes" class="ymc-tax-checkboxes">
+
+	    <?php
+	    $taxo = get_object_taxonomies($select);
+
+	    if($taxo) {
+
+		    foreach($taxo as $val) {
+
+			    $sl0='';
+
+			    if(is_array($tax_sel)) {
+
+				    if(count($tax_sel) > 0) {
+					    if (in_array($val, $tax_sel)) {
+						    $sl0 = 'checked';
+					    }
+					    else{ $sl0 =''; }
+				    }
+			    }
+
+                echo '<span class="group-elements">
+                        <input id="id-'. esc_html($val) .'" type="checkbox" name="ymc-taxonomy[]" value="'. esc_html($val) .'" '.$sl0.'>
+                        <label for="id-'. esc_html($val) .'">'. esc_html($val) . '</label>
+                     </span>';
+
+		    }
+	    }
+	    ?>
+
+    </div>
+
+
 </div>
 
 <hr/>
