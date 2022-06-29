@@ -42,18 +42,7 @@ class YMC_Plugin {
 
 		require_once YMC_SMART_FILTER_DIR . '/front/classes/YMC_shortcode.php';
 
-		//add_filter( 'the_content', array( $this, 'add_content' ));
-
-		//add_action( 'admin_menu', array( $this, 'links_options_page' ));
-
-		//add_action( 'admin_init',  array( $this, 'links_register_setting' ));
-
-		//add_filter( 'plugin_action_links', array( $this, 'links_external_plugin_setting' ), 10, 2 );
-
 	}
-
-
-
 
 }
 
