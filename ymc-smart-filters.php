@@ -21,6 +21,3 @@
 require_once( plugin_dir_path( __FILE__ ) . 'inc/plugin_smart_filters.php' );
 
 
-
-
-
