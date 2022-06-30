@@ -145,6 +145,7 @@ $font-size: 16;
 						opacity: 0;
 						transition: .3s;
 						padding: rem-calc(10px) rem-calc(20px);
+
 						&.active {
 							display: block;
 							opacity: 1;
@@ -160,6 +161,10 @@ $font-size: 16;
 							left: 50%;
 							z-index: 9;
 							transform: translate(-50%, -50%);
+						}
+
+						.ymc_hidden {
+							display: none;
 						}
 
 						.tab-entry {
@@ -249,6 +254,62 @@ $font-size: 16;
 									color: #eb2b2b;
 								}
 
+								.ymc-toggle-group {
+									position: relative;
+									margin-top: 5px;
+									.switch {
+										position: relative;
+										left: 0;
+										top: 0;
+										width: 70px;
+										height: 30px;
+										display: inline-block;
+										input[type="checkbox"] {
+											display: none;
+										}
+										input[type="checkbox"]:checked ~ .slider {
+											background-color: #eb2b2b;
+											border: 2px solid #eb2b2b;
+										}
+										input[type="checkbox"]:checked ~ .slider:before,
+										input[type="checkbox"]:checked ~ .slider:after {
+											transform: translateX(30px);
+										}
+										.slider {
+											position: absolute;
+											cursor: pointer;
+											top: 0;
+											left: 0;
+											right: 0;
+											bottom: 0;
+											background-color: #0aa018;
+											border: 2px solid #0aa018;
+											transition: all .5s;
+											border-radius: 50px;
+											z-index: 100;
+											overflow: hidden;
+											&:before, &:after {
+												position: absolute;
+												content: "ON";
+												height: 26px;
+												width: 35px;
+												left: 0;
+												bottom: 0;
+												border-radius: 30px;
+												background-color: #fff;
+												transition: 0.5s;
+												display: flex;
+												align-items: center;
+												justify-content: center;
+												font-size: rem-calc(12px);
+											}
+										}
+										input[type="checkbox"]:checked + .slider:after {
+											content: "OFF";
+										}
+									}
+								}
+
 								input[type="checkbox"] {
 									margin: 0 5px 0 0;
 									border-radius: 0;
@@ -271,6 +332,40 @@ $font-size: 16;
 								}
 
 							}
+						}
+					}
+
+					#layouts {
+						.tab-entry {
+							.content {
+								.manage-filters {
+									margin-top: rem-calc(20px);
+								}
+							}
+						}
+					}
+
+					#appearance {
+						.tab-entry {
+							.content {}
+						}
+					}
+
+					#typography {
+						.tab-entry {
+							.content {}
+						}
+					}
+
+					#advanced {
+						.tab-entry {
+							.content {}
+						}
+					}
+
+					#shortcode {
+						.tab-entry {
+							.content {}
 						}
 					}
 				}

@@ -183,6 +183,22 @@
         });
 
 
+        // Toggle Filter Status
+        $(document).on('click', '.ymc__container-settings .ymc-toggle-group .slider', function (e) {
+
+            let input = $(e.target).siblings('input');
+
+           // ( input.is(':checked') ) ? input.siblings('input[type="hidden"]').val('on') : input.siblings('input[type="hidden"]').val('off');
+
+            if(input.is(':checked')) {
+                input.siblings('input[type="hidden"]').val('on').closest('.wrapper-layout').find('.manage-filters').show();
+            }
+            else  {
+                input.siblings('input[type="hidden"]').val('off').closest('.wrapper-layout').find('.manage-filters').hide();
+            }
+
+        });
+
 
 
     });

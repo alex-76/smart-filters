@@ -18,18 +18,33 @@ unset($cpost_types[$pos]);
 ksort( $cpost_types, SORT_ASC );
 
 /*---- GENERAL TAB USED DEFAULT VARIABLES ----*/
-$select = 'post';
+$cpt = 'post';
 $tax = 'category';
 $tax_sel = array();
 $terms_sel = array();
 
+/*---- LAYOUT TAB USED DEFAULT VARIABLES ----*/
+$ymc_filter_status = 'on';
+
+
+
+
 /*---- GENERAL TAB SUBMITTED VARIABLE VALUES ----*/
-if(get_post_meta($post->ID, 'ymc_cpt_value')) {
-	$select = get_post_meta($post->ID, 'ymc_cpt_value', true);
+if( get_post_meta($post->ID, 'ymc_cpt_value') ) {
+	$cpt = get_post_meta($post->ID, 'ymc_cpt_value', true);
 }
-if(get_post_meta($post->ID, 'ymc_taxonomy')) {
+if( get_post_meta($post->ID, 'ymc_taxonomy') ) {
 	$tax_sel = get_post_meta($post->ID, 'ymc_taxonomy', true);
 }
-if(get_post_meta($post->ID, 'ymc_terms')) {
+if( get_post_meta($post->ID, 'ymc_terms') ) {
 	$terms_sel = get_post_meta($post->ID, 'ymc_terms', true);
 }
+
+/*---- LAYOUT TAB SUBMITTED VARIABLE VALUES ----*/
+if( get_post_meta($post->ID, 'ymc_filter_status') ) {
+	$ymc_filter_status = get_post_meta($post->ID, 'ymc_filter_status', true);
+}
+
+
+
+

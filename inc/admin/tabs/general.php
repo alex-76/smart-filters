@@ -10,7 +10,7 @@
 	<label for="ymc-cpt-select" class="form-label">
 		<?php echo esc_html__('Custom Post Type','ymc-smart-filter'); ?>
 		<span class="information">
-        <?php echo esc_html__('Select your post type to filter.','ymc-smart-filter'); ?>
+        <?php echo esc_html__('Select post type to filter.','ymc-smart-filter'); ?>
         </span>
 	</label>
 
@@ -18,7 +18,7 @@
 		<option value="post"><?php echo esc_html__('Post','ymc-smart-filter'); ?></option>
 		<?php
 		foreach($cpost_types as $cpost_type) {
-			if($select === $cpost_type) {
+			if($cpt === $cpost_type) {
 				$sel = 'selected';
 			} else {
 				$sel = '';
@@ -34,7 +34,7 @@
 
 <div class="form-group wrapper-taxonomy">
 
-	<label for="ymc-taxonomy-select" class="form-label">
+	<label for="ymc-tax-checkboxes" class="form-label">
 		<?php echo esc_html__('Taxonomy','ymc-smart-filter'); ?>
 		<span class="information">
         <?php echo esc_html__('Select your taxonomy.','ymc-smart-filter'); ?>
@@ -45,7 +45,7 @@
 
 	    <?php
 
-            $taxo = get_object_taxonomies($select);
+            $taxo = get_object_taxonomies($cpt);
 
             if($taxo) {
 
