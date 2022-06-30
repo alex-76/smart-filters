@@ -5,7 +5,7 @@
 
 <div class="content">
 
-    <div class="form-group wrapper-cpt">
+    <div class="form-group wrapper-layout">
 
         <h3><?php echo esc_html__(' Filter Layout ','ymc-smart-filter'); ?></h3>
 
