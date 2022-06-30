@@ -3,6 +3,12 @@
 
     $(document).on('ready', function () {
 
+        // Path preloader image
+        const pathPreloader = _global_object.path+"/admin/assets/images/preloader.gif";
+
+        // Wrapper tab
+        const container   = $('.ymc__container-settings .tab-panel');
+
         document.querySelectorAll('.ymc__container-settings .nav-tabs .link').forEach((el) => {
 
             el.addEventListener('click',function (e) {
@@ -45,8 +51,13 @@
                 dataType: 'json',
                 url: _global_object.ajax_url,
                 data: data,
-                beforeSend: function () {},
+                beforeSend: function () {
+                    container.addClass('loading').
+                    prepend(`<img class="preloader" src="${pathPreloader}">`);
+                },
                 success: function (res) {
+
+                    container.removeClass('loading').find('.preloader').remove();
 
                     // Get Taxonomies
                     if( res.data.length ) {
@@ -96,8 +107,13 @@
                     dataType: 'json',
                     url: _global_object.ajax_url,
                     data: data,
-                    beforeSend: function () {},
+                    beforeSend: function () {
+                        container.addClass('loading').
+                        prepend(`<img class="preloader" src="${pathPreloader}">`);
+                    },
                     success: function (res) {
+
+                        container.removeClass('loading').find('.preloader').remove();
 
                         if($(e.target).closest('.ymc-tax-checkboxes').find('input[type="checkbox"]:checked').length > 0) {
                             $('.ymc__container-settings #general .wrapper-terms').removeClass('hidden');

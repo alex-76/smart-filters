@@ -15,7 +15,7 @@ class YMC_admin_load_scripts {
 				'ajax_url' => admin_url('admin-ajax.php'),
 				'nonce'    => wp_create_nonce('custom_ajax_nonce'),
 				'current_page' => 1,
-				'path' => get_site_url(),
+				'path' => YMC_SMART_FILTER_URL
 			));
 
 	}

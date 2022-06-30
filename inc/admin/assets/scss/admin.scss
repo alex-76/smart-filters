@@ -29,9 +29,18 @@ $font-size: 16;
 	font-weight: 500;
 	box-sizing: border-box;
 
+	*:active, *:focus {
+		outline: none;
+		box-shadow: none;
+	}
+	*::-moz-focus-inner {
+		border: 0;
+	}
+
 	.postbox-header {
 		display: none;
 	}
+
 	.inside {
 		padding: 0;
 		margin: 0;
@@ -131,6 +140,7 @@ $font-size: 16;
 					flex: 1 1 70%;
 					background: #fff;
 					.tab-panel {
+						position: relative;
 						display: none;
 						opacity: 0;
 						transition: .3s;
@@ -138,6 +148,19 @@ $font-size: 16;
 						&.active {
 							display: block;
 							opacity: 1;
+							&.loading {
+								opacity: .5;
+							}
+						}
+
+
+						.preloader {
+							position: absolute;
+							width: 300px;
+							top: 50%;
+							left: 50%;
+							z-index: 9;
+							transform: translate(-50%, -50%);
 						}
 
 						.tab-entry {
@@ -187,6 +210,9 @@ $font-size: 16;
 									align-items: center;
 									.group-elements {
 										margin-right: 20px;
+										label {
+											text-transform: capitalize;
+										}
 									}
 								}
 
@@ -250,17 +276,8 @@ $font-size: 16;
 					}
 				}
 			}
-
-
 		}
-
-
-
-
-
 	}
-
-
 }
 
 

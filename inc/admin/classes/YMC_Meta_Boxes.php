@@ -99,7 +99,7 @@ class YMC_Meta_Boxes {
 
             <div class="tab-content">
 
-	            <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/default.php'; ?>
+	            <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/variables.php'; ?>
 
                 <div class="tab-panel active" id="general">
                     <div class="tab-entry">
