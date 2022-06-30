@@ -4,8 +4,23 @@
 </div>
 
 <div class="content">
-	Text 123456789 ---  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+
+    <div class="form-group wrapper-cpt">
+
+        <h3><?php echo esc_html__(' Filter Layout ','ymc-smart-filter'); ?></h3>
+
+        <label for="ymc-cpt-select" class="form-label">
+			<?php echo esc_html__(' Filter Layout ','ymc-smart-filter'); ?>
+            <span class="information">
+        <?php echo esc_html__('Select your post type to filter.','ymc-smart-filter'); ?>
+        </span>
+        </label>
+
+
+    </div>
+
+
+
 </div>
 
 
