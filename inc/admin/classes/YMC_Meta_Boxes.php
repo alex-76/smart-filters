@@ -37,13 +37,29 @@ class YMC_Meta_Boxes {
 			update_post_meta( $post_id, 'ymc_filter_status', $filter_status );
 		}
 
+		// Filter Layout
 		if ( isset($_POST['ymc-filter-layout']) ) {
 			$filter_layout = sanitize_text_field($_POST['ymc-filter-layout']);
 			update_post_meta($post_id, 'ymc_filter_layout', $filter_layout);
 		}
 
+        // Filter Text Color
+		if ( isset($_POST['ymc-filter-text-color']) ) {
+			$filter_layout_text_color = sanitize_text_field($_POST['ymc-filter-text-color']);
+			update_post_meta($post_id, 'ymc_filter_text_color', $filter_layout_text_color);
+		}
 
+		// Filter Background Color
+		if ( isset($_POST['ymc-filter-bg-color']) ) {
+			$filter_layout_bg_color = sanitize_text_field($_POST['ymc-filter-bg-color']);
+			update_post_meta($post_id, 'ymc_filter_bg_color', $filter_layout_bg_color);
+		}
 
+		// Filter Active Color
+		if ( isset($_POST['ymc-filter-active-color']) ) {
+			$filter_layout_active_color = sanitize_text_field($_POST['ymc-filter-active-color']);
+			update_post_meta($post_id, 'ymc_filter_active_color', $filter_layout_active_color);
+		}
 
 
 

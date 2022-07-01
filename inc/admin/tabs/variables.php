@@ -49,6 +49,12 @@ if( get_post_meta($post->ID, 'ymc_filter_status') ) {
 if( get_post_meta($post->ID, 'ymc_filter_layout') ) {
 	$ymc_filter_layout = get_post_meta($post->ID, 'ymc_filter_layout', true);
 }
-
-
-
+if( get_post_meta($post->ID, 'ymc_filter_text_color') ) {
+	$ymc_filter_text_color = get_post_meta($post->ID, 'ymc_filter_text_color', true);
+}
+if( get_post_meta($post->ID, 'ymc_filter_bg_color') ) {
+	$ymc_filter_bg_color = get_post_meta($post->ID, 'ymc_filter_bg_color', true);
+}
+if( get_post_meta($post->ID, 'ymc_filter_active_color') ) {
+	$ymc_filter_active_color = get_post_meta($post->ID, 'ymc_filter_active_color', true);
+}

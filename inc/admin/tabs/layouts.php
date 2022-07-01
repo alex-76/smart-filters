@@ -7,24 +7,32 @@
 
     <div class="form-group wrapper-layout">
 
-        <label for="ymc-filter-layout" class="form-label">
-	        <?php echo esc_html__('Enable / Disable Filter', 'ymc-smart-filter');?>
-            <span class="information">
+        <div class="switch-wrapper">
+
+            <label for="ymc-filter-layout" class="form-label">
+		        <?php echo esc_html__('Enable / Disable Filter', 'ymc-smart-filter');?>
+                <span class="information">
                 <?php echo esc_html__('Enable / Disable filter.', 'ymc-smart-filter'); ?>
             </span>
-        </label>
-
-        <div class="ymc-toggle-group">
-            <label class="switch">
-                <input type="checkbox" <?php echo ($ymc_filter_status === "off") ? "checked" : ""; ?>>
-                <input type="hidden" name="ymc-filter-status" value='<?php echo esc_attr($ymc_filter_status); ?>'>
-                <span class="slider"></span>
             </label>
+
+            <div class="ymc-toggle-group">
+                <label class="switch">
+                    <input type="checkbox" <?php echo ($ymc_filter_status === "off") ? "checked" : ""; ?>>
+                    <input type="hidden" name="ymc-filter-status" value='<?php echo esc_attr($ymc_filter_status); ?>'>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
         </div>
 
 	    <?php $ymc_hide = ($ymc_filter_status === 'on') ? '' : 'ymc_hidden'; ?>
 
         <div class="manage-filters <?php echo esc_attr($ymc_hide); ?>">
+
+            <div class="manage-filters__section">
+                <header class="sub-header"><?php echo esc_html__('Filter Options', 'ymc-smart-filter'); ?></header>
+            </div>
 
             <div class="manage-filters__section">
 

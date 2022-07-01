@@ -339,9 +339,13 @@ $font-size: 16;
 						.tab-entry {
 							.content {
 								.manage-filters {
-									margin-top: rem-calc(20px);
+									margin-top: rem-calc(40px);
 									&__section {
 										margin-bottom: rem-calc(30px);
+									}
+									.sub-header {
+										font-size: rem-calc(16px);
+										border-bottom: 2px solid #000;
 									}
 									.color-setting {
 										display: grid;
