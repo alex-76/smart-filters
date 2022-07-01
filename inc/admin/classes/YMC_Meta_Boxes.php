@@ -61,8 +61,11 @@ class YMC_Meta_Boxes {
 			update_post_meta($post_id, 'ymc_filter_active_color', $filter_layout_active_color);
 		}
 
-
-
+		// Post Layout
+		if ( isset($_POST['ymc-post-layout']) ) {
+			$post_layout = sanitize_text_field($_POST['ymc-post-layout']);
+			update_post_meta($post_id, 'ymc_post_layout', $post_layout);
+		}
     }
 
 	public function add_post_metabox() {

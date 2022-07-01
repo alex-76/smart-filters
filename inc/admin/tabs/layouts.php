@@ -31,29 +31,33 @@
         <div class="manage-filters <?php echo esc_attr($ymc_hide); ?>">
 
             <div class="manage-filters__section">
-                <header class="sub-header"><?php echo esc_html__('Filter Options', 'ymc-smart-filter'); ?></header>
+                <header class="sub-header"><?php echo esc_html__('Filter Layout', 'ymc-smart-filter'); ?></header>
             </div>
 
             <div class="manage-filters__section">
 
                 <label for="ymc-filter-layout" class="form-label">
-		            <?php echo esc_html__('Select Filter Design', 'ymc-smart-filter');?>
+		            <?php echo esc_html__('Select Filter Layout', 'ymc-smart-filter');?>
                     <span class="information">
-                    <?php echo esc_html__('Select design layout of filter.', 'ymc-smart-filter');?>
+                    <?php echo esc_html__('Select design layout of filters.', 'ymc-smart-filter');?>
                 </span>
                 </label>
-
                 <select class="form-select" id="ymc-filter-layout" name="ymc-filter-layout">
 
 		            <?php
-		            $filter_layouts = apply_filters('ymc_filter_layouts', $layouts);
-		            foreach ($filter_layouts as $key => $layout) :
 
-			            $selected = ( $ymc_filter_layout === $key ) ? 'selected' : '';
+                        $filter_layouts = apply_filters('ymc_filter_layouts', $layouts);
 
-			            echo '<option value="' . $key . '" ' . $selected . '>' . esc_attr($layout) . '</option>';
+                        if( $filter_layouts ) :
+                            foreach ($filter_layouts as $key => $layout) :
 
-		            endforeach;
+                                $selected = ( $ymc_filter_layout === $key ) ? 'selected' : '';
+
+                                echo '<option value="' . $key . '" ' . $selected . '>' . esc_attr($layout) . '</option>';
+
+                            endforeach;
+                        endif;
+
 		            ?>
                 </select>
 
@@ -94,6 +98,51 @@
             </div>
 
         </div>
+
+
+        <div class="manage-post">
+
+            <div class="manage-filters__section">
+                <header class="sub-header"><?php echo esc_html__('Post Layout', 'ymc-smart-filter'); ?></header>
+            </div>
+
+            <div class="manage-filters__section">
+                <label for="ymc-filter-layout" class="form-label">
+			        <?php echo esc_html__('Select Post Layout', 'ymc-smart-filter');?>
+                    <span class="information">
+                    <?php echo esc_html__('Select design layout for posts.', 'ymc-smart-filter');?>
+                </span>
+                </label>
+
+                <select class="form-select" id="ymc-filter-layout" name="ymc-post-layout">
+
+		            <?php
+		            $post_layouts = apply_filters('ymc_post_layouts', $layouts);
+
+		            if($post_layouts) :
+
+			            foreach ($post_layouts as $key => $layout) :
+
+				            $selected = ( $ymc_post_layout === $key ) ? 'selected' : '';
+
+				            echo '<option value="' . $key . '" ' . $selected . '>' . esc_attr($layout) . '</option>';
+
+			            endforeach;
+
+                    endif;
+
+
+		            ?>
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+
+
 
 
 

@@ -27,6 +27,7 @@ $ymc_filter_layout = 'filter-layout1';
 $ymc_filter_text_color = '#000';
 $ymc_filter_bg_color = '#098ab8';
 $ymc_filter_active_color = '#e91e63';
+$ymc_post_layout = 'post-layout1';
 
 
 
@@ -49,12 +50,15 @@ if( get_post_meta($post->ID, 'ymc_filter_status') ) {
 if( get_post_meta($post->ID, 'ymc_filter_layout') ) {
 	$ymc_filter_layout = get_post_meta($post->ID, 'ymc_filter_layout', true);
 }
-if( get_post_meta($post->ID, 'ymc_filter_text_color') ) {
+if( get_post_meta($post->ID, 'ymc_filter_text_color')[0] ) {
 	$ymc_filter_text_color = get_post_meta($post->ID, 'ymc_filter_text_color', true);
 }
-if( get_post_meta($post->ID, 'ymc_filter_bg_color') ) {
+if( get_post_meta($post->ID, 'ymc_filter_bg_color')[0] ) {
 	$ymc_filter_bg_color = get_post_meta($post->ID, 'ymc_filter_bg_color', true);
 }
-if( get_post_meta($post->ID, 'ymc_filter_active_color') ) {
+if( get_post_meta($post->ID, 'ymc_filter_active_color')[0] ) {
 	$ymc_filter_active_color = get_post_meta($post->ID, 'ymc_filter_active_color', true);
+}
+if( get_post_meta($post->ID, 'ymc_post_layout') ) {
+	$ymc_post_layout = get_post_meta($post->ID, 'ymc_post_layout', true);
 }
