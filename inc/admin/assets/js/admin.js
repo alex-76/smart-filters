@@ -84,7 +84,6 @@
 
         });
 
-
         // Taxonomy Event
         $(document).on('click','.ymc__container-settings #general #ymc-tax-checkboxes input[type="checkbox"]',function (e) {
 
@@ -163,7 +162,6 @@
 
         });
 
-
         // Selected All Terms
         $(document).on('click','.ymc__container-settings #general #ymc-terms .all-categories input[type="checkbox"]',function (e) {
 
@@ -201,58 +199,56 @@
 
         // Set Cookie
         function setCookie(cname, cvalue, exdays) {
-            var d = new Date();
+            let d = new Date();
             d.setTime(d.getTime() + (exdays*24*60*60*1000));
-            var expires = "expires="+ d.toUTCString();
+            let expires = "expires="+ d.toUTCString();
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
 
         // Get Cookie
         function getCookie(cname) {
-            var name = cname + "=";
-            var decodedCookie = decodeURIComponent(document.cookie);
-            var ca = decodedCookie.split(';');
-            for(var i = 0; i <ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') {
                     c = c.substring(1);
                 }
-                if (c.indexOf(name) == 0) {
+                if (c.indexOf(name) === 0) {
                     return c.substring(name.length, c.length);
                 }
             }
             return "";
         }
 
-        $(".ymc__container-settings #ymcTab a").click(function(){
+        // Set Cookie for Tab
+        $(".ymc__container-settings #ymcTab a").click(function(e) {
             let hashurl = $(this).attr('href');
             setCookie("hashymc", hashurl,30);
-            //var get_text=$.trim($(".tab-content "+hashurl+" .manage-top-dash.text").text());
-            //$(".manage-top-dash.general-tab.new-tab span.text").text(get_text);
         });
 
+        // Display selected tab
         if(getCookie("hashymc") !== '') {
+
             let hash = getCookie("hashymc");
 
-            $('.nav-tabs a[href="' + hash + '"]').addClass('active').closest('.nav-item').siblings().find('.link').removeClass('active');
+            $('.ymc__container-settings .nav-tabs a[href="' + hash + '"]').
+                addClass('active').
+                closest('.nav-item').
+                siblings().
+                find('.link').
+                removeClass('active');
 
             document.querySelectorAll('.tab-content .tab-panel').forEach((el) => {
-
                 if(hash === '#'+el.getAttribute('id')) {
-
-                    console.log('#'+el.getAttribute('id'));
-                    setTimeout(() => {
-                        $(el).addClass('active').siblings().removeClass('active');
-                    },1);
+                    $(el).addClass('active').siblings().removeClass('active');
                 }
             });
-
-
-            //
-            // var get_text=$.trim($(".tab-content "+url+" .manage-top-dash.text").text());
-            // $(".manage-top-dash.general-tab.new-tab span.text").text(get_text);
-            // console.log(get_text);
         }
+
+        // Add Color Picker for all inputs
+        $('.ymc-custom-color').wpColorPicker();
 
 
 

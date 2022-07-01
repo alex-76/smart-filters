@@ -8,7 +8,10 @@ class YMC_admin_load_scripts {
 
 	public function ymc_smartf_embedCssJs() {
 
+		wp_enqueue_style('wp-color-picker');
 		wp_enqueue_style( 'ymc-smartf_admin-style', YMC_SMART_FILTER_URL . '/admin/assets/css/admin.css');
+
+		wp_enqueue_script('wp-color-picker');
 		wp_enqueue_script( 'ymc-smartf-admin-script', YMC_SMART_FILTER_URL . '/admin/assets/js/admin.js', array( 'jquery' ) );
 		wp_localize_script( 'ymc-smartf-admin-script', '_global_object',
 			array(

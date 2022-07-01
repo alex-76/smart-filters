@@ -340,6 +340,14 @@ $font-size: 16;
 							.content {
 								.manage-filters {
 									margin-top: rem-calc(20px);
+									&__section {
+										margin-bottom: rem-calc(30px);
+									}
+									.color-setting {
+										display: grid;
+										grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+										grid-gap: 20px;
+									}
 								}
 							}
 						}

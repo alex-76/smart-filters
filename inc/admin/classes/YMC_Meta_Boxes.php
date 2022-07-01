@@ -37,6 +37,11 @@ class YMC_Meta_Boxes {
 			update_post_meta( $post_id, 'ymc_filter_status', $filter_status );
 		}
 
+		if ( isset($_POST['ymc-filter-layout']) ) {
+			$filter_layout = sanitize_text_field($_POST['ymc-filter-layout']);
+			update_post_meta($post_id, 'ymc_filter_layout', $filter_layout);
+		}
+
 
 
 
@@ -63,6 +68,7 @@ class YMC_Meta_Boxes {
         </header>
 
         <div class="ymc__container-settings">
+
             <div class="tab-sidebar">
                 <ul class="nav-tabs" id="ymcTab">
                     <li class="nav-item">
@@ -111,6 +117,8 @@ class YMC_Meta_Boxes {
             </div>
 
             <div class="tab-content">
+
+	            <?php require_once YMC_SMART_FILTER_DIR . '/admin/classes/YMC_admin_filters.php'; ?>
 
 	            <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/variables.php'; ?>
 
