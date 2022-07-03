@@ -46,7 +46,9 @@ class YMC_shortcode {
 				}
 				else {
 					$filter_layouts .= '<article><h2 style="font-size: 28px;">' . get_the_title(get_the_ID()) . get_post_meta($id, 'ymc_post_layout', true) .'</h2>
-					<p>'.wp_trim_words(get_the_content(get_the_ID()), 25).'</p></article>';
+					<p>'.wp_trim_words(get_the_content(get_the_ID()), 25).'</p>
+					<a href="#">More...</a>
+					</article>';
 				}
 
 			endwhile;

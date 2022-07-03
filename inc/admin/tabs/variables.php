@@ -48,7 +48,7 @@ if( get_post_meta($post->ID, 'ymc_terms') ) {
 	$terms_sel = get_post_meta($post->ID, 'ymc_terms', true);
 }
 
-/*---- LAYOUTS TAB SUBMITTED VARIABLE VALUES ----*/
+// LAYOUTS TAB SUBMITTED VARIABLE VALUES
 if( get_post_meta($post->ID, 'ymc_filter_status') ) {
 	$ymc_filter_status = get_post_meta($post->ID, 'ymc_filter_status', true);
 }

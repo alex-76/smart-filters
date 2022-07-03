@@ -96,7 +96,6 @@
 
         </div>
 
-
         <div class="manage-post">
 
             <div class="manage-filters__section">
@@ -140,7 +139,6 @@
                         <?php echo esc_html__('Select column layout of posts.', 'ymc-smart-filter');?>
                     </span>
                 </label>
-
 
                 <div class="screen-wrapper">
                     <div class="input-group">

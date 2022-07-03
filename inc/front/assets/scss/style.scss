@@ -1,4 +1,29 @@
-h2 {
-	color: #9f4e14;
+@import "fontawesome5/fontawesome";
+@import "fontawesome5/brands";
+@import "fontawesome5/regular";
+@import "fontawesome5/solid";
+@import 'typography';
+
+// Variable
+$color: #1fc4ff;
+$text_color: #1f1f1f;
+
+// Convert px to (r)em
+$font-size: 16;
+
+@function rem-calc($size, $font-size : $font-size) {
+	$font-size: $font-size + 0px;
+	$remSize: $size / $font-size;
+	@return #{$remSize}rem;
 }
 
+@function em-calc($size, $font-size : $font-size) {
+	$font-size: $font-size + 0px;
+	$remSize: $size / $font-size;
+	@return #{$remSize}em;
+}
+
+
+h2 {
+	color: red;
+}

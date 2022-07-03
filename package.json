@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "admin": "node-sass --watch inc/admin/assets/scss/admin.scss --output inc/admin/assets/css --source-map true --output-style compressed"
+    "admin": "node-sass --watch inc/admin/assets/scss/admin.scss --output inc/admin/assets/css --source-map true --output-style compressed",
+    "front": "node-sass --watch inc/front/assets/scss/style.scss --output inc/front/assets/css --source-map true --output-style compressed"
   },
   "author": "",
   "license": "ISC",
