@@ -25,6 +25,43 @@ class YMC_shortcode {
 		}
 
 
+		// EDIT CODE =========>
+
+		$filter_layouts = '';
+		$filter_layouts .= '<div class="container-temp">';
+
+		$args = array(
+			'post_type' => $ymc_cpt_value
+		);
+
+		$query = new WP_Query($args);
+
+		if ($query->have_posts()) :
+
+			while ($query->have_posts()) : $query->the_post();
+
+				if(get_post_meta($id, 'ymc_post_layout', true) === 'post-custom-layout') {
+					// $layouts, $post_id, $cpt_id
+					$filter_layouts .= apply_filters('ymc_post_custom_layout', $layouts, get_the_ID(), $id );
+				}
+				else {
+					$filter_layouts .= '<article><h2 style="font-size: 28px;">' . get_the_title(get_the_ID()) . get_post_meta($id, 'ymc_post_layout', true) .'</h2>
+					<p>'.wp_trim_words(get_the_content(get_the_ID()), 25).'</p></article>';
+				}
+
+			endwhile;
+
+			wp_reset_query();
+
+		endif;
+
+
+
+		$filter_layouts .= '</div>';
+
+		return  $filter_layouts;
+
+
 
 
 //		if(get_post_meta($id,'ymc_cpt_value')) {
@@ -48,7 +85,7 @@ class YMC_shortcode {
 
 
 
-		return 'Test...' . $ymc_cpt_value;
+
 
 	}
 

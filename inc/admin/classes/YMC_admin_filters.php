@@ -9,24 +9,28 @@ class YMC_admin_filters {
 
 	}
 
-	public function ymc_filter_layouts() {
+	public function ymc_filter_layouts($layouts) {
 
-		return [
+		$layouts = [
 			"filter-layout1" => 'Default Filter',
 			"filter-layout2" => 'Dropdown Filter',
 			"filter-layout3" => 'Sidebar Filter',
 			"filter-custom-layout"  => 'Custom Filter',
 		];
+
+		return $layouts;
 	}
 
-	public function ymc_post_layouts() {
+	public function ymc_post_layouts($layouts) {
 
-		return [
+		$layouts = [
 			"post-layout1" => 'Simple Blogs',
 			"post-layout2" => 'Boxed Title',
 			"post-layout3" => 'Glossy look',
 			"post-custom-layout"  => 'Custom Post'
 		];
+
+		return $layouts;
 	}
 
 

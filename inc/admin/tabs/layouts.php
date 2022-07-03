@@ -31,11 +31,13 @@
         <div class="manage-filters <?php echo esc_attr($ymc_hide); ?>">
 
             <div class="manage-filters__section">
-                <header class="sub-header"><?php echo esc_html__('Filter Layout', 'ymc-smart-filter'); ?></header>
+                <header class="sub-header">
+                    <span class="dashicons dashicons-filter"></span>
+                    <?php echo esc_html__('Filter Layout', 'ymc-smart-filter'); ?>
+                </header>
             </div>
 
             <div class="manage-filters__section">
-
                 <label for="ymc-filter-layout" class="form-label">
 		            <?php echo esc_html__('Select Filter Layout', 'ymc-smart-filter');?>
                     <span class="information">
@@ -43,11 +45,8 @@
                 </span>
                 </label>
                 <select class="form-select" id="ymc-filter-layout" name="ymc-filter-layout">
-
 		            <?php
-
                         $filter_layouts = apply_filters('ymc_filter_layouts', $layouts);
-
                         if( $filter_layouts ) :
                             foreach ($filter_layouts as $key => $layout) :
 
@@ -57,10 +56,8 @@
 
                             endforeach;
                         endif;
-
 		            ?>
                 </select>
-
             </div>
 
             <div class="manage-filters__section color-setting">
@@ -103,7 +100,10 @@
         <div class="manage-post">
 
             <div class="manage-filters__section">
-                <header class="sub-header"><?php echo esc_html__('Post Layout', 'ymc-smart-filter'); ?></header>
+                <header class="sub-header">
+                    <span class="dashicons dashicons-filter"></span>
+                    <?php echo esc_html__('Post Layout', 'ymc-smart-filter'); ?>
+                </header>
             </div>
 
             <div class="manage-filters__section">
@@ -113,28 +113,56 @@
                     <?php echo esc_html__('Select design layout for posts.', 'ymc-smart-filter');?>
                 </span>
                 </label>
-
                 <select class="form-select" id="ymc-filter-layout" name="ymc-post-layout">
-
 		            <?php
-		            $post_layouts = apply_filters('ymc_post_layouts', $layouts);
+                        $post_layouts = apply_filters('ymc_post_layouts', $layouts);
 
-		            if($post_layouts) :
+                        if($post_layouts) :
 
-			            foreach ($post_layouts as $key => $layout) :
+                            foreach ($post_layouts as $key => $layout) :
 
-				            $selected = ( $ymc_post_layout === $key ) ? 'selected' : '';
+                                $selected = ( $ymc_post_layout === $key ) ? 'selected' : '';
 
-				            echo '<option value="' . $key . '" ' . $selected . '>' . esc_attr($layout) . '</option>';
+                                echo '<option value="' . $key . '" ' . $selected . '>' . esc_attr($layout) . '</option>';
 
-			            endforeach;
+                            endforeach;
 
-                    endif;
-
+                        endif;
 		            ?>
                 </select>
+            </div>
+
+            <div class="manage-filters__section">
+
+                <label for="ymc-filter-layout" class="form-label">
+                    <?php echo esc_html__('Select column layout', 'ymc-smart-filter');?>
+                    <span class="information">
+                        <?php echo esc_html__('Select column layout of posts.', 'ymc-smart-filter');?>
+                    </span>
+                </label>
+
+
+                <div class="screen-wrapper">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="far fa-desktop"></i></span>
+                        <input class="input-screen" type="number" name="ymc_col_desktop" min='1' max="4"
+                               value=<?php echo esc_attr($ymc_col_options['ymc_col_desktop']); ?>>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="far fa-tablet-alt"></i></span>
+                        <input class="input-screen" type="number" name="ymc_col_tablet" min='1' max="4"
+                               value=<?php echo esc_attr($ymc_col_options['ymc_col_tablet']); ?>>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="far fa-mobile-alt"></i></span>
+                        <input class="input-screen" type="number" name="ymc_col_mobile" min='1' max="4"
+                               value=<?php echo esc_attr($ymc_col_options['ymc_col_mobile']); ?>>
+                    </div>
+                </div>
 
             </div>
+
+
 
 
         </div>
