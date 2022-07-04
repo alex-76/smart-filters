@@ -156,7 +156,7 @@ class YMC_Meta_Boxes {
 
 	            <?php require_once YMC_SMART_FILTER_DIR . '/admin/classes/YMC_admin_filters.php'; ?>
 
-	            <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/variables.php'; ?>
+	            <?php require_once YMC_SMART_FILTER_DIR . '/admin/admin-variables.php'; ?>
 
                 <div class="tab-panel active" id="general">
                     <div class="tab-entry">

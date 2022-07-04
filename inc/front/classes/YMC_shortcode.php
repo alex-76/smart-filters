@@ -10,25 +10,36 @@ class YMC_shortcode {
 
 	public function ymc_filter_apply( $atts ) {
 
-		require_once YMC_SMART_FILTER_DIR . '/front/variables.php';
+		ob_start();
+
+		require_once YMC_SMART_FILTER_DIR . '/front/front-variables.php';
 
 		$atts = shortcode_atts( [
-			'id' => '',
+				'id' => '',
 			], $atts );
 
 		$id = $atts['id'];
 
-		// Get Value CPT
-		if(get_post_meta($id, 'ymc_cpt_value')) {
+		// Get Value CPT (posts, books, cars etc)
+		if(get_post_meta($id, 'ymc_cpt_value', true)) {
 
 			$ymc_cpt_value = get_post_meta($id,'ymc_cpt_value', true);
 		}
 
+		// Get CPT Plugin
+		$ymc_cpt_filters = get_post_type($id); // ymc_filters
+
+
+		//wp_enqueue_style('tc-caf-' . $caf_post_layout, TC_CAF_URL . 'assets/css/post/"' . $caf_post_layout . '".min.css', '', TC_CAF_PLUGIN_VERSION);
+
+
+
+
 
 		// EDIT CODE =========>
 
-		$filter_layouts = '';
-		$filter_layouts .= '<div class="container-temp">';
+		$output = '';
+		$output .= '<div class="container-temp">';
 
 		$args = array(
 			'post_type' => $ymc_cpt_value
@@ -42,10 +53,10 @@ class YMC_shortcode {
 
 				if(get_post_meta($id, 'ymc_post_layout', true) === 'post-custom-layout') {
 					// $layouts, $post_id, $cpt_id
-					$filter_layouts .= apply_filters('ymc_post_custom_layout', $layouts, get_the_ID(), $id );
+					$output .= apply_filters('ymc_post_custom_layout', $layouts, get_the_ID(), $id );
 				}
 				else {
-					$filter_layouts .= '<article><h2 style="font-size: 28px;">' . get_the_title(get_the_ID()) . get_post_meta($id, 'ymc_post_layout', true) .'</h2>
+					$output .= '<article><h2 style="font-size: 28px;">' . get_the_title(get_the_ID()) . get_post_meta($id, 'ymc_post_layout', true) .'</h2>
 					<p>'.wp_trim_words(get_the_content(get_the_ID()), 25).'</p>
 					<a href="#">More...</a>
 					</article>';
@@ -59,9 +70,9 @@ class YMC_shortcode {
 
 
 
-		$filter_layouts .= '</div>';
+		$output .= '</div>';
 
-		return  $filter_layouts;
+		//return  $filter_layouts;
 
 
 
@@ -87,7 +98,10 @@ class YMC_shortcode {
 
 
 
+		$output .= ob_get_contents();
+		ob_end_clean();
 
+		return $output;
 
 	}
 
