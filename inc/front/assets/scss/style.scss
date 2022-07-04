@@ -24,6 +24,17 @@ $font-size: 16;
 }
 
 
-h2 {
-	color: red;
+.container-post-layout1 {
+	.post-entry {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+		grid-gap: 20px;
+		article {
+			padding: 20px;
+			background: #296ac2;
+			color: white;
+		}
+	}
 }
+
+
