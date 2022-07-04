@@ -5,6 +5,7 @@ class YMC_shortcode {
 	public function __construct() {
 
 		add_shortcode("ymc_filter", array($this, "ymc_filter_apply"));
+
 		//add_filter('tc_caf_post_layout_read_more',array($this,'tc_caf_post_layout_read_more'),5,2);
 	}
 
@@ -29,11 +30,7 @@ class YMC_shortcode {
 		// Get CPT Plugin
 		$ymc_cpt_filters = get_post_type($id); // ymc_filters
 
-
 		//wp_enqueue_style('tc-caf-' . $caf_post_layout, TC_CAF_URL . 'assets/css/post/"' . $caf_post_layout . '".min.css', '', TC_CAF_PLUGIN_VERSION);
-
-
-
 
 
 		// EDIT CODE =========>
