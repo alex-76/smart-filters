@@ -24,6 +24,51 @@ $font-size: 16;
 }
 
 
+.ymc-smart-container {
+
+	font-family: "Poppins";
+	font-weight: 500;
+	box-sizing: border-box;
+
+	*:active, *:focus {
+		outline: none;
+		box-shadow: none;
+	}
+	*::-moz-focus-inner {
+		border: 0;
+	}
+	.far {
+		font-size: rem-calc(18px);
+	}
+
+	// Filters styles
+	.filter-layout1 {
+		.ymc-filter-entry {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			.filter-item {
+				margin: 10px 10px ;
+				.filter-link {
+					display: inline-block;
+					padding: rem-calc(10px) rem-calc(10px);
+					font-size: rem-calc(16px);
+					&:hover {
+						text-decoration: none;
+					}
+				}
+			}
+
+		}
+
+	}
+
+}
+
+
+
+
 .container-post-layout1 {
 	.post-entry {
 		display: grid;

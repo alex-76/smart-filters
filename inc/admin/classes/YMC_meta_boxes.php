@@ -1,6 +1,6 @@
 <?php
 
-class YMC_Meta_Boxes {
+class YMC_meta_boxes {
 
 	public function __construct() {
 		add_action( 'add_meta_boxes', array($this, 'add_post_metabox'));
@@ -208,4 +208,4 @@ class YMC_Meta_Boxes {
 	<?php }
 }
 
-new YMC_Meta_Boxes();
+new YMC_meta_boxes();

@@ -29,9 +29,15 @@ if (get_post_meta($id, 'ymc_filter_layout', true)) {
 if (get_post_meta($id, 'ymc_post_layout', true)) {
 	$ymc_post_layout = get_post_meta($id, 'ymc_post_layout', true);
 }
-
-
-
+if (get_post_meta($id, 'ymc_filter_text_color', true)) {
+	$ymc_filter_text_color = get_post_meta($id, 'ymc_filter_text_color', true);
+}
+if (get_post_meta($id, 'ymc_filter_bg_color', true)) {
+	$ymc_filter_bg_color = get_post_meta($id, 'ymc_filter_bg_color', true);
+}
+if (get_post_meta($id, 'ymc_filter_active_color', true)) {
+	$ymc_filter_active_color = get_post_meta($id, 'ymc_filter_active_color', true);
+}
 
 
 

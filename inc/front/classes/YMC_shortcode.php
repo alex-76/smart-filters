@@ -23,8 +23,17 @@ class YMC_shortcode {
 
 		require_once YMC_SMART_FILTER_DIR . '/front/front-variables.php';
 
-		wp_enqueue_style('ymc-smartf-front-style', YMC_SMART_FILTER_URL . '/front/assets/css/style.css', '', YMC_SMART_FILTER_VERSION);
+		$handle = "ymc-smartf-style-" . $ymc_filter_layout;
 
+		wp_enqueue_style($handle, YMC_SMART_FILTER_URL . '/front/assets/css/style.css', '', YMC_SMART_FILTER_VERSION);
+		wp_enqueue_script('ymc-smart-frontend-scripts', YMC_SMART_FILTER_URL . '/front/assets/js/script.js', array('jquery'), YMC_SMART_FILTER_VERSION);
+		wp_localize_script( 'ymc-smart-frontend-scripts', '_global_object',
+			array(
+				'ajax_url' => admin_url('admin-ajax.php'),
+				'nonce'    => wp_create_nonce('custom_ajax_nonce'),
+				'current_page' => 1,
+				'path' => YMC_SMART_FILTER_URL
+			));
 
 		// Get CPT Plugin
 		$ymc_post_type = get_post_type($id); // ymc_filters
@@ -33,18 +42,14 @@ class YMC_shortcode {
 		// $ymc_post_layout - post-layout1
 		// $ymc_filter_layout - filter-layout1
 
-		//var_dump($ymc_post_type);
 
+		if ( !empty($id) && $ymc_post_type === 'ymc_filters' ) {
 
+			//if (is_array($tax)) {
+			//	$tax = implode(",", $tax);
+			//}
 
-
-		if ( ! empty($id) && $ymc_post_type === 'ymc_filters' ) {
-
-			if (is_array($tax)) {
-				$tax = implode(",", $tax);
-			}
-
-			echo '<div id="ymc-layout-container" class="ymc-layout-container ' . $ymc_filter_layout . ' '. $ymc_post_layout . '">';
+			echo '<div id="ymc-smart-container" class="ymc-smart-container ymc-' . $ymc_filter_layout . ' ymc-'. $ymc_post_layout . '">';
 
 			if ( $ymc_filter_status === 'on' ) {
 
@@ -57,7 +62,6 @@ class YMC_shortcode {
 					}
 				}
 			}
-
 
 			$args = array(
 				'post_type' => $ymc_cpt_value
@@ -130,16 +134,12 @@ class YMC_shortcode {
 					echo "<div class='error-ymc'>" . esc_html('Filter layout is not available.', 'ymc-smart-filter') . "</div>";
 				}
 
-
 				wp_reset_query();
 
 			endif;
 
 			echo '</div>'; // end ymc-layout-container
-
 		}
-
-
 
 
 		$output .= ob_get_contents();
