@@ -20,16 +20,16 @@ class YMC_meta_boxes {
 		}
 
         // Taxonomy
-		//if( isset($_POST['ymc-taxonomy']) ) {
+		if( isset($_POST['ymc-taxonomy']) ) {
 			$tax_val = sanitize_html_class( $_POST['ymc-taxonomy'] );
 			update_post_meta( $post_id, 'ymc_taxonomy', $tax_val );
-		//}
+		}
 
         // Terms
-		//if( isset($_POST['category-list']) ) {
+		if( isset($_POST['category-list']) ) {
 			$terms = sanitize_html_class( $_POST['category-list'] );
 			update_post_meta( $post_id, 'ymc_terms', $terms );
-		//}
+		}
 
         // Filter Status (on/off)
 		if( isset($_POST['ymc-filter-status']) ) {
@@ -96,7 +96,7 @@ class YMC_meta_boxes {
 	public function ymc_top_meta_box() { ?>
 
         <header class="ymc__header">
-            <div class="logo"><img src="<?php echo YMC_SMART_FILTER_URL . '/admin/assets/images/full-logo.png'; ?>"></div>
+            <div class="logo"><img src="<?php echo YMC_SMART_FILTER_URL . '/admin/assets/images/YMC-logos.png'; ?>"></div>
             <div class="manage-dash">
                 <span class="dashicons dashicons-admin-generic"></span>
                 <span class="title"><?php echo esc_html__('General Settings','ymc-smart-filter'); ?></span>

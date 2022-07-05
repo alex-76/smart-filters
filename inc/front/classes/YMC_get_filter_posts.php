@@ -12,6 +12,9 @@ class YMC_get_filter_posts {
 
 		if (!wp_verify_nonce($_POST['nonce_code'], 'custom_ajax_nonce')) exit;
 
+		$output  = '';
+		$message = '';
+
 		$posted_data = $_POST['params'];
 		$temp_data = str_replace("\\", "", $posted_data);
 		$clean_data = json_decode($temp_data, true);
@@ -20,41 +23,124 @@ class YMC_get_filter_posts {
 		$post_type = sanitize_text_field($clean_data['cpt']);
 		$term     = sanitize_text_field($clean_data['terms']);
 		$per_page = (int) $clean_data['per_page'];
+		$post_layout = $clean_data['post_layout'];
+		$filter_id = $clean_data['filter_id'];
 
-		$terms = explode(',', $term);
 
-		/*
-		if (!is_array($terms)):
-			$response = [
-				'status' => 501,
-				'message' => 'Term doesn\'t exist',
-				'content' => 0,
-			];
-			die(json_encode($response));
-		else:
-			if ($terms == 'all'):
+		$terms = !empty($term) ? explode(',', $term) : false;
+
+		if ( is_array($terms) ):
+
+			if ($terms === 'all'):
 				$tax_qry[] = [
-					'taxonomy' => $tax,
+					'taxonomy' => $taxonomy,
 					'field' => 'term_id',
 					'terms' => $terms,
 					'operator' => 'IN',
 				];
 			else:
 				$tax_qry[] = [
-					'taxonomy' => $tax,
+					'taxonomy' => $taxonomy,
 					'field' => 'term_id',
 					'terms' => $terms,
 				];
 			endif;
+
+		else:
+			$message = 'Term doesn\'t exist';
 		endif;
-		*/
 
 
+		$args = [
+			//'paged' => $page,
+			'post_type' => $post_type,
+			'post_status' => 'publish',
+			'posts_per_page' => $per_page,
+			//'tax_query' => $tax_qry,
+			//'orderby' => $default_order_by,
+			//'order' => $default_order,
+		];
+
+		$query = new WP_Query($args);
+
+		ob_start();
+
+		if ($query->have_posts()) :
+
+			$filepath = YMC_SMART_FILTER_DIR . "/front/layouts/post/" . $post_layout . ".php";
+
+			if ( file_exists($filepath) ) {
+
+				switch ( $post_layout ) :
+
+					case  "post-layout1" :
+
+						echo '<div class="wrapper-posts container-'. $post_layout .'">';
+						echo '<div class="post-entry">';
+
+						include_once $filepath;
+
+						echo '</div>';
+						echo '</div>';
+
+						break;
+
+					case  "post-layout2" :
+
+						echo '<div class="wrapper-posts container-'. $post_layout .'">';
+						echo '<div class="post-entry">';
+
+						include_once $filepath;
+
+						echo '</div>';
+						echo '</div>';
+
+						break;
+
+					case  "post-layout3" :
+
+						echo '<div class="wrapper-posts container-'. $post_layout .'">';
+						echo '<div class="post-entry">';
+
+						include_once $filepath;
+
+						echo '</div>';
+						echo '</div>';
+
+						break;
+
+					case  "post-custom-layout" :
+
+						$filepath = YMC_SMART_FILTER_DIR . "/front/layouts/post/" . $post_layout . ".php";
+
+						echo '<div class="wrapper-posts container-'. $post_layout .'">';
+						echo '<div class="post-entry">';
+
+						include_once $filepath;
+
+						echo '</div>';
+						echo '</div>';
+
+						break;
+
+				endswitch;
+
+			}
+			else {
+				echo "<div class='error-ymc'>" . esc_html('Filter layout is not available.', 'ymc-smart-filter') . "</div>";
+			}
+
+		endif;
+
+		$output .= ob_get_contents();
+		ob_end_clean();
 
 
-		// Get posts
 		$data = array(
-			'data' => $terms
+			'data' => $output,
+			'found' => $query->found_posts,
+			'message' => $message
+
 		);
 
 		wp_send_json($data);

@@ -58,6 +58,8 @@ $font-size: 16;
 					img {
 						width: 100%;
 						max-width: 150px;
+						height: 75px;
+						object-fit: cover;
 					}
 				}
 				.manage-dash {

@@ -53,8 +53,7 @@ class YMC_shortcode {
 
 			echo '<div id="ymc-smart-container" 
 					   class="ymc-smart-container ymc-' . $ymc_filter_layout . ' ymc-'. $ymc_post_layout . '"
-					   data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$term.'","per_page":"4"}\'
-					   >';
+					   data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$term.'","per_page":"4","post_layout":"'.$ymc_post_layout.'","filter_id":"'.$id.'"}\'>';
 
 			if ( $ymc_filter_status === 'on' ) {
 
@@ -68,82 +67,10 @@ class YMC_shortcode {
 				}
 			}
 
-			$args = array(
-				'post_type' => $ymc_cpt_value
-			);
-
-			$query = new WP_Query($args);
-
-			if ($query->have_posts()) :
-
-				$filepath = YMC_SMART_FILTER_DIR . "/front/layouts/post/" . $ymc_post_layout . ".php";
-
-				if ( file_exists($filepath) ) {
-
-					switch ( $ymc_post_layout ) :
-
-						case  "post-layout1" :
-
-							echo '<div class="container-'. $ymc_post_layout .'">';
-							echo '<div class="post-entry">';
-
-							include_once $filepath;
-
-							echo '</div>';
-							echo '</div>';
-
-							break;
-
-						case  "post-layout2" :
-
-							echo '<div class="container-'. $ymc_post_layout .'">';
-							echo '<div class="post-entry">';
-
-							include_once $filepath;
-
-							echo '</div>';
-							echo '</div>';
-
-							break;
-
-						case  "post-layout3" :
-
-							echo '<div class="container-'. $ymc_post_layout .'">';
-							echo '<div class="post-entry">';
-
-							include_once $filepath;
-
-							echo '</div>';
-							echo '</div>';
-
-							break;
-
-						case  "post-custom-layout" :
-
-							$filepath = YMC_SMART_FILTER_DIR . "/front/layouts/post/" . $ymc_post_layout . ".php";
-
-							echo '<div class="container-'. $ymc_post_layout .'">';
-							echo '<div class="post-entry">';
-
-							include_once $filepath;
-
-							echo '</div>';
-							echo '</div>';
-
-							break;
-
-					endswitch;
-
-				}
-				else {
-					echo "<div class='error-ymc'>" . esc_html('Filter layout is not available.', 'ymc-smart-filter') . "</div>";
-				}
-
-				wp_reset_query();
-
-			endif;
-
 			echo '</div>'; // end ymc-layout-container
+		}
+		else {
+			echo "<div class='ymc-smart-container'><div class='notice'>" . esc_html__('ID parameter is missing or invalid.', 'ymc-smart-filter') ."</div></div>";
 		}
 
 

@@ -25,7 +25,9 @@
 
         function getFilterPosts() {
 
-            let params = $(".ymc-smart-container").data("params");
+            let container = $(".ymc-smart-container");
+            let params    = container.data("params");
+
 
             const data = {
                 'action': 'ymc_get_posts',
@@ -43,6 +45,8 @@
                     //prepend(`<img class="preloader" src="${pathPreloader}">`);
                 },
                 success: function (res) {
+
+                    container.append(res.data);
 
                 },
                 error: function (obj, err) {

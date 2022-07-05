@@ -32,7 +32,7 @@
 
             <div class="manage-filters__section">
                 <header class="sub-header">
-                    <span class="dashicons dashicons-filter"></span>
+                    <i class="far fa-filter"></i>
                     <?php echo esc_html__('Filter Layout', 'ymc-smart-filter'); ?>
                 </header>
             </div>
@@ -100,7 +100,7 @@
 
             <div class="manage-filters__section">
                 <header class="sub-header">
-                    <span class="dashicons dashicons-filter"></span>
+                    <i class="far fa-address-card"></i>
                     <?php echo esc_html__('Post Layout', 'ymc-smart-filter'); ?>
                 </header>
             </div>

@@ -41,6 +41,12 @@ $font-size: 16;
 		font-size: rem-calc(18px);
 	}
 
+	.notice {
+		border: none;
+		box-shadow: none;
+		color: #eb2b2b;
+	}
+
 	// Filters styles
 	.filter-layout1 {
 		.ymc-filter-entry {
@@ -48,12 +54,16 @@ $font-size: 16;
 			flex-wrap: wrap;
 			justify-content: center;
 			align-items: center;
+			list-style: none;
+			margin: 0;
+			padding: 0;
 			.filter-item {
 				margin: 10px 10px ;
 				.filter-link {
 					display: inline-block;
 					padding: rem-calc(10px) rem-calc(10px);
 					font-size: rem-calc(16px);
+					text-decoration: none;
 					&:hover {
 						text-decoration: none;
 					}
