@@ -19,54 +19,59 @@ class YMC_get_filter_posts {
 		$temp_data = str_replace("\\", "", $posted_data);
 		$clean_data = json_decode($temp_data, true);
 
-		$post_type = sanitize_text_field($clean_data['cpt']);
-		$taxonomy  = sanitize_text_field($clean_data['tax']);
-		$term      = sanitize_text_field($clean_data['terms']);
+		$post_type = $clean_data['cpt'];
+		$taxonomy  = $clean_data['tax'];
+		$terms     = $clean_data['terms'];
 		$per_page  = (int) $clean_data['per_page'];
 		$post_layout = $clean_data['post_layout'];
 		$filter_id = $clean_data['filter_id'];
+		$term_ids  = $_POST['ids'];
 
 
 		$taxonomy = !empty($taxonomy) ? explode(',', $taxonomy) : false;
-		$terms = !empty($term) ? explode(',', $term) : false;
+		$terms    = !empty($terms) ? explode(',', $terms) : false;
 
 
-		if ( is_array($taxonomy) && is_array($terms) ):
+		if ( is_array($taxonomy) && is_array($terms) && empty($term_ids) ) :
 
-			$tax_qry = ['relation' => 'AND'];
+			foreach ($taxonomy as $tax) :
 
-			foreach ($taxonomy as $tax_val) :
+				foreach ($terms as $term) :
 
-//				$tax_qry[] = [
-//					'taxonomy' => $taxonomy,
-//					'field' => 'term_id',
-//					'terms' => $terms,
-//				];
+					$arr = explode("-", $term);
+
+					if($tax === $arr[0]) :
+						$term_id[] = (int) $arr[1];
+					endif;
+
+				endforeach;
+
+				if( count($term_id) > 0 ) :
+
+					$tax_qry[] = [
+						'taxonomy' => $tax,
+						'field' => 'term_id',
+						'terms' => $term_id
+					];
+
+				endif;
+
+				$term_id = [];
 
 			endforeach;
 
+		else :
 
+			$tx = get_term( $term_ids )->taxonomy;
 
-			/*if ($terms === 'all'):
-				$tax_qry[] = [
-					'taxonomy' => $taxonomy,
-					'field' => 'term_id',
-					'terms' => $terms,
-					'operator' => 'IN',
-				];
-			else:
-				$tax_qry[] = [
-					'taxonomy' => $taxonomy,
-					'field' => 'term_id',
-					'terms' => $terms,
-				];
-			endif;*/
+			$tax_qry[] = [
+				'taxonomy' => get_term( $term_ids )->taxonomy,
+				'field' => 'term_id',
+				'terms' => explode(',', $term_ids)
+			];
 
-			$message = 'OK';
-
-		else:
-			$message = 'Taxonomy and Term doesn\'t exist';
 		endif;
+
 
 
 
@@ -75,7 +80,7 @@ class YMC_get_filter_posts {
 			'post_type' => $post_type,
 			'post_status' => 'publish',
 			'posts_per_page' => -1,
-			//'tax_query' => $tax_qry,
+			'tax_query' => $tax_qry,
 			//'orderby' => $default_order_by,
 			//'order' => $default_order,
 		];
@@ -159,8 +164,11 @@ class YMC_get_filter_posts {
 			'data' => $output,
 			'found' => $query->found_posts,
 			'message' => $message,
+			'post_type' => $post_type,
 			'tax' => $taxonomy,
-			'term' => $terms
+			'term' => $tax_qry,
+			'term_ids' => $term_ids,
+			'tx' => $tx
 		);
 
 		wp_send_json($data);

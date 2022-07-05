@@ -16,18 +16,6 @@ if (get_post_meta($id, 'ymc_taxonomy')) {
 }
 if (get_post_meta($id, 'ymc_terms')) {
 	$terms_selected = get_post_meta($id, 'ymc_terms', true);
-	$terms_new_sel = [];
-
-	foreach (unserialize($terms_selected) as $val) {
-		foreach ($val as $key => $v) {
-			$terms_new_sel[] = '"'.$key.'":"'.$v.'"';
-		}
-	}
-
-	if ($terms_new_sel) {
-		$term = implode(',', $terms_new_sel);
-	}
-
 }
 if (get_post_meta($id, 'ymc_filter_status', true)) {
 	$ymc_filter_status = get_post_meta($id, 'ymc_filter_status', true);

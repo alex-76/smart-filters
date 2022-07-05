@@ -44,7 +44,7 @@ class YMC_shortcode {
 		// $ymc_post_layout - post-layout1
 		// $ymc_filter_layout - filter-layout1
 
-		var_dump($term);
+		//var_dump($term);
 
 
 		if ( !empty($id) && $ymc_post_type === 'ymc_filters' ) {
@@ -53,9 +53,22 @@ class YMC_shortcode {
 				$tax = implode(",", $tax);
 			}
 
+			if(!empty($terms_selected)) {
+
+				foreach (unserialize($terms_selected) as $val) {
+					foreach ($val as $key => $v) {
+						$terms_new_sel[] = $key.'-'.$v;
+						$term_obj[] = get_term( $v, $key );
+						$term_all_sel[] = $v;
+					}
+				}
+				$terms = implode(',', $terms_new_sel);
+
+			}
+
 			echo '<div id="ymc-smart-container" 
 					   class="ymc-smart-container ymc-' . $ymc_filter_layout . ' ymc-'. $ymc_post_layout . '"
-					   data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"{'.$term.'}","per_page":"4","post_layout":"'.$ymc_post_layout.'","filter_id":"'.$id.'"}\'>';
+					   data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$terms.'","per_page":"4","post_layout":"'.$ymc_post_layout.'","filter_id":"'.$id.'"}\'>';
 
 			if ( $ymc_filter_status === 'on' ) {
 

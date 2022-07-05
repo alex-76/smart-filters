@@ -10,23 +10,17 @@
 	<ul class="ymc-filter-entry">
 		<?php
 
-			if ( $terms_selected ) {
+			if ( $term_obj ) {
 
-				echo '<li class="filter-item"><a class="filter-link active" href="#" >' . __("All",'ymc-smart-filter') . '</a></li>';
+				$trm1 = implode(',', $term_all_sel);
 
-                foreach ($terms_selected as $key => $term) {
+				echo '<li class="filter-item"><a class="filter-link active" href="#" data-id="' . esc_attr($trm1) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
 
-	                $term_data = get_term($term);
+                foreach ($term_obj as $term) {
 
-	                if ($term_data) {
-
-		                $cl = '';
-		                $data_id = esc_attr($term_data->term_id);
-
-		                echo "<li class='filter-item'>
-                              <a class='filter-link' href='#' data-id='" . esc_attr($data_id) . "'>" . esc_html($term_data->name) . "</a>
-                              </li>";
-	                }
+                    echo "<li class='filter-item'>
+                          <a class='filter-link' href='#' data-id='" . esc_attr($term->term_id) . "'>" . esc_html($term->name) . "</a>
+                          </li>";
                 }
 			}
 		?>

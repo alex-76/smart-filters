@@ -14,7 +14,7 @@
         </span>
 	</label>
 
-	<select class="form-select" id="ymc-cpt-select" name="ymc-cpt-select">
+	<select class="form-select" id="ymc-cpt-select" name="ymc-cpt-select" data-postid="<?php echo $post->ID; ?>">
 		<option value="post"><?php echo esc_html__('Post','ymc-smart-filter'); ?></option>
 		<?php
 		foreach($cpost_types as $cpost_type) {
@@ -99,14 +99,14 @@
 
             $terms_new_sel = [];
 
-	        foreach (unserialize($terms_sel) as $val) {
-		        foreach ($val as $key => $v) {
-			        $terms_new_sel[] = $v;
-			        //var_dump($key . '-'.$v);
-		        }
-	        }
+            if( !empty($terms_sel) ) :
 
-	        //var_dump($terms_new_sel);
+	            foreach (unserialize($terms_sel) as $val) {
+		            foreach ($val as $key => $v) {
+			            $terms_new_sel[] = $v;
+		            }
+	            }
+            endif;
 
             foreach ( $tax_sel as $tax ) :
 

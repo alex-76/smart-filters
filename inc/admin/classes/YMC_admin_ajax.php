@@ -18,6 +18,11 @@ class YMC_admin_ajax {
 		if(isset($_POST["cpt"])) {
 			$cpt = sanitize_text_field($_POST["cpt"]);
 		}
+		if(isset($_POST["post_id"])) {
+			update_post_meta( (int) $_POST["post_id"], 'ymc_taxonomy', '' );
+			update_post_meta( (int) $_POST["post_id"], 'ymc_terms', '' );
+		}
+
 
 		$data = get_object_taxonomies($cpt);
 

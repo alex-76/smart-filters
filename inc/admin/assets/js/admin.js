@@ -43,7 +43,8 @@
             const data = {
                 'action': 'ymc_get_taxonomy',
                 'nonce_code' : _global_object.nonce,
-                'cpt' : $(this).val()
+                'cpt' : $(this).val(),
+                'post_id' : $(this).data('postid')
             };
 
             $.ajax({

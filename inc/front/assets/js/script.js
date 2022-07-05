@@ -21,18 +21,18 @@
 
     $(document).on('ready', function () {
 
-
-
-        function getFilterPosts() {
+        function getFilterPosts(id) {
 
             let container = $(".ymc-smart-container");
             let params    = container.data("params");
+            let ids = id || '';
 
 
             const data = {
                 'action': 'ymc_get_posts',
                 'nonce_code' : _global_object.nonce,
                 'params' : JSON.stringify(params),
+                'ids' : ids
             };
 
             $.ajax({
@@ -45,9 +45,7 @@
                     //prepend(`<img class="preloader" src="${pathPreloader}">`);
                 },
                 success: function (res) {
-
                     container.append(res.data);
-
                 },
                 error: function (obj, err) {
                     console.log( obj, err );
@@ -55,6 +53,20 @@
             });
 
         }
+
+
+        // Filter Posts
+        $(document).on('click','.ymc-smart-container .filter-layout .filter-link',function (e) {
+
+            e.preventDefault();
+
+            let link = $(e.target);
+            let id = link.data('id');
+
+            getFilterPosts(id);
+
+        });
+
 
         getFilterPosts();
 
