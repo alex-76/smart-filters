@@ -19,19 +19,35 @@ class YMC_get_filter_posts {
 		$temp_data = str_replace("\\", "", $posted_data);
 		$clean_data = json_decode($temp_data, true);
 
-		$taxonomy  = sanitize_text_field($clean_data['tax']);
 		$post_type = sanitize_text_field($clean_data['cpt']);
-		$term     = sanitize_text_field($clean_data['terms']);
-		$per_page = (int) $clean_data['per_page'];
+		$taxonomy  = sanitize_text_field($clean_data['tax']);
+		$term      = sanitize_text_field($clean_data['terms']);
+		$per_page  = (int) $clean_data['per_page'];
 		$post_layout = $clean_data['post_layout'];
 		$filter_id = $clean_data['filter_id'];
 
 
+		$taxonomy = !empty($taxonomy) ? explode(',', $taxonomy) : false;
 		$terms = !empty($term) ? explode(',', $term) : false;
 
-		if ( is_array($terms) ):
 
-			if ($terms === 'all'):
+		if ( is_array($taxonomy) && is_array($terms) ):
+
+			$tax_qry = ['relation' => 'AND'];
+
+			foreach ($taxonomy as $tax_val) :
+
+//				$tax_qry[] = [
+//					'taxonomy' => $taxonomy,
+//					'field' => 'term_id',
+//					'terms' => $terms,
+//				];
+
+			endforeach;
+
+
+
+			/*if ($terms === 'all'):
 				$tax_qry[] = [
 					'taxonomy' => $taxonomy,
 					'field' => 'term_id',
@@ -44,18 +60,21 @@ class YMC_get_filter_posts {
 					'field' => 'term_id',
 					'terms' => $terms,
 				];
-			endif;
+			endif;*/
+
+			$message = 'OK';
 
 		else:
-			$message = 'Term doesn\'t exist';
+			$message = 'Taxonomy and Term doesn\'t exist';
 		endif;
+
 
 
 		$args = [
 			//'paged' => $page,
 			'post_type' => $post_type,
 			'post_status' => 'publish',
-			'posts_per_page' => $per_page,
+			'posts_per_page' => -1,
 			//'tax_query' => $tax_qry,
 			//'orderby' => $default_order_by,
 			//'order' => $default_order,
@@ -139,8 +158,9 @@ class YMC_get_filter_posts {
 		$data = array(
 			'data' => $output,
 			'found' => $query->found_posts,
-			'message' => $message
-
+			'message' => $message,
+			'tax' => $taxonomy,
+			'term' => $terms
 		);
 
 		wp_send_json($data);

@@ -132,7 +132,7 @@
                                        <label for='category-all-${val}' class='category-all-label'>All</label></div>`;
 
                             res.data.terms.forEach((el) => {
-                                output += `<div class='item-inner'><input name="category-list[]" class="category-list" id="category-id-${el.term_id}" type="checkbox" value="${el.term_id}">
+                                output += `<div class='item-inner'><input name="ymc-terms[][${val}]" class="category-list" id="category-id-${el.term_id}" type="checkbox" value="${el.term_id}">
                                 <label for='category-id-${el.term_id}' class='category-list-label'>${el.name}</label></div>`;
                             });
 
@@ -155,10 +155,6 @@
                 console.log('.item-'+$(e.target).val());
                 termWrp.find('.item-'+$(e.target).val()).remove();
             }
-
-
-
-
 
         });
 

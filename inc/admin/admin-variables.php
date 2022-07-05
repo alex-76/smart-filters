@@ -18,7 +18,7 @@ ksort( $cpost_types, SORT_ASC );
 // GENERAL TAB USED DEFAULT VARIABLES
 $cpt = 'post';
 $tax = 'category';
-$tax_sel = array();
+$tax_sel = array('category');
 $terms_sel = array();
 
 // LAYOUT TAB USED DEFAULT VARIABLES

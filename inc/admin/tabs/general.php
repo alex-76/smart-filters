@@ -47,6 +47,9 @@
 
             $taxo = get_object_taxonomies($cpt);
 
+            //var_dump($taxo);
+            //var_dump($tax_sel);
+
             if($taxo) {
 
                 foreach($taxo as $val) :
@@ -64,7 +67,7 @@
                     }
 
                     echo '<div class="group-elements">
-                            <input id="id-'. esc_html($val) .'" type="checkbox" name="ymc-taxonomy[]" value="'. esc_html($val) .'" '.$sl0.'>
+                            <input id="id-'. esc_html($val) .'" type="checkbox" name="ymc-taxonomy['.$val.']" value="'. esc_html($val) .'" '.$sl0.'>
                             <label for="id-'. esc_html($val) .'">'. esc_html($val) . '</label>
                          </div>';
 
@@ -94,6 +97,17 @@
 
         if( is_array($tax_sel) && count($tax_sel) > 0 ) {
 
+            $terms_new_sel = [];
+
+	        foreach (unserialize($terms_sel) as $val) {
+		        foreach ($val as $key => $v) {
+			        $terms_new_sel[] = $v;
+			        //var_dump($key . '-'.$v);
+		        }
+	        }
+
+	        //var_dump($terms_new_sel);
+
             foreach ( $tax_sel as $tax ) :
 
 	            $terms = get_terms([
@@ -114,19 +128,17 @@
 
 			            $sl1 = '';
 
-			            if(is_array($terms_sel)) {
+			            if(is_array($terms_new_sel) && count($terms_new_sel) > 0) {
 
-				            if(count($terms_sel) > 0) {
-					            if (in_array($term->term_id, $terms_sel)) {
-						            $sl1 = 'checked';
-					            }
-					            else{ $sl1=''; }
-				            }
+                            if (in_array($term->term_id, $terms_new_sel)) {
+                                $sl1 = 'checked';
+                            }
+                            else{ $sl1 = ''; }
 			            }
 
-			            echo "<div class='item-inner'>
-                              <input name='category-list[]' class='category-list' id='category-id-$term->term_id' type='checkbox' value='". $term->term_id ."' $sl1>";
-			            echo "<label for='category-id-$term->term_id' class='category-list-label'>" . esc_html($term->name) . "</label></div>";
+			            echo '<div class="item-inner">
+                              <input name="ymc-terms[]['.$tax.']" class="category-list" id="category-id-'.$term->term_id.'" type="checkbox" value="'. $term->term_id .'" '.$sl1.'>';
+			            echo '<label for="category-id-'.$term->term_id.'" class="category-list-label">' . esc_html($term->name) . '</label></div>';
 
                    endforeach;
 
