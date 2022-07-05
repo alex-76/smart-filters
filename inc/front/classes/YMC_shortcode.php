@@ -21,6 +21,7 @@ class YMC_shortcode {
 
 		$output = '';
 
+		require_once YMC_SMART_FILTER_DIR . '/front/classes/YMC_front_filters.php';
 		require_once YMC_SMART_FILTER_DIR . '/front/front-variables.php';
 
 		$handle = "ymc-smartf-style-" . $ymc_filter_layout;
@@ -35,21 +36,25 @@ class YMC_shortcode {
 				'path' => YMC_SMART_FILTER_URL
 			));
 
-		// Get CPT Plugin
-		$ymc_post_type = get_post_type($id); // ymc_filters
 
-		// $ymc_cpt_value - post, book etc.
+		$ymc_post_type = get_post_type($id);
+
+		// $ymc_post_type - ymc_filters
+		// $ymc_cpt_value - post, book, car etc.
 		// $ymc_post_layout - post-layout1
 		// $ymc_filter_layout - filter-layout1
 
 
 		if ( !empty($id) && $ymc_post_type === 'ymc_filters' ) {
 
-			//if (is_array($tax)) {
-			//	$tax = implode(",", $tax);
-			//}
+			if (is_array($tax)) {
+				$tax = implode(",", $tax);
+			}
 
-			echo '<div id="ymc-smart-container" class="ymc-smart-container ymc-' . $ymc_filter_layout . ' ymc-'. $ymc_post_layout . '">';
+			echo '<div id="ymc-smart-container" 
+					   class="ymc-smart-container ymc-' . $ymc_filter_layout . ' ymc-'. $ymc_post_layout . '"
+					   data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$term.'","per_page":"4"}\'
+					   >';
 
 			if ( $ymc_filter_status === 'on' ) {
 

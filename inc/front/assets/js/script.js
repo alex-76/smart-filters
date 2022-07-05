@@ -23,11 +23,14 @@
 
 
 
-        function getFilterPosts() {           
+        function getFilterPosts() {
+
+            let params = $(".ymc-smart-container").data("params");
 
             const data = {
                 'action': 'ymc_get_posts',
                 'nonce_code' : _global_object.nonce,
+                'params' : JSON.stringify(params),
             };
 
             $.ajax({
