@@ -28,7 +28,7 @@ class YMC_get_filter_posts {
 		$post_layout = $clean_data['post_layout'];
 		$filter_id = $clean_data['filter_id'];
 		$type_pagination = $clean_data['type_pg'];
-		$page      = (int) $_POST['page'];
+		$paged      = (int) $_POST['paged'];
 		$term_ids  = $_POST['term_ids'];
 
 		$default_order_by = apply_filters('ymc_filter_posts_order_by', $default_order_by);
@@ -102,7 +102,7 @@ class YMC_get_filter_posts {
 			'post_status' => 'publish',
 			'posts_per_page' => $per_page, // need edit from admin panel
 			'tax_query' => $tax_qry,
-			'paged' => $page,
+			'paged' => $paged,
 			'orderby' => $default_order_by,
 			'order' => $default_order,
 		];
@@ -189,7 +189,8 @@ class YMC_get_filter_posts {
 			'message' => $message,
 			'post_type' => $post_type,
 			'tax' => $taxonomy,
-			'term' => $tax_qry
+			'term' => $tax_qry,
+			'max_num_pages' => $query->max_num_pages
 		);
 
 		wp_send_json($data);

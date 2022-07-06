@@ -58,7 +58,7 @@ class YMC_shortcode {
 			// ===============================================
 			// Need add options to Admin Panel Tab: Appearance
 			// ===============================================
-			$per_page = -1; // Count posts on page
+			$per_page = 3; // Count posts on page
 			$type_pg = 'default'; // load-more, scroll-infinity
 
 			echo '<div id="ymc-smart-container" 
