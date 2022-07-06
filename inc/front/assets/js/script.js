@@ -45,7 +45,7 @@
                     //prepend(`<img class="preloader" src="${pathPreloader}">`);
                 },
                 success: function (res) {
-                    container.find('.container-posts .post-entry').html(res.data);
+                    container.find('.container-posts').html(res.data);
                 },
                 error: function (obj, err) {
                     console.log( obj, err );

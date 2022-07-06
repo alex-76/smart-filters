@@ -1,3 +1,5 @@
+<div class="<?php echo $post_layout; ?>-inner post-entry">
+
 <?php
 
 while ($query->have_posts()) : $query->the_post();
@@ -7,4 +9,7 @@ while ($query->have_posts()) : $query->the_post();
 			<a href="#">More...</a>
 		 </article>';
 
-endwhile;
+endwhile; ?>
+
+</div>
+

@@ -1,3 +1,5 @@
 <?php
 
-echo "<div class='pagination'>Default Pagination</div>";
+$pg = new YMC_post_pagination();
+
+echo "<div class='pagination'>" . $pg->number() . "</div>";

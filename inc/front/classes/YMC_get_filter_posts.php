@@ -114,7 +114,7 @@ class YMC_get_filter_posts {
 		if ($query->have_posts()) :
 
 			$file_layout = YMC_SMART_FILTER_DIR . "/front/layouts/post/" . $post_layout . ".php";
-			$file_pg = YMC_SMART_FILTER_DIR . "/front/pagination/". $type_pagination . ".php";
+			$file_pg = YMC_SMART_FILTER_DIR . "/front/pagination/pg-". $type_pagination . ".php";
 
 
 			// Add Layouts posts
@@ -160,12 +160,16 @@ class YMC_get_filter_posts {
 			// Add Pagination
 			if ( file_exists($file_pg) ) :
 
+				require_once YMC_SMART_FILTER_DIR . "/front/classes/YMC_post_pagination.php";
+
 				include_once $file_pg;
 
+			else :
+
+				echo "<div class='ymc-error'>" . esc_html('Pagination layout is not available.', 'ymc-smart-filter') . "</div>";
+				$message = 'Pagination layout is not available';
+
 			endif;
-
-
-
 
 
 		else :

@@ -78,7 +78,7 @@ class YMC_shortcode {
 				}
 			}
 
-			echo '<div class="container-posts container-'. $ymc_post_layout .'"><div class="post-entry"></div></div>';
+			echo '<div class="container-posts container-'. $ymc_post_layout .'"></div>';
 
 			echo '</div>'; // end ymc-layout-container
 		}
