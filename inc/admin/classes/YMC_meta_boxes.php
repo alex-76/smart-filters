@@ -27,7 +27,7 @@ class YMC_meta_boxes {
 
         // Terms
 		if( isset($_POST['ymc-terms']) ) {
-			$terms = serialize( $_POST['ymc-terms'] );
+			$terms = sanitize_html_class( $_POST['ymc-terms'] );
 			update_post_meta( $post_id, 'ymc_terms', $terms );
 		}
 

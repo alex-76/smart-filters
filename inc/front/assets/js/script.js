@@ -21,18 +21,18 @@
 
     $(document).on('ready', function () {
 
-        function getFilterPosts(id) {
+        function getFilterPosts(ids) {
 
             let container = $(".ymc-smart-container");
             let params    = container.data("params");
-            let ids = id || '';
-
+            let term_ids = ids || '';
 
             const data = {
                 'action': 'ymc_get_posts',
                 'nonce_code' : _global_object.nonce,
                 'params' : JSON.stringify(params),
-                'ids' : ids
+                'term_ids' : term_ids,
+                'page' :  _global_object.current_page,
             };
 
             $.ajax({
@@ -45,7 +45,7 @@
                     //prepend(`<img class="preloader" src="${pathPreloader}">`);
                 },
                 success: function (res) {
-                    container.append(res.data);
+                    container.find('.container-posts .post-entry').html(res.data);
                 },
                 error: function (obj, err) {
                     console.log( obj, err );

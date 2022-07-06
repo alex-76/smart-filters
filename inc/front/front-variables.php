@@ -12,7 +12,7 @@ if(get_post_meta($id, 'ymc_cpt_value', true)) {
 	$ymc_cpt_value = get_post_meta($id,'ymc_cpt_value', true);
 }
 if (get_post_meta($id, 'ymc_taxonomy')) {
-	$tax = get_post_meta($id, 'ymc_taxonomy', true);
+	$tax_selected = get_post_meta($id, 'ymc_taxonomy', true);
 }
 if (get_post_meta($id, 'ymc_terms')) {
 	$terms_selected = get_post_meta($id, 'ymc_terms', true);

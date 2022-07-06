@@ -1,6 +1,6 @@
 <?php
 
-namespace YMC_Smart_Filters;
+namespace YMCSFilters;
 
 /**
  * Class Plugin

@@ -18,6 +18,6 @@
  */
 
 
-require_once( plugin_dir_path( __FILE__ ) . 'inc/plugin_smart_filters.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'inc/YMC_smart_filters.php' );
 
 

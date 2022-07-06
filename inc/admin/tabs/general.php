@@ -18,12 +18,14 @@
 		<option value="post"><?php echo esc_html__('Post','ymc-smart-filter'); ?></option>
 		<?php
 		foreach($cpost_types as $cpost_type) {
-			if($cpt === $cpost_type) {
-				$sel = 'selected';
-			} else {
-				$sel = '';
-			}
-			echo "<option value='" . $cpost_type ."' $sel>" . esc_html($cpost_type) . "</option>";
+		    //if($cpost_type !== 'page') {
+			    if($cpt === $cpost_type) {
+				    $sel = 'selected';
+			    } else {
+				    $sel = '';
+			    }
+			    echo "<option value='" . $cpost_type ."' $sel>" . esc_html($cpost_type) . "</option>";
+            //}
 		}
 		?>
 	</select>
@@ -37,7 +39,7 @@
 	<label for="ymc-tax-checkboxes" class="form-label">
 		<?php echo esc_html__('Taxonomy','ymc-smart-filter'); ?>
 		<span class="information">
-        <?php echo esc_html__('Select your taxonomy.','ymc-smart-filter'); ?>
+        <?php echo esc_html__('Select taxonomy.','ymc-smart-filter'); ?>
         </span>
 	</label>
 
@@ -46,9 +48,6 @@
 	    <?php
 
             $taxo = get_object_taxonomies($cpt);
-
-            //var_dump($taxo);
-            //var_dump($tax_sel);
 
             if($taxo) {
 
@@ -67,14 +66,14 @@
                     }
 
                     echo '<div class="group-elements">
-                            <input id="id-'. esc_html($val) .'" type="checkbox" name="ymc-taxonomy['.$val.']" value="'. esc_html($val) .'" '.$sl0.'>
+                            <input id="id-'. esc_html($val) .'" type="checkbox" name="ymc-taxonomy[]" value="'. esc_html($val) .'" '.$sl0.'>
                             <label for="id-'. esc_html($val) .'">'. esc_html($val) . '</label>
                          </div>';
 
                 endforeach;
             }
             else {
-              echo '<span class="notice">'. esc_html__('No data for Post Type / Taxonomy','ymc-smart-filter') .'</span>';
+              echo '<span class="notice">'. esc_html__('No data for Post Type / Taxonomy', 'ymc-smart-filter') .'</span>';
             }
 	    ?>
 
@@ -88,7 +87,7 @@
 
 	<label for="ymc-terms" class="form-label">
 		<?php echo esc_html__('Terms','ymc-smart-filter'); ?>
-		<span class="information"><?php echo esc_html__('Select Terms that you want to show on frontend','ymc-smart-filter'); ?></span>
+		<span class="information"><?php echo esc_html__('Select terms that want to show on frontend','ymc-smart-filter'); ?></span>
 	</label>
 
 	<div class="category-list" id="ymc-terms">
@@ -96,17 +95,6 @@
 		<?php
 
         if( is_array($tax_sel) && count($tax_sel) > 0 ) {
-
-            $terms_new_sel = [];
-
-            if( !empty($terms_sel) ) :
-
-	            foreach (unserialize($terms_sel) as $val) {
-		            foreach ($val as $key => $v) {
-			            $terms_new_sel[] = $v;
-		            }
-	            }
-            endif;
 
             foreach ( $tax_sel as $tax ) :
 
@@ -128,16 +116,16 @@
 
 			            $sl1 = '';
 
-			            if(is_array($terms_new_sel) && count($terms_new_sel) > 0) {
+			            if(is_array($terms_sel) && count($terms_sel) > 0) {
 
-                            if (in_array($term->term_id, $terms_new_sel)) {
+                            if (in_array($term->term_id, $terms_sel)) {
                                 $sl1 = 'checked';
                             }
                             else{ $sl1 = ''; }
 			            }
 
 			            echo '<div class="item-inner">
-                              <input name="ymc-terms[]['.$tax.']" class="category-list" id="category-id-'.$term->term_id.'" type="checkbox" value="'. $term->term_id .'" '.$sl1.'>';
+                              <input name="ymc-terms[]" class="category-list" id="category-id-'.$term->term_id.'" type="checkbox" value="'. $term->term_id .'" '.$sl1.'>';
 			            echo '<label for="category-id-'.$term->term_id.'" class="category-list-label">' . esc_html($term->name) . '</label></div>';
 
                    endforeach;

@@ -44,32 +44,28 @@ class YMC_shortcode {
 		// $ymc_post_layout - post-layout1
 		// $ymc_filter_layout - filter-layout1
 
-		//var_dump($term);
-
 
 		if ( !empty($id) && $ymc_post_type === 'ymc_filters' ) {
 
-			if (is_array($tax)) {
-				$tax = implode(",", $tax);
+			if (is_array($tax_selected)) {
+				$tax = implode(",", $tax_selected);
 			}
 
-			if(!empty($terms_selected)) {
-
-				foreach (unserialize($terms_selected) as $val) {
-					foreach ($val as $key => $v) {
-						$terms_new_sel[] = $key.'-'.$v;
-						$term_obj[] = get_term( $v, $key );
-						$term_all_sel[] = $v;
-					}
-				}
-				$terms = implode(',', $terms_new_sel);
-
+			if(is_array($terms_selected)) {
+				$terms = implode(',', $terms_selected);
 			}
+
+			// ===============================================
+			// Need add options to Admin Panel Tab: Appearance
+			// ===============================================
+			$per_page = -1; // Count posts on page
+			$type_pg = 'default'; // load-more, scroll-infinity
 
 			echo '<div id="ymc-smart-container" 
 					   class="ymc-smart-container ymc-' . $ymc_filter_layout . ' ymc-'. $ymc_post_layout . '"
-					   data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$terms.'","per_page":"4","post_layout":"'.$ymc_post_layout.'","filter_id":"'.$id.'"}\'>';
+					   data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$terms.'","type_pg":"'.$type_pg.'","per_page":"'.$per_page.'","post_layout":"'.$ymc_post_layout.'","filter_id":"'.$id.'"}\'>';
 
+			// Enable / Disable Filters
 			if ( $ymc_filter_status === 'on' ) {
 
 				if ( $ymc_filter_layout ) {
@@ -81,6 +77,8 @@ class YMC_shortcode {
 					}
 				}
 			}
+
+			echo '<div class="container-posts container-'. $ymc_post_layout .'"><div class="post-entry"></div></div>';
 
 			echo '</div>'; // end ymc-layout-container
 		}

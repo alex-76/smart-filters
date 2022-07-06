@@ -12,6 +12,8 @@ class YMC_get_filter_posts {
 
 		if (!wp_verify_nonce($_POST['nonce_code'], 'custom_ajax_nonce')) exit;
 
+		require_once YMC_SMART_FILTER_DIR . '/front/classes/YMC_front_filters.php';
+
 		$output  = '';
 		$message = '';
 
@@ -25,23 +27,28 @@ class YMC_get_filter_posts {
 		$per_page  = (int) $clean_data['per_page'];
 		$post_layout = $clean_data['post_layout'];
 		$filter_id = $clean_data['filter_id'];
-		$term_ids  = $_POST['ids'];
+		$type_pagination = $clean_data['type_pg'];
+		$page      = (int) $_POST['page'];
+		$term_ids  = $_POST['term_ids'];
 
+		$default_order_by = apply_filters('ymc_filter_posts_order_by', $default_order_by);
+		$default_order = apply_filters('ymc_filter_posts_order', $default_order);
 
+		// Convert Taxonomy & Terms to Array
 		$taxonomy = !empty($taxonomy) ? explode(',', $taxonomy) : false;
 		$terms    = !empty($terms) ? explode(',', $terms) : false;
+		$term_ids = !empty($term_ids) ? explode(',', $term_ids) : false;
 
 
-		if ( is_array($taxonomy) && is_array($terms) && empty($term_ids) ) :
+		// If default load
+		if ( !is_array($term_ids) && is_array($taxonomy) && is_array($terms) ) :
 
 			foreach ($taxonomy as $tax) :
 
 				foreach ($terms as $term) :
 
-					$arr = explode("-", $term);
-
-					if($tax === $arr[0]) :
-						$term_id[] = (int) $arr[1];
+					if($tax === get_term( $term )->taxonomy) :
+						$term_id[] = (int) $term;
 					endif;
 
 				endforeach;
@@ -60,29 +67,44 @@ class YMC_get_filter_posts {
 
 			endforeach;
 
+		// If selected tag
 		else :
 
-			$tx = get_term( $term_ids )->taxonomy;
+			foreach ($taxonomy as $tax) :
 
-			$tax_qry[] = [
-				'taxonomy' => get_term( $term_ids )->taxonomy,
-				'field' => 'term_id',
-				'terms' => explode(',', $term_ids)
-			];
+				foreach ($term_ids as $term) :
+
+					if($tax === get_term( $term )->taxonomy) :
+						$term_id[] = (int) $term;
+					endif;
+
+				endforeach;
+
+				if( count($term_id) > 0 ) :
+
+					$tax_qry[] = [
+						'taxonomy' => $tax,
+						'field' => 'term_id',
+						'terms' => $term_id
+					];
+
+				endif;
+
+				$term_id = [];
+
+			endforeach;
 
 		endif;
 
 
-
-
 		$args = [
-			//'paged' => $page,
 			'post_type' => $post_type,
 			'post_status' => 'publish',
-			'posts_per_page' => -1,
+			'posts_per_page' => $per_page, // need edit from admin panel
 			'tax_query' => $tax_qry,
-			//'orderby' => $default_order_by,
-			//'order' => $default_order,
+			'paged' => $page,
+			'orderby' => $default_order_by,
+			'order' => $default_order,
 		];
 
 		$query = new WP_Query($args);
@@ -91,68 +113,65 @@ class YMC_get_filter_posts {
 
 		if ($query->have_posts()) :
 
-			$filepath = YMC_SMART_FILTER_DIR . "/front/layouts/post/" . $post_layout . ".php";
+			$file_layout = YMC_SMART_FILTER_DIR . "/front/layouts/post/" . $post_layout . ".php";
+			$file_pg = YMC_SMART_FILTER_DIR . "/front/pagination/". $type_pagination . ".php";
 
-			if ( file_exists($filepath) ) {
+
+			// Add Layouts posts
+			if ( file_exists($file_layout) ) :
 
 				switch ( $post_layout ) :
 
 					case  "post-layout1" :
 
-						echo '<div class="wrapper-posts container-'. $post_layout .'">';
-						echo '<div class="post-entry">';
-
-						include_once $filepath;
-
-						echo '</div>';
-						echo '</div>';
+						include_once $file_layout;
 
 						break;
 
 					case  "post-layout2" :
 
-						echo '<div class="wrapper-posts container-'. $post_layout .'">';
-						echo '<div class="post-entry">';
-
-						include_once $filepath;
-
-						echo '</div>';
-						echo '</div>';
+						include_once $file_layout;
 
 						break;
 
 					case  "post-layout3" :
 
-						echo '<div class="wrapper-posts container-'. $post_layout .'">';
-						echo '<div class="post-entry">';
-
-						include_once $filepath;
-
-						echo '</div>';
-						echo '</div>';
+						include_once $file_layout;
 
 						break;
 
 					case  "post-custom-layout" :
 
-						$filepath = YMC_SMART_FILTER_DIR . "/front/layouts/post/" . $post_layout . ".php";
-
-						echo '<div class="wrapper-posts container-'. $post_layout .'">';
-						echo '<div class="post-entry">';
-
-						include_once $filepath;
-
-						echo '</div>';
-						echo '</div>';
+						include_once $file_layout;
 
 						break;
 
 				endswitch;
 
-			}
-			else {
-				echo "<div class='error-ymc'>" . esc_html('Filter layout is not available.', 'ymc-smart-filter') . "</div>";
-			}
+				$message = 'OK';
+
+			else :
+
+				echo "<div class='ymc-error'>" . esc_html('Filter layout is not available.', 'ymc-smart-filter') . "</div>";
+				$message = 'Filter layout is not available';
+
+			endif;
+
+			// Add Pagination
+			if ( file_exists($file_pg) ) :
+
+				include_once $file_pg;
+
+			endif;
+
+
+
+
+
+		else :
+
+			echo "<div class='ymc-notification'>" . esc_html('No posts found.', 'ymc-smart-filter') . "</div>";
+			$message = 'No posts found';
 
 		endif;
 
@@ -166,9 +185,7 @@ class YMC_get_filter_posts {
 			'message' => $message,
 			'post_type' => $post_type,
 			'tax' => $taxonomy,
-			'term' => $tax_qry,
-			'term_ids' => $term_ids,
-			'tx' => $tx
+			'term' => $tax_qry
 		);
 
 		wp_send_json($data);

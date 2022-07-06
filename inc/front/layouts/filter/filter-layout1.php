@@ -10,16 +10,18 @@
 	<ul class="ymc-filter-entry">
 		<?php
 
-			if ( $term_obj ) {
+			if ( $terms_selected ) {
 
-				$trm1 = implode(',', $term_all_sel);
+				echo '<li class="filter-item"><a class="filter-link active" href="#" data-id="' . esc_attr($terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
 
-				echo '<li class="filter-item"><a class="filter-link active" href="#" data-id="' . esc_attr($trm1) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
+                foreach ($terms_selected as $term) {
 
-                foreach ($term_obj as $term) {
+	                //echo get_term( $term )->taxonomy;
+	                //echo get_term( $term )->name;
+	                //echo get_term( $term )->term_id;
 
                     echo "<li class='filter-item'>
-                          <a class='filter-link' href='#' data-id='" . esc_attr($term->term_id) . "'>" . esc_html($term->name) . "</a>
+                          <a class='filter-link' href='#' data-id='" . esc_attr($term) . "'>" . esc_html(get_term( $term )->name) . "</a>
                           </li>";
                 }
 			}
