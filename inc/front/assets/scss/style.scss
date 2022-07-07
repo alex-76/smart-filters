@@ -97,7 +97,7 @@ $font-size: 16;
 		.post-entry {
 			display: grid;
 			grid-gap: 20px;
-			grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+			grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
 			margin-bottom: rem-calc(40px);
 
 			// Style for Post Layout 1
