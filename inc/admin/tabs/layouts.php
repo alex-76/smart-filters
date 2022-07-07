@@ -33,13 +33,13 @@
             <div class="manage-filters__section">
                 <header class="sub-header">
                     <i class="far fa-filter"></i>
-                    <?php echo esc_html__('Filter Layout', 'ymc-smart-filter'); ?>
+                    <?php echo esc_html__('Filter layout', 'ymc-smart-filter'); ?>
                 </header>
             </div>
 
             <div class="manage-filters__section">
                 <label for="ymc-filter-layout" class="form-label">
-		            <?php echo esc_html__('Select Filter Layout', 'ymc-smart-filter');?>
+		            <?php echo esc_html__('Select filter layout', 'ymc-smart-filter');?>
                     <span class="information">
                     <?php echo esc_html__('Select design layout of filters.', 'ymc-smart-filter');?>
                 </span>
@@ -64,7 +64,7 @@
 
                 <div class="col">
                     <label for="ymc-filter-layout" class="form-label">
-		                <?php echo esc_html__('Text Color', 'ymc-smart-filter');?>
+		                <?php echo esc_html__('Text color', 'ymc-smart-filter');?>
                         <span class="information">
                             <?php echo esc_html__('Select text colors for filter layout.', 'ymc-smart-filter');?>
                         </span>
@@ -74,7 +74,7 @@
 
                 <div class="col">
                     <label for="ymc-filter-layout" class="form-label">
-			            <?php echo esc_html__('Background Color', 'ymc-smart-filter');?>
+			            <?php echo esc_html__('Background color', 'ymc-smart-filter');?>
                         <span class="information">
                     <?php echo esc_html__('Select background for filter layout.', 'ymc-smart-filter');?>
                 </span>
@@ -84,7 +84,7 @@
 
                 <div class="col">
                     <label for="ymc-filter-layout" class="form-label">
-			            <?php echo esc_html__('Active Color Text', 'ymc-smart-filter');?>
+			            <?php echo esc_html__('Active color text', 'ymc-smart-filter');?>
                         <span class="information">
                             <?php echo esc_html__('Select active color for filter layout.', 'ymc-smart-filter');?>
                         </span>
@@ -93,6 +93,26 @@
                 </div>
 
             </div>
+
+            <div class="manage-filters__section multiple-section">
+
+                <label  class="form-label">
+		            <?php echo esc_html__('Multiple filter', 'ymc-smart-filter');?>
+                    <span class="information">
+                    <?php echo esc_html__('Multiple selection of posts.', 'ymc-smart-filter');?>
+                    </span>
+                </label>
+
+                <div class="group-elements">
+                    <?php  $check_multiple =  ( (int) $ymc_multiple_filter === 1 ) ? 'checked' : '';  ?>
+                    <input type="hidden" name='ymc-multiple-filter' value="0">
+                    <input class="ymc-multiple-filter" type="checkbox" value="1"  name='ymc-multiple-filter' id="ymc-multiple-filter" <?php echo $check_multiple; ?>/>
+                    <label for="ymc-multiple-filter"><?php echo esc_html__('Multiple','ymc-smart-filter'); ?></label>
+                </div>
+
+            </div>
+
+
 
         </div>
 
@@ -142,7 +162,7 @@
                             <?php echo esc_html__('Select text colors for post layout.', 'ymc-smart-filter');?>
                         </span>
                         </label>
-                        <input class="ymc-custom-color" type="text" value="<?php echo esc_attr($ymc_filter_text_color); ?>"  name='ymc-post-text-color'/>
+                        <input class="ymc-custom-color" type="text" value="<?php echo esc_attr($ymc_post_text_color); ?>"  name='ymc-post-text-color'/>
                     </div>
 
                     <div class="col">
@@ -152,17 +172,17 @@
                     <?php echo esc_html__('Select background for post layout.', 'ymc-smart-filter');?>
                 </span>
                         </label>
-                        <input class="ymc-custom-color" type="text" value="<?php echo esc_attr($ymc_filter_bg_color); ?>"  name='ymc-post-bg-color'/>
+                        <input class="ymc-custom-color" type="text" value="<?php echo esc_attr($ymc_post_bg_color); ?>"  name='ymc-post-bg-color'/>
                     </div>
 
                     <div class="col">
                         <label for="ymc-filter-layout" class="form-label">
-				            <?php echo esc_html__('Active Color Text', 'ymc-smart-filter');?>
+				            <?php echo esc_html__('Active Color', 'ymc-smart-filter');?>
                             <span class="information">
-                            <?php echo esc_html__('Select active color for post layout.', 'ymc-smart-filter');?>
+                            <?php echo esc_html__('Select active color for links.', 'ymc-smart-filter');?>
                         </span>
                         </label>
-                        <input class="ymc-custom-color" type="text" value="<?php echo esc_attr($ymc_filter_active_color); ?>"  name='ymc-post-active-color'/>
+                        <input class="ymc-custom-color" type="text" value="<?php echo esc_attr($ymc_post_active_color); ?>"  name='ymc-post-active-color'/>
                     </div>
 
                 </div>

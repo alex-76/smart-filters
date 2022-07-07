@@ -61,24 +61,39 @@ class YMC_meta_boxes {
 			update_post_meta($post_id, 'ymc_filter_active_color', $filter_layout_active_color);
 		}
 
+        // Multiple Filter
+		if ( isset($_POST['ymc-multiple-filter']) ) {
+			$ymc_multiple_filter = sanitize_text_field($_POST['ymc-multiple-filter']);
+			update_post_meta($post_id, 'ymc_multiple_filter', $ymc_multiple_filter);
+		}
+
+
 		// Post Layout
 		if ( isset($_POST['ymc-post-layout']) ) {
 			$post_layout = sanitize_text_field($_POST['ymc-post-layout']);
 			update_post_meta($post_id, 'ymc_post_layout', $post_layout);
 		}
 
-        // Layout columns
-//		if (isset($_POST["ymc_col_desktop"]) || isset($_POST["ymc_col_tablet"]) || isset($_POST["ymc_col_mobile"])) {
-//			$desktop = sanitize_text_field($_POST["ymc_col_desktop"]);
-//			$tablet  = sanitize_text_field($_POST["ymc_col_tablet"]);
-//			$mobile  = sanitize_text_field($_POST["ymc_col_mobile"]);
-//			$ymc_col_options = [
-//			                     "ymc_col_desktop" => $desktop,
-//			                     "ymc_col_tablet"  => $tablet,
-//			                     "ymc_col_mobile"  => $mobile
-//                               ];
-//			update_post_meta($post_id, 'ymc_col_options', $ymc_col_options);
-//		}
+		// Post Text Color
+		if ( isset($_POST['ymc-post-text-color']) ) {
+			$post_layout_text_color = sanitize_text_field($_POST['ymc-post-text-color']);
+			update_post_meta($post_id, 'ymc_post_text_color', $post_layout_text_color);
+		}
+
+		// Post Bg Color
+		if ( isset($_POST['ymc-post-bg-color']) ) {
+			$post_layout_bg_color = sanitize_text_field($_POST['ymc-post-bg-color']);
+			update_post_meta($post_id, 'ymc_post_bg_color', $post_layout_bg_color);
+		}
+
+		// Post Active Color
+		if ( isset($_POST['ymc-post-active-color']) ) {
+			$post_layout_active_color = sanitize_text_field($_POST['ymc-post-active-color']);
+			update_post_meta($post_id, 'ymc_post_active_color', $post_layout_active_color);
+		}
+
+
+
 
 
 

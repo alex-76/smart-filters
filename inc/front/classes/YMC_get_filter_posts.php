@@ -24,11 +24,11 @@ class YMC_get_filter_posts {
 		$post_type = $clean_data['cpt'];
 		$taxonomy  = $clean_data['tax'];
 		$terms     = $clean_data['terms'];
-		$per_page  = (int) $clean_data['per_page'];
+		$per_page  = $clean_data['per_page'];
 		$post_layout = $clean_data['post_layout'];
 		$filter_id = $clean_data['filter_id'];
 		$type_pagination = $clean_data['type_pg'];
-		$paged      = (int) $_POST['paged'];
+		$paged     = (int) $_POST['paged'];
 		$term_ids  = $_POST['term_ids'];
 
 		$default_order_by = apply_filters('ymc_filter_posts_order_by', $default_order_by);

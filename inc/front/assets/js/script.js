@@ -65,7 +65,11 @@
         $(document).on('click','.ymc-smart-container .filter-layout .filter-link',function (e) {
             e.preventDefault();
 
-            let term_id = $(e.target).data('id');
+            let link = $(this);
+
+            link.addClass('active').closest('.filter-item').siblings().find('.filter-link').removeClass('active');
+
+            let term_id = link.data('id');
             let p = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params);
             p.terms = term_id;
             document.querySelector(".ymc-smart-container").dataset.params = JSON.stringify(p);
@@ -90,7 +94,7 @@
 
         });
 
-        // Run func
+        // Load posts
         getFilterPosts({
             'term_id' : '',
             'paged' : 1

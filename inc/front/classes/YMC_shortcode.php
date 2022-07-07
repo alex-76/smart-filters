@@ -78,6 +78,8 @@ class YMC_shortcode {
 				}
 			}
 
+			require_once YMC_SMART_FILTER_DIR . '/front/layouts/post-css/'. $ymc_post_layout .'-css.php';
+
 			echo '<div class="container-posts container-'. $ymc_post_layout .'"></div>';
 
 			echo '</div>'; // end ymc-layout-container

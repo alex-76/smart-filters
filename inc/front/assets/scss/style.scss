@@ -35,6 +35,7 @@ $font-size: 16;
 	font-family: "Poppins";
 	font-weight: 400;
 	box-sizing: border-box;
+	min-height: rem-calc(500px);
 
 	*:active, *:focus {
 		outline: none;
@@ -64,6 +65,10 @@ $font-size: 16;
 		left: 50%;
 		z-index: 9;
 		transform: translate(-50%, -50%);
+	}
+
+	.ymc-notification {
+		text-align: center;
 	}
 
 	// Filters styles
@@ -104,13 +109,11 @@ $font-size: 16;
 			&.post-layout1 {
 				.ymc-post-layout1 {
 					padding: rem-calc(20px);
-					background: #296ac2;
-					color: white;
 					.media {
 						margin: 0 0 20px 0;
 						img {
 							width: 100%;
-							height: rem-calc(250px);
+							height: rem-calc(220px);
 							object-fit: cover;
 						}
 					}
@@ -131,13 +134,13 @@ $font-size: 16;
 					.excerpt {
 						font-size: rem-calc(16px);
 						line-height: 1.4;
+						margin-bottom: rem-calc(10px);
 					}
 					.read-more {
 						text-align: right;
 						.btn {
-							color: #fff;
 							text-decoration: none;
-							background: #000;
+							background: #fff;
 							padding: rem-calc(5px) rem-calc(10px);
 							font-size: rem-calc(12px);
 						}
@@ -160,7 +163,6 @@ $font-size: 16;
 				margin-right: rem-calc(15px);
 				a {
 					padding: 5px 10px;
-					border: 1px solid #000;
 					text-decoration: none;
 					&:hover {
 						text-decoration: none;

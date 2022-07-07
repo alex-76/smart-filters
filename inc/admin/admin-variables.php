@@ -29,7 +29,9 @@ $ymc_filter_bg_color = '#098ab8';
 $ymc_filter_active_color = '#e91e63';
 $ymc_post_layout = 'post-layout1';
 
-
+$ymc_post_text_color = '#fff';
+$ymc_post_bg_color = '#296ac2';
+$ymc_post_active_color = '#000';
 
 // GENERAL TAB SUBMITTED VARIABLE VALUES
 if( get_post_meta($post->ID, 'ymc_cpt_value') ) {
@@ -58,9 +60,21 @@ if( get_post_meta($post->ID, 'ymc_filter_bg_color', true) ) {
 if( get_post_meta($post->ID, 'ymc_filter_active_color', true) ) {
 	$ymc_filter_active_color = get_post_meta($post->ID, 'ymc_filter_active_color', true);
 }
+if( get_post_meta($post->ID, 'ymc_multiple_filter') ) {
+	$ymc_multiple_filter = get_post_meta($post->ID, 'ymc_multiple_filter', true);
+}
+
 if( get_post_meta($post->ID, 'ymc_post_layout') ) {
 	$ymc_post_layout = get_post_meta($post->ID, 'ymc_post_layout', true);
 }
 
-
+if( get_post_meta($post->ID, 'ymc_post_text_color') ) {
+	$ymc_post_text_color = get_post_meta($post->ID, 'ymc_post_text_color', true);
+}
+if( get_post_meta($post->ID, 'ymc_post_bg_color') ) {
+	$ymc_post_bg_color = get_post_meta($post->ID, 'ymc_post_bg_color', true);
+}
+if( get_post_meta($post->ID, 'ymc_post_active_color') ) {
+	$ymc_post_active_color = get_post_meta($post->ID, 'ymc_post_active_color', true);
+}
 

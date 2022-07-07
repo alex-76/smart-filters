@@ -1,8 +1,8 @@
 <?php
     defined('ABSPATH') or exit;
     // Add Style
-    $filter_css = ".filter-layout1 .filter-entry .filter-item .filter-link {color:".$ymc_filter_text_color.";background-color:".$ymc_filter_bg_color.";}
-                   .filter-layout1 .filter-entry .filter-item .filter-link.active {color:".$ymc_filter_active_color.";}";
+    $filter_css = "#ymc-smart-container .filter-layout1 .filter-entry .filter-item .filter-link {color:".$ymc_filter_text_color.";background-color:".$ymc_filter_bg_color.";}
+                   #ymc-smart-container .filter-layout1 .filter-entry .filter-item .filter-link.active {color:".$ymc_filter_active_color.";}";
     wp_add_inline_style($handle, $filter_css);
 ?>
 
@@ -15,11 +15,6 @@
 				echo '<li class="filter-item"><a class="filter-link active" href="#" data-id="' . esc_attr($terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
 
                 foreach ($terms_selected as $term) {
-
-	                //echo get_term( $term )->taxonomy;
-	                //echo get_term( $term )->name;
-	                //echo get_term( $term )->term_id;
-
                     echo "<li class='filter-item'>
                           <a class='filter-link' href='#' data-id='" . esc_attr($term) . "'>" . esc_html(get_term( $term )->name) . "</a>
                           </li>";

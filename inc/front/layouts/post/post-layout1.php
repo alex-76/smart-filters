@@ -1,4 +1,3 @@
-
 <?php
 
     echo '<div id="post-entry" class="post-entry '. $post_layout .'">';
