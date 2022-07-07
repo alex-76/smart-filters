@@ -77,8 +77,8 @@
             });
         });
 
-        // Pagination
-        $(document).on('click','.ymc-smart-container .numeric-pagination li a',function (e) {
+        // Pagination / Type: Default
+        $(document).on('click','.ymc-smart-container .pagination-default li a',function (e) {
             e.preventDefault();
 
             let paged = parseInt($(this).attr("href").replace(/\D/g, ""));

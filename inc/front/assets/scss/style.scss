@@ -48,14 +48,14 @@ $font-size: 16;
 	}
 
 	// Filters styles
-	.filter-layout1 {
-		.ymc-filter-entry {
+	.filter-layout {
+		.filter-entry {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: center;
 			align-items: center;
 			list-style: none;
-			margin: 0;
+			margin: 0 0 rem-calc(40px) 0;
 			padding: 0;
 			.filter-item {
 				margin: 10px 10px ;
@@ -69,7 +69,31 @@ $font-size: 16;
 					}
 				}
 			}
+		}
+	}
 
+	// Posts style
+	.post-entry {
+		margin-bottom: rem-calc(40px);
+
+	}
+
+	// Pagination style
+	.ymc-pagination {
+		&.pagination-default {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			li {
+				margin-right: rem-calc(15px);
+				a {
+					padding: 5px 10px;
+					border: 1px solid #000;
+					&:hover {
+						text-decoration: none;
+					}
+				}
+			}
 		}
 	}
 

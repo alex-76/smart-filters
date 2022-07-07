@@ -7,15 +7,7 @@ class YMC_post_pagination {
 
 	public function number($query, $paged, $post_layout, $type_pagination, $filter_id) {
 
-		if (!$query) {
-			return;
-		}
-
-		//echo $paged;
-		//echo $post_layout;
-		//echo $type_pagination;
-		//echo $filter_id;
-		//echo $query->max_num_pages;
+		if ( !$query ) return;
 
 
 		$prev_text = 'Prev';
@@ -35,7 +27,7 @@ class YMC_post_pagination {
 		]);
 
 		if ($query->max_num_pages > 1):
-			echo "<ul id='ymc-layout-pagination' class='ymc-pagination numeric-pagination " . $post_layout ."'>";
+			echo "<ul id='ymc-layout-pagination' class='ymc-pagination pagination-" . $type_pagination ."'>";
 			foreach ($paginate as $page):
 				echo "<li>" . $page ."</li>";
 			endforeach;

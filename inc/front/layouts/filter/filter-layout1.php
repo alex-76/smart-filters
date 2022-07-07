@@ -1,13 +1,13 @@
 <?php
     defined('ABSPATH') or exit;
     // Add Style
-    $filter_css = ".filter-layout1 .ymc-filter-entry .filter-item .filter-link {color:".$ymc_filter_text_color.";background-color:".$ymc_filter_bg_color.";}
-                   .filter-layout1 .ymc-filter-entry .filter-item .filter-link.active {color:".$ymc_filter_active_color.";}";
+    $filter_css = ".filter-layout1 .filter-entry .filter-item .filter-link {color:".$ymc_filter_text_color.";background-color:".$ymc_filter_bg_color.";}
+                   .filter-layout1 .filter-entry .filter-item .filter-link.active {color:".$ymc_filter_active_color.";}";
     wp_add_inline_style($handle, $filter_css);
 ?>
 
 <div id="<?php echo $ymc_filter_layout; ?>" class="filter-layout <?php echo $ymc_filter_layout; ?>">
-	<ul class="ymc-filter-entry">
+	<ul class="filter-entry">
 		<?php
 
 			if ( $terms_selected ) {
