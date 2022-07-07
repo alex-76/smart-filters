@@ -5,16 +5,15 @@ class YMC_post_pagination {
 
 	public function __construct() {}
 
-	public function number($query, $paged, $post_layout, $type_pagination, $filter_id) {
+	public function number($query, $paged, $type_pagination, $filter_id) {
 
 		if ( !$query ) return;
 
 
-		$prev_text = 'Prev';
-		$next_text = 'Next';
-		//$prev_text = apply_filters('tc_caf_filter_prev_text', $prev_text, $filter_id);
-		//$next_text = apply_filters('tc_caf_filter_next_text', $next_text, $filter_id);
-
+		$prev_text = __('Prev','ymc-smart-filter');
+		$next_text = __('Next','ymc-smart-filter');
+		$prev_text = apply_filters('ymc_pagination_prev_text', $prev_text);
+		$next_text = apply_filters('ymc_pagination_next_text', $next_text);
 
 		$paginate = paginate_links([
 			'base' => '%_%',
@@ -37,14 +36,18 @@ class YMC_post_pagination {
 
 	}
 
-	public function load_more() {
+	public function load_more($query, $paged, $type_pagination, $filter_id) {
 
-		return 'Load More Pagination';
+		// do something
+
+		echo 'Button Load More Pagination';
 	}
 
-	public function scroll_infinity() {
+	public function scroll_infinity($query, $paged, $type_pagination, $filter_id) {
 
-		return 'Scroll Imfinity Pagination';
+		// do something
+
+		echo 'Scroll Infinity Pagination';
 	}
 
 

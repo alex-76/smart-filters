@@ -133,29 +133,38 @@
 
             <div class="manage-filters__section">
 
-                <label for="ymc-filter-layout" class="form-label">
-                    <?php echo esc_html__('Select column layout', 'ymc-smart-filter');?>
-                    <span class="information">
-                        <?php echo esc_html__('Select column layout of posts.', 'ymc-smart-filter');?>
-                    </span>
-                </label>
+                <div class="manage-filters__section color-setting">
 
-                <div class="screen-wrapper">
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="far fa-desktop"></i></span>
-                        <input class="input-screen" type="number" name="ymc_col_desktop" min='1' max="4"
-                               value=<?php echo esc_attr($ymc_col_options['ymc_col_desktop']); ?>>
+                    <div class="col">
+                        <label for="ymc-filter-layout" class="form-label">
+				            <?php echo esc_html__('Text Color', 'ymc-smart-filter');?>
+                            <span class="information">
+                            <?php echo esc_html__('Select text colors for post layout.', 'ymc-smart-filter');?>
+                        </span>
+                        </label>
+                        <input class="ymc-custom-color" type="text" value="<?php echo esc_attr($ymc_filter_text_color); ?>"  name='ymc-post-text-color'/>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="far fa-tablet-alt"></i></span>
-                        <input class="input-screen" type="number" name="ymc_col_tablet" min='1' max="4"
-                               value=<?php echo esc_attr($ymc_col_options['ymc_col_tablet']); ?>>
+
+                    <div class="col">
+                        <label for="ymc-filter-layout" class="form-label">
+				            <?php echo esc_html__('Background Color', 'ymc-smart-filter');?>
+                            <span class="information">
+                    <?php echo esc_html__('Select background for post layout.', 'ymc-smart-filter');?>
+                </span>
+                        </label>
+                        <input class="ymc-custom-color" type="text" value="<?php echo esc_attr($ymc_filter_bg_color); ?>"  name='ymc-post-bg-color'/>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="far fa-mobile-alt"></i></span>
-                        <input class="input-screen" type="number" name="ymc_col_mobile" min='1' max="4"
-                               value=<?php echo esc_attr($ymc_col_options['ymc_col_mobile']); ?>>
+
+                    <div class="col">
+                        <label for="ymc-filter-layout" class="form-label">
+				            <?php echo esc_html__('Active Color Text', 'ymc-smart-filter');?>
+                            <span class="information">
+                            <?php echo esc_html__('Select active color for post layout.', 'ymc-smart-filter');?>
+                        </span>
+                        </label>
+                        <input class="ymc-custom-color" type="text" value="<?php echo esc_attr($ymc_filter_active_color); ?>"  name='ymc-post-active-color'/>
                     </div>
+
                 </div>
 
             </div>

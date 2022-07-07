@@ -342,6 +342,7 @@ $font-size: 16;
 					#layouts {
 						.tab-entry {
 							.content {
+
 								.sub-header {
 									font-size: rem-calc(16px);
 									border-bottom: 3px solid #1fc4ff;
@@ -363,6 +364,17 @@ $font-size: 16;
 
 								.manage-post {
 									margin-top: rem-calc(40px);
+
+									&__section {
+										margin-bottom: rem-calc(30px);
+									}
+
+									.color-setting {
+										display: grid;
+										grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+										grid-gap: 20px;
+									}
+
 
 								}
 

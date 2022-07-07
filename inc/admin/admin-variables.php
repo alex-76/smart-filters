@@ -28,12 +28,6 @@ $ymc_filter_text_color = '#000';
 $ymc_filter_bg_color = '#098ab8';
 $ymc_filter_active_color = '#e91e63';
 $ymc_post_layout = 'post-layout1';
-$ymc_col_options = [
-	"ymc_col_desktop" => '4',
-	"ymc_col_tablet" => '2',
-	"ymc_col_mobile" => '1'
-];
-
 
 
 
@@ -67,8 +61,6 @@ if( get_post_meta($post->ID, 'ymc_filter_active_color', true) ) {
 if( get_post_meta($post->ID, 'ymc_post_layout') ) {
 	$ymc_post_layout = get_post_meta($post->ID, 'ymc_post_layout', true);
 }
-if (get_post_meta($post->ID, 'ymc_col_options')) {
-	$ymc_col_options = get_post_meta( $post->ID, 'ymc_col_options', true );
-}
+
 
 

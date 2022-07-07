@@ -21,6 +21,9 @@
 
     $(document).on('ready', function () {
 
+        // Path preloader image
+        const pathPreloader = _global_object.path+"/front/assets/images/preloader.gif";
+
         function getFilterPosts( options ) {
 
             let container = $(".ymc-smart-container");
@@ -44,16 +47,12 @@
                 url: _global_object.ajax_url,
                 data: data,
                 beforeSend: function () {
-                    //container.addClass('loading').
-                    //prepend(`<img class="preloader" src="${pathPreloader}">`);
+                    container.find('.container-posts').addClass('loading').
+                    prepend(`<img class="preloader" src="${pathPreloader}">`);
                 },
                 success: function (res) {
 
-                    container.find('.container-posts').html(res.data);
-
-                    // if(res.max_num_pages > 1) {
-                    //     _global_object.current_page++;
-                    // }
+                    container.find('.container-posts').removeClass('loading').html(res.data);
 
                 },
                 error: function (obj, err) {
@@ -91,7 +90,7 @@
 
         });
 
-
+        // Run func
         getFilterPosts({
             'term_id' : '',
             'paged' : 1

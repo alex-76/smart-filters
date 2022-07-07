@@ -12,7 +12,7 @@ class YMC_admin_filters {
 	public function ymc_filter_layouts($layouts) {
 
 		$layouts = [
-			"filter-layout1" => 'Default Filter',
+			"filter-layout1" => 'Default',
 			"filter-layout2" => 'Dropdown Filter',
 			"filter-layout3" => 'Sidebar Filter',
 			"filter-custom-layout"  => 'Custom Filter',
@@ -24,10 +24,10 @@ class YMC_admin_filters {
 	public function ymc_post_layouts($layouts) {
 
 		$layouts = [
-			"post-layout1" => 'Simple Blogs',
-			"post-layout2" => 'Boxed Title',
-			"post-layout3" => 'Glossy look',
-			"post-custom-layout"  => 'Custom Post'
+			"post-layout1" => 'Default',
+			"post-layout2" => 'Layout 2',
+			"post-layout3" => 'Layout 3',
+			"post-custom-layout"  => 'Custom Layout'
 		];
 
 		return $layouts;

@@ -68,17 +68,17 @@ class YMC_meta_boxes {
 		}
 
         // Layout columns
-		if (isset($_POST["ymc_col_desktop"]) || isset($_POST["ymc_col_tablet"]) || isset($_POST["ymc_col_mobile"])) {
-			$desktop = sanitize_text_field($_POST["ymc_col_desktop"]);
-			$tablet  = sanitize_text_field($_POST["ymc_col_tablet"]);
-			$mobile  = sanitize_text_field($_POST["ymc_col_mobile"]);
-			$ymc_col_options = [
-			                     "ymc_col_desktop" => $desktop,
-			                     "ymc_col_tablet"  => $tablet,
-			                     "ymc_col_mobile"  => $mobile
-                               ];
-			update_post_meta($post_id, 'ymc_col_options', $ymc_col_options);
-		}
+//		if (isset($_POST["ymc_col_desktop"]) || isset($_POST["ymc_col_tablet"]) || isset($_POST["ymc_col_mobile"])) {
+//			$desktop = sanitize_text_field($_POST["ymc_col_desktop"]);
+//			$tablet  = sanitize_text_field($_POST["ymc_col_tablet"]);
+//			$mobile  = sanitize_text_field($_POST["ymc_col_mobile"]);
+//			$ymc_col_options = [
+//			                     "ymc_col_desktop" => $desktop,
+//			                     "ymc_col_tablet"  => $tablet,
+//			                     "ymc_col_mobile"  => $mobile
+//                               ];
+//			update_post_meta($post_id, 'ymc_col_options', $ymc_col_options);
+//		}
 
 
 

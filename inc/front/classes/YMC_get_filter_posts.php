@@ -34,13 +34,16 @@ class YMC_get_filter_posts {
 		$default_order_by = apply_filters('ymc_filter_posts_order_by', $default_order_by);
 		$default_order = apply_filters('ymc_filter_posts_order', $default_order);
 
+		$id = $filter_id;
+		require_once YMC_SMART_FILTER_DIR . '/front/front-variables.php';
+
 		// Convert Taxonomy & Terms to Array
 		$taxonomy = !empty($taxonomy) ? explode(',', $taxonomy) : false;
 		$terms    = !empty($terms) ? explode(',', $terms) : false;
 		$term_ids = !empty($term_ids) ? explode(',', $term_ids) : false;
 
 
-		// If default load
+		// If default load posts
 		if ( !is_array($term_ids) && is_array($taxonomy) && is_array($terms) ) :
 
 			foreach ($taxonomy as $tax) :
@@ -111,10 +114,10 @@ class YMC_get_filter_posts {
 
 		ob_start();
 
-		if ($query->have_posts()) :
+		if ( $query->have_posts() ) :
 
 			$file_layout = YMC_SMART_FILTER_DIR . "/front/layouts/post/" . $post_layout . ".php";
-			$file_pg = YMC_SMART_FILTER_DIR . "/front/pagination/pg-". $type_pagination . ".php";
+			require_once YMC_SMART_FILTER_DIR . "/front/classes/YMC_post_pagination.php";
 
 
 			// Add Layouts posts
@@ -158,19 +161,7 @@ class YMC_get_filter_posts {
 			endif;
 
 			// Add Pagination
-			if ( file_exists($file_pg) ) :
-
-				require_once YMC_SMART_FILTER_DIR . "/front/classes/YMC_post_pagination.php";
-
-				include_once $file_pg;
-
-			else :
-
-				echo "<div class='ymc-error'>" . esc_html('Pagination layout is not available.', 'ymc-smart-filter') . "</div>";
-				$message = 'Pagination layout is not available';
-
-			endif;
-
+			require_once YMC_SMART_FILTER_DIR . "/front/pagination/pagination.php";
 
 		else :
 
