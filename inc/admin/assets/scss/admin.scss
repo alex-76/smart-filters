@@ -362,6 +362,9 @@ $font-size: 16;
 							.content {
 								.manage-filters {
 									margin-top: rem-calc(40px);
+									&__section {
+										margin-bottom: 20px;
+									}
 
 									.color-setting {
 										display: grid;
