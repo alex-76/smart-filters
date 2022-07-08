@@ -4,6 +4,28 @@
 </div>
 
 <div class="content">
-	Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-	Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+
+    <div class="form-group wrapper-layout">
+
+        <div class="appearance-section">
+            <header class="sub-header">
+                <i class="far fa-address-card"></i>
+			    <?php echo esc_html__('Post Options', 'ymc-smart-filter'); ?>
+            </header>
+
+            <div class="from-element">
+                <label class="form-label">
+		            <?php echo esc_html__('Empty Results', 'ymc-smart-filter');?>
+                    <span class="information">
+                    <?php echo esc_html__('Enter text to show while empty result posts.', 'ymc-smart-filter');?>
+                </span>
+                </label>
+                <input class="" type="text" name="ymc-empty-post-result" value="<?php echo esc_attr($ymc_empty_result); ?>">
+            </div>
+
+        </div>
+
+    </div>
+
+
 </div>

@@ -13,9 +13,8 @@ class YMC_admin_filters {
 
 		$layouts = [
 			"filter-layout1" => 'Default',
-			"filter-layout2" => 'Dropdown',
-			"filter-layout3" => 'Sidebar',
-			"filter-custom-layout"  => 'Custom Filter',
+			"filter-layout2" => 'Dropdown 1',
+			"filter-layout3" => 'Dropdown 2'
 		];
 
 		return $layouts;

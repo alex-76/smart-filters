@@ -143,6 +143,7 @@ $font-size: 16;
 				.tab-content {
 					flex: 1 1 70%;
 					background: #fff;
+
 					.tab-panel {
 						position: relative;
 						display: none;
@@ -179,7 +180,7 @@ $font-size: 16;
 								color: #fff;
 								font-size: rem-calc(18px);
 								font-weight: 300;
-								margin-bottom: rem-calc(20px);
+								margin-bottom: rem-calc(30px);
 							}
 
 							.content {
@@ -209,6 +210,8 @@ $font-size: 16;
 									border: 1px solid #e0e4e9;
 									color: $text_color;
 									font-size: rem-calc(13px);
+									height: 35px;
+									border-radius: 0;
 								}
 
 								.ymc-tax-checkboxes {
@@ -314,6 +317,13 @@ $font-size: 16;
 									}
 								}
 
+								.sub-header {
+									font-size: rem-calc(16px);
+									border-bottom: 3px solid #1fc4ff;
+									color: #1fc4ff;
+									margin-bottom: rem-calc(30px);
+								}
+
 								input[type="checkbox"] {
 									margin: 0 5px 0 0;
 									border-radius: 0;
@@ -324,6 +334,14 @@ $font-size: 16;
 											font-weight: 600;
 										}
 									}
+								}
+
+								input[type="text"] {
+									border: 1px solid #e0e4e9;
+									height: 35px;
+									border-radius: 0;
+									width: 100%;
+
 								}
 
 								label {
@@ -342,18 +360,8 @@ $font-size: 16;
 					#layouts {
 						.tab-entry {
 							.content {
-
-								.sub-header {
-									font-size: rem-calc(16px);
-									border-bottom: 3px solid #1fc4ff;
-									color: #1fc4ff;
-								}
-
 								.manage-filters {
 									margin-top: rem-calc(40px);
-									&__section {
-										margin-bottom: rem-calc(30px);
-									}
 
 									.color-setting {
 										display: grid;
@@ -377,22 +385,20 @@ $font-size: 16;
 
 
 								}
-
-								.multiple-section {
-									.form-label {
-										//display: block;
-									}
-								}
-
-
-
 							}
 						}
 					}
 
 					#appearance {
 						.tab-entry {
-							.content {}
+							.content {
+								.appearance-section {
+									margin-bottom: rem-calc(30px);
+
+
+
+								}
+							}
 						}
 					}
 

@@ -78,7 +78,9 @@ class YMC_shortcode {
 				}
 			}
 
-			require_once YMC_SMART_FILTER_DIR . '/front/layouts/post-css/'. $ymc_post_layout .'-css.php';
+			if( $ymc_post_layout !== 'post-custom-layout') :
+				require_once YMC_SMART_FILTER_DIR . '/front/layouts/post-css/'. $ymc_post_layout .'-css.php';
+			endif;
 
 			echo '<div class="container-posts container-'. $ymc_post_layout .'"></div>';
 

@@ -70,7 +70,7 @@ class YMC_get_filter_posts {
 
 			endforeach;
 
-		// If selected tag
+		// If selected term
 		else :
 
 			foreach ($taxonomy as $tax) :

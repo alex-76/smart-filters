@@ -33,6 +33,8 @@ $ymc_post_text_color = '#fff';
 $ymc_post_bg_color = '#296ac2';
 $ymc_post_active_color = '#000';
 
+$ymc_empty_result = "No posts found.";
+
 // GENERAL TAB SUBMITTED VARIABLE VALUES
 if( get_post_meta($post->ID, 'ymc_cpt_value') ) {
 	$cpt = get_post_meta($post->ID, 'ymc_cpt_value', true);
