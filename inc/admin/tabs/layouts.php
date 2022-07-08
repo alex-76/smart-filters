@@ -84,7 +84,7 @@
 
                 <div class="col">
                     <label for="ymc-filter-layout" class="form-label">
-			            <?php echo esc_html__('Active color text', 'ymc-smart-filter');?>
+			            <?php echo esc_html__('Active color', 'ymc-smart-filter');?>
                         <span class="information">
                             <?php echo esc_html__('Select active color for filter layout.', 'ymc-smart-filter');?>
                         </span>

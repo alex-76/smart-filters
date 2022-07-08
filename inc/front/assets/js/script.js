@@ -24,6 +24,7 @@
         // Path preloader image
         const pathPreloader = _global_object.path+"/front/assets/images/preloader.gif";
 
+        // Send Request
         function getFilterPosts( options ) {
 
             let container = $(".ymc-smart-container");
@@ -61,15 +62,34 @@
             });
         }
 
-        // Filter Posts
+        // Filter Posts / Layout 1
         $(document).on('click','.ymc-smart-container .filter-layout .filter-link',function (e) {
             e.preventDefault();
 
             let link = $(this);
-
-            link.addClass('active').closest('.filter-item').siblings().find('.filter-link').removeClass('active');
-
             let term_id = link.data('id');
+
+
+            if(link.hasClass('multiple')) {
+
+                link.toggleClass('active').closest('.filter-item').siblings().find('.all').removeClass('active');
+
+                term_id = '';
+
+                $('.ymc-smart-container .filter-layout .active').each(function (){
+
+                    term_id += $(this).data('id')+',';
+
+                });
+
+                term_id = term_id.replace(/,\s*$/, "");
+
+            }
+            else {
+
+                link.addClass('active').closest('.filter-item').siblings().find('.filter-link').removeClass('active');
+            }
+
             let p = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params);
             p.terms = term_id;
             document.querySelector(".ymc-smart-container").dataset.params = JSON.stringify(p);

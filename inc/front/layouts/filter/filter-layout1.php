@@ -7,21 +7,28 @@
 ?>
 
 <div id="<?php echo $ymc_filter_layout; ?>" class="filter-layout <?php echo $ymc_filter_layout; ?>">
-	<ul class="filter-entry">
+
+    <ul class="filter-entry">
+
 		<?php
 
-			if ( $terms_selected ) {
+            $type_multiple = ( (bool) $ymc_multiple_filter ) ? 'multiple' : '';
 
-				echo '<li class="filter-item"><a class="filter-link active" href="#" data-id="' . esc_attr($terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
+            if ( is_array($terms_selected) ) {
 
-                foreach ($terms_selected as $term) {
-                    echo "<li class='filter-item'>
-                          <a class='filter-link' href='#' data-id='" . esc_attr($term) . "'>" . esc_html(get_term( $term )->name) . "</a>
-                          </li>";
+                    echo '<li class="filter-item"><a class="filter-link all active" href="#" data-id="' . esc_attr($terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
+
+                    foreach ($terms_selected as $term) {
+                        echo "<li class='filter-item'>
+                              <a class='filter-link ".$type_multiple."' href='#' data-id='" . esc_attr($term) . "'>" . esc_html(get_term( $term )->name) . "</a>
+                              </li>";
+                    }
                 }
-			}
+
 		?>
+
 	</ul>
+
 </div>
 
 

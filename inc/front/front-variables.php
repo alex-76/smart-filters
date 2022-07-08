@@ -35,7 +35,6 @@ if (get_post_meta($id, 'ymc_filter_bg_color', true)) {
 if (get_post_meta($id, 'ymc_filter_active_color', true)) {
 	$ymc_filter_active_color = get_post_meta($id, 'ymc_filter_active_color', true);
 }
-
 if( get_post_meta($id, 'ymc_post_text_color') ) {
 	$ymc_post_text_color = get_post_meta($id, 'ymc_post_text_color', true);
 }
@@ -44,6 +43,9 @@ if( get_post_meta($id, 'ymc_post_bg_color') ) {
 }
 if( get_post_meta($id, 'ymc_post_active_color') ) {
 	$ymc_post_active_color = get_post_meta($id, 'ymc_post_active_color', true);
+}
+if( get_post_meta($id, 'ymc_multiple_filter') ) {
+	$ymc_multiple_filter = get_post_meta($id, 'ymc_multiple_filter', true);
 }
 
 
