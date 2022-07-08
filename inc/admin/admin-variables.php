@@ -33,7 +33,10 @@ $ymc_post_text_color = '#fff';
 $ymc_post_bg_color = '#296ac2';
 $ymc_post_active_color = '#000';
 
-$ymc_empty_result = "No posts found.";
+$ymc_empty_post_result = "No posts found.";
+$ymc_link_target = "_blank";
+$ymc_per_page = 4;
+$ymc_pagination_type = 'default';
 
 // GENERAL TAB SUBMITTED VARIABLE VALUES
 if( get_post_meta($post->ID, 'ymc_cpt_value') ) {
@@ -79,4 +82,18 @@ if( get_post_meta($post->ID, 'ymc_post_bg_color') ) {
 if( get_post_meta($post->ID, 'ymc_post_active_color') ) {
 	$ymc_post_active_color = get_post_meta($post->ID, 'ymc_post_active_color', true);
 }
+if( get_post_meta($post->ID, 'ymc_empty_post_result') ) {
+	$ymc_empty_post_result = get_post_meta($post->ID, 'ymc_empty_post_result', true);
+}
+if (get_post_meta($post->ID, 'ymc_link_target')) {
+	$ymc_link_target = get_post_meta($post->ID, 'ymc_link_target', true);
+}
+if (get_post_meta($post->ID, 'ymc_per_page')) {
+	$ymc_per_page = get_post_meta($post->ID, 'ymc_per_page', true);
+}
+if (get_post_meta($post->ID, 'ymc_pagination_type')) {
+	$ymc_pagination_type = get_post_meta($post->ID, 'ymc_pagination_type', true);
+}
+
+
 

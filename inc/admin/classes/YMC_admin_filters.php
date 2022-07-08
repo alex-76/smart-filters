@@ -6,6 +6,7 @@ class YMC_admin_filters {
 
 		add_filter('ymc_filter_layouts',array($this, 'ymc_filter_layouts'), 10, 1);
 		add_filter('ymc_post_layouts', array($this, 'ymc_post_layouts'), 10, 1);
+		add_filter('ymc_pagination_type', array($this, 'ymc_pagination_type'), 10, 1);
 
 	}
 
@@ -30,6 +31,16 @@ class YMC_admin_filters {
 		];
 
 		return $layouts;
+	}
+
+	public function ymc_pagination_type($type) {
+		$type = [
+			"default" => 'Number',
+			"load-more" => 'Load more',
+			"scroll-infinity" => 'Scroll infinity'
+		];
+
+		return $type;
 	}
 
 

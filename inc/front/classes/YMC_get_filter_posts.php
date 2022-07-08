@@ -165,7 +165,7 @@ class YMC_get_filter_posts {
 
 		else :
 
-			echo "<div class='ymc-notification'>" . esc_html('No posts found.', 'ymc-smart-filter') . "</div>";
+			echo "<div class='ymc-notification'>" . esc_html($ymc_empty_post_result, 'ymc-smart-filter') . "</div>";
 			$message = 'No posts found';
 
 		endif;

@@ -29,6 +29,8 @@
 
 	</ul>
 
+    <?php do_action("ymc_after_filter_layout"); ?>
+
 </div>
 
 

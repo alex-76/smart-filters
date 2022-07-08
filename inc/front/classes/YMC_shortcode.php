@@ -55,11 +55,8 @@ class YMC_shortcode {
 				$terms = implode(',', $terms_selected);
 			}
 
-			// ===============================================
-			// Need add options to Admin Panel Tab: Appearance
-			// ===============================================
-			$per_page = 4; // Count posts on page
-			$type_pg = 'default'; // load-more, scroll-infinity
+			$per_page = $ymc_per_page;
+			$type_pg = $ymc_pagination_type;
 
 			echo '<div id="ymc-smart-container" 
 					   class="ymc-smart-container ymc-' . $ymc_filter_layout . ' ymc-'. $ymc_post_layout . '"

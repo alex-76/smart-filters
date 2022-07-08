@@ -92,9 +92,28 @@ class YMC_meta_boxes {
 			update_post_meta($post_id, 'ymc_post_active_color', $post_layout_active_color);
 		}
 
+		// Empty Text Post
+		if ( isset($_POST['ymc-empty-post-result']) ) {
+			$ymc_empty_post_result = sanitize_text_field($_POST['ymc-empty-post-result']);
+			update_post_meta($post_id, 'ymc_empty_post_result', $ymc_empty_post_result);
+		}
 
+		// Link Target Post
+		if ( isset($_POST['ymc-link-target']) ) {
+			$ymc_link_target = sanitize_text_field($_POST['ymc-link-target']);
+			update_post_meta($post_id, 'ymc_link_target', $ymc_link_target);
+		}
 
-
+        // Per Posts
+		if (isset($_POST['ymc-per-page'])) {
+			$ymc_per_page = sanitize_text_field($_POST['ymc-per-page']);
+			update_post_meta($post_id, 'ymc_per_page', $ymc_per_page);
+		}
+        // Type Pagination
+		if (isset($_POST['ymc-pagination-type'])) {
+			$ymc_pagination_type = sanitize_text_field($_POST['ymc-pagination-type']);
+			update_post_meta($post_id, 'ymc_pagination_type', $ymc_pagination_type);
+		}
 
 
 

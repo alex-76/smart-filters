@@ -47,6 +47,17 @@ if( get_post_meta($id, 'ymc_post_active_color') ) {
 if( get_post_meta($id, 'ymc_multiple_filter') ) {
 	$ymc_multiple_filter = get_post_meta($id, 'ymc_multiple_filter', true);
 }
-
+if( get_post_meta($id, 'ymc_empty_post_result') ) {
+	$ymc_empty_post_result = get_post_meta($id, 'ymc_empty_post_result', true);
+}
+if (get_post_meta($id, 'ymc_link_target')) {
+	$ymc_link_target = get_post_meta($id, 'ymc_link_target', true);
+}
+if (get_post_meta($id, 'ymc_per_page')) {
+	$ymc_per_page = get_post_meta($id, 'ymc_per_page', true);
+}
+if (get_post_meta($id, 'ymc_pagination_type')) {
+	$ymc_pagination_type = get_post_meta($id, 'ymc_pagination_type', true);
+}
 
 

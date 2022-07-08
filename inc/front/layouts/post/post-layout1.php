@@ -27,6 +27,8 @@
 	    $content  = wp_trim_words($content, $c_length);
 
 	    $read_more = apply_filters('ymc_post_read_more', 'Read More');
+	    $target = "target='" . $ymc_link_target . "'";
+
 
 
         echo '<article id="'. $post_layout .'" class="ymc-post-layout1 ymc-col" data-post-id="'. esc_attr(get_the_id()) .'">';
@@ -34,7 +36,8 @@
         echo '<header class="title">'. esc_attr($title) .'</header>';
         echo '<div class="date"><i class="far fa-calendar-alt"></i> '. get_the_date($post_date_format) . '</div>';
         echo '<div class="excerpt">'. $content .'</div>';
-        echo '<div class="read-more"><a class="btn btn-read-more" href="'. esc_url($link) .'">'. esc_html($read_more) .'</a></div>';
+        echo '<div class="read-more">
+			  <a class="btn btn-read-more" '. $target .' href="'. esc_url($link) .'">'. esc_html($read_more) .'</a></div>';
         echo '</article>';
 
     endwhile;
