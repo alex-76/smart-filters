@@ -14,6 +14,8 @@
 
             $type_multiple = ( (bool) $ymc_multiple_filter ) ? 'multiple' : '';
 
+		    // arsort($terms_selected); ===> implementin sort terms
+
             if ( is_array($terms_selected) ) {
 
                     echo '<li class="filter-item"><a class="filter-link all active" href="#" data-id="' . esc_attr($terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';

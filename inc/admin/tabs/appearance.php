@@ -11,6 +11,23 @@
 
             <header class="sub-header">
                 <i class="far fa-address-card"></i>
+		        <?php echo esc_html__('Filter Options', 'ymc-smart-filter'); ?>
+            </header>
+
+            <div class="from-element">
+                <label class="form-label">
+			        <?php echo esc_html__('Sort Terms', 'ymc-smart-filter');?>
+                    <span class="information">
+                    <?php echo esc_html__('Set sort terms by filter.', 'ymc-smart-filter');?>
+                </span>
+                </label>
+                <!--- Add select sort terms --->
+            </div>
+
+
+
+            <header class="sub-header">
+                <i class="far fa-address-card"></i>
 			    <?php echo esc_html__('Post Options', 'ymc-smart-filter'); ?>
             </header>
 
