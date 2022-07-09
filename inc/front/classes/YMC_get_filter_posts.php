@@ -103,7 +103,7 @@ class YMC_get_filter_posts {
 		$args = [
 			'post_type' => $post_type,
 			'post_status' => 'publish',
-			'posts_per_page' => $per_page, // need edit from admin panel
+			'posts_per_page' => $per_page,
 			'tax_query' => $tax_qry,
 			'paged' => $paged,
 			'orderby' => $default_order_by,
@@ -181,7 +181,9 @@ class YMC_get_filter_posts {
 			'post_type' => $post_type,
 			'tax' => $taxonomy,
 			'term' => $tax_qry,
-			'max_num_pages' => $query->max_num_pages
+			'max_num_pages' => $query->max_num_pages,
+			'get_current_posts' => ($query->found_posts - $paged * $per_page),
+			'pagin' => $pagin
 		);
 
 		wp_send_json($data);

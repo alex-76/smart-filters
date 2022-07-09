@@ -1,7 +1,5 @@
 <?php
 
-    echo '<div id="post-entry" class="post-entry '. $post_layout .'">';
-
     while ($query->have_posts()) : $query->the_post();
 
 	    global $post;
@@ -31,7 +29,7 @@
 
 
 
-        echo '<article id="'. $post_layout .'" class="ymc-post-layout1 ymc-col" data-post-id="'. esc_attr(get_the_id()) .'">';
+        echo '<article class="ymc-'.$post_layout.' ymc-col" data-post-id="'. esc_attr(get_the_id()) .'">';
         echo '<figure class="media"><img src="'. $image_url .'"></figure>';
         echo '<header class="title">'. esc_attr($title) .'</header>';
         echo '<div class="date"><i class="far fa-calendar-alt"></i> '. get_the_date($post_date_format) . '</div>';
@@ -41,8 +39,6 @@
         echo '</article>';
 
     endwhile;
-
-    echo '</div>';
 
 ?>
 

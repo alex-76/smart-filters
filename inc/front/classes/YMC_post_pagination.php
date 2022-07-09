@@ -7,8 +7,9 @@ class YMC_post_pagination {
 
 	public function number($query, $paged, $type_pagination, $filter_id) {
 
-		if ( !$query ) return;
+		if ( ! $query ) return;
 
+		$output = '';
 
 		$prev_text = __('Prev','ymc-smart-filter');
 		$next_text = __('Next','ymc-smart-filter');
@@ -26,21 +27,34 @@ class YMC_post_pagination {
 		]);
 
 		if ($query->max_num_pages > 1):
-			echo "<ul id='ymc-layout-pagination' class='ymc-pagination pagination-" . $type_pagination ."'>";
+			$output .= "<ul id='ymc-layout-pagination' class='ymc-pagination pagination-" . $type_pagination ."'>";
 			foreach ($paginate as $page):
-				echo "<li>" . $page ."</li>";
+				$output .= "<li>" . $page ."</li>";
 			endforeach;
-			echo "</ul>";
+			$output .= "</ul>";
 		endif;
 
-
+		return $output;
 	}
 
 	public function load_more($query, $paged, $type_pagination, $filter_id) {
 
+		if ( ! $query ) return;
+
 		// do something
 
-		echo 'Button Load More Pagination';
+		$output = '';
+
+		$load_more = apply_filters('ymc_pagination_load_more', $load_more);
+
+		if( $query->max_num_pages > 1 ) :
+			$output .= "<div id='ymc-layout-pagination' class='ymc-pagination pagination-" . $type_pagination ."'>";
+			$output .= "<a class='btn-load' href='#'>". $load_more ."</a>";
+			$output .= "</div>";
+		endif;
+
+		return $output;
+
 	}
 
 	public function scroll_infinity($query, $paged, $type_pagination, $filter_id) {

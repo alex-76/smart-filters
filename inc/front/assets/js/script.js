@@ -23,6 +23,8 @@
 
         // Path preloader image
         const pathPreloader = _global_object.path+"/front/assets/images/preloader.gif";
+        // Type Pagination
+        const type_pg = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params).type_pg;
 
         // Send Request
         function getFilterPosts( options ) {
@@ -32,7 +34,7 @@
 
             let tr_id = options.term_id || '';
             let pd    = options.paged || 1;
-
+            let filter = options.filter || 0;
 
             const data = {
                 'action': 'ymc_get_posts',
@@ -53,7 +55,51 @@
                 },
                 success: function (res) {
 
-                    container.find('.container-posts').removeClass('loading').html(res.data);
+                    switch ( type_pg ) {
+
+                        case 'default' :
+
+                            container.find('.container-posts').
+                            removeClass('loading').
+                            find('.preloader').remove().end().
+                            find('.post-entry').html(res.data).end().
+                            find('.ymc-pagination').remove().end().
+                            append(res.pagin);
+
+                            break;
+
+                        case 'load-more' :
+
+                            if(filter === 0) {
+
+                                container.find('.container-posts').
+                                removeClass('loading').
+                                find('.preloader').remove().end().
+                                find('.post-entry').append(res.data).end().
+                                find('.ymc-pagination').remove().end().
+                                append(res.pagin);
+                            }
+                            else  {
+                                container.find('.container-posts').
+                                removeClass('loading').
+                                find('.preloader').remove().end().
+                                find('.post-entry').html(res.data).end().
+                                find('.ymc-pagination').remove().end().
+                                append(res.pagin);
+                            }
+
+                            if(res.get_current_posts <= 0) {
+                                container. find('.pagination-load-more').remove();
+                            }
+
+                            break;
+
+                        case 'scroll-infinity' :
+                            container.find('.container-posts').removeClass('loading').html(res.data);
+                            console.log('Scroll infinity...');
+                            break;
+                    }
+
 
                 },
                 error: function (obj, err) {
@@ -69,6 +115,7 @@
             let link = $(this);
             let term_id = link.data('id');
 
+            _global_object.current_page = 1;
 
             if(link.hasClass('multiple')) {
 
@@ -96,7 +143,8 @@
 
             getFilterPosts({
                 'term_id' : term_id,
-                'paged' : 1
+                'paged' : 1,
+                'filter' : 1
             });
         });
 
@@ -106,6 +154,22 @@
 
             let paged = parseInt($(this).attr("href").replace(/\D/g, ""));
             let term_id = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params).terms;
+
+            getFilterPosts({
+                'term_id' : term_id,
+                'paged' : paged
+            });
+
+        });
+
+        // Pagination / Type: Load More
+        $(document).on('click','.ymc-smart-container .pagination-load-more .btn-load',function (e) {
+            e.preventDefault();
+
+            _global_object.current_page++;
+
+            let term_id = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params).terms;
+            let paged = _global_object.current_page;
 
             getFilterPosts({
                 'term_id' : term_id,
