@@ -14,19 +14,19 @@
 
             $type_multiple = ( (bool) $ymc_multiple_filter ) ? 'multiple' : '';
 
-		    // arsort($terms_selected); ===> implementin sort terms
+		    ( $ymc_sort_terms === 'asc' ) ? asort($terms_selected) : arsort($terms_selected);
 
             if ( is_array($terms_selected) ) {
 
-                    echo '<li class="filter-item"><a class="filter-link all active" href="#" data-id="' . esc_attr($terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
+                echo '<li class="filter-item"><a class="filter-link all active" href="#" data-id="' . esc_attr($terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
 
-                    foreach ($terms_selected as $term) {
-                        echo "<li class='filter-item'>
-                              <a class='filter-link ".$type_multiple."' href='#' data-id='" . esc_attr($term) . "'>" . esc_html(get_term( $term )->name) . "</a>
-                              </li>";
-                    }
+                foreach ($terms_selected as $term) {
+
+                    echo "<li class='filter-item'>
+                            <a class='filter-link ".$type_multiple."' href='#' data-id='" . esc_attr($term) . "'>" . esc_html(get_term( $term )->name) . "</a>
+                          </li>";
                 }
-
+            }
 		?>
 
 	</ul>

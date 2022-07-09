@@ -31,15 +31,15 @@ class YMC_get_filter_posts {
 		$paged     = (int) $_POST['paged'];
 		$term_ids  = $_POST['term_ids'];
 
-		$default_order_by = apply_filters('ymc_filter_posts_order_by', $default_order_by);
-		$default_order = apply_filters('ymc_filter_posts_order', $default_order);
-
 		$id = $filter_id;
 		require_once YMC_SMART_FILTER_DIR . '/front/front-variables.php';
 
+		$default_order_by = apply_filters('ymc_filter_posts_order_by', $ymc_order_post_by);
+		$default_order    = apply_filters('ymc_filter_posts_order', $ymc_order_post_type);
+
 		// Convert Taxonomy & Terms to Array
 		$taxonomy = !empty($taxonomy) ? explode(',', $taxonomy) : false;
-		$terms    = !empty($terms) ? explode(',', $terms) : false;
+		$terms    = !empty($terms)    ? explode(',', $terms) : false;
 		$term_ids = !empty($term_ids) ? explode(',', $term_ids) : false;
 
 

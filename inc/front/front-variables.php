@@ -59,5 +59,15 @@ if (get_post_meta($id, 'ymc_per_page')) {
 if (get_post_meta($id, 'ymc_pagination_type')) {
 	$ymc_pagination_type = get_post_meta($id, 'ymc_pagination_type', true);
 }
+if (get_post_meta($id, 'ymc_sort_terms')) {
+	$ymc_sort_terms = get_post_meta($id, 'ymc_sort_terms', true);
+}
+if (get_post_meta($id, 'ymc_order_post_by')) {
+	$ymc_order_post_by = get_post_meta($id, 'ymc_order_post_by', true);
+}
+if (get_post_meta($id, 'ymc_order_post_type')) {
+	$ymc_order_post_type = get_post_meta($id, 'ymc_order_post_type', true);
+}
+
 
 

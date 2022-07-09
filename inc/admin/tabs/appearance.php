@@ -10,21 +10,26 @@
         <div class="appearance-section">
 
             <header class="sub-header">
-                <i class="far fa-address-card"></i>
+                <i class="far fa-filter"></i>
 		        <?php echo esc_html__('Filter Options', 'ymc-smart-filter'); ?>
             </header>
 
             <div class="from-element">
                 <label class="form-label">
-			        <?php echo esc_html__('Sort Terms', 'ymc-smart-filter');?>
+			        <?php echo esc_html__('Sort Filter Terms', 'ymc-smart-filter');?>
                     <span class="information">
-                    <?php echo esc_html__('Set sort terms by filter.', 'ymc-smart-filter');?>
+                    <?php echo esc_html__('Set sorting by filter terms.', 'ymc-smart-filter');?>
                 </span>
                 </label>
-                <!--- Add select sort terms --->
+                <select class="form-select"  id="ymc-sort-terms" name="ymc-sort-terms">
+                    <option value="asc" <?php if ($ymc_sort_terms === 'asc') {echo "selected";} ?>>
+			            <?php echo esc_html__('Asc', 'ymc-smart-filter'); ?>
+                    </option>
+                    <option value="desc" <?php if ($ymc_sort_terms === 'desc') {echo "selected";} ?>>
+			            <?php echo esc_html__('Desc', 'ymc-smart-filter'); ?>
+                    </option>
+                </select>
             </div>
-
-
 
             <header class="sub-header">
                 <i class="far fa-address-card"></i>
@@ -62,30 +67,48 @@
                 <label class="form-label">
 			        <?php echo esc_html__('Post Order By', 'ymc-smart-filter'); ?>
                     <span class="information">
-                    <?php echo esc_html__('Set post order by.', 'ymc-smart-filter');?>
+                    <?php echo esc_html__('Set sort by posts by.', 'ymc-smart-filter');?>
                 </span>
                 </label>
+                <select class="form-select"  id="ymc-order-post-by" name="ymc-order-post-by">
+                <?php
+                    $order_post_by = apply_filters('ymc_order_post_by', $order_post_by);
 
-                <!--- Add select --->
+                    foreach ($order_post_by as $key => $value) {
 
+                        if ($ymc_order_post_by === $key) {
+
+                            $selected = 'selected';
+                        }
+                        else {
+                            $selected = '';
+                        }
+                        echo '<option value="' . $key . '" ' . $selected . '>' . esc_html($value) . '</option>';
+                    }
+                ?>
+                </select>
             </div>
 
             <div class="from-element">
                 <label class="form-label">
 			        <?php echo esc_html__('Post Order Type', 'ymc-smart-filter'); ?>
                     <span class="information">
-                    <?php echo esc_html__('Set post order type.', 'ymc-smart-filter');?>
+                    <?php echo esc_html__('Set order post type.', 'ymc-smart-filter');?>
                 </span>
                 </label>
-
-                <!--- Add select --->
+                <select class="form-select"  id="ymc-order-post-type" name="ymc-order-post-type">
+                    <option value="asc" <?php if ($ymc_order_post_type === 'asc') {echo "selected";} ?>>
+			            <?php echo esc_html__('Asc', 'ymc-smart-filter'); ?>
+                    </option>
+                    <option value="desc" <?php if ($ymc_order_post_type === 'desc') {echo "selected";} ?>>
+			            <?php echo esc_html__('Desc', 'ymc-smart-filter'); ?>
+                    </option>
+                </select>
 
             </div>
 
-
-
             <header class="sub-header">
-                <i class="far fa-address-card"></i>
+                <i class="far fa-sort-numeric-asc left" aria-hidden="true"></i>
 		        <?php echo esc_html__('Pagination Options', 'ymc-smart-filter'); ?>
             </header>
 

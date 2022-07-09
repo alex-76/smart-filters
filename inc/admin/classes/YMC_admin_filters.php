@@ -7,6 +7,7 @@ class YMC_admin_filters {
 		add_filter('ymc_filter_layouts',array($this, 'ymc_filter_layouts'), 10, 1);
 		add_filter('ymc_post_layouts', array($this, 'ymc_post_layouts'), 10, 1);
 		add_filter('ymc_pagination_type', array($this, 'ymc_pagination_type'), 10, 1);
+		add_filter('ymc_order_post_by', array($this, 'ymc_order_post_by'), 10, 1);
 
 	}
 
@@ -41,6 +42,18 @@ class YMC_admin_filters {
 		];
 
 		return $type;
+	}
+
+	public function ymc_order_post_by($order) {
+		$order = [
+			"title" => 'Title',
+			"name" =>  'Name',
+			"date" =>  'Date',
+			"ID" =>    'ID',
+			"author" => 'Author'
+		];
+
+		return $order;
 	}
 
 

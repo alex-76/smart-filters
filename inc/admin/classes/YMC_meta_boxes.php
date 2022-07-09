@@ -109,11 +109,35 @@ class YMC_meta_boxes {
 			$ymc_per_page = sanitize_text_field($_POST['ymc-per-page']);
 			update_post_meta($post_id, 'ymc_per_page', $ymc_per_page);
 		}
+
         // Type Pagination
 		if (isset($_POST['ymc-pagination-type'])) {
 			$ymc_pagination_type = sanitize_text_field($_POST['ymc-pagination-type']);
 			update_post_meta($post_id, 'ymc_pagination_type', $ymc_pagination_type);
 		}
+
+		// Sort Terms Filter
+		if (isset($_POST['ymc-sort-terms'])) {
+			$ymc_sort_terms = sanitize_text_field($_POST['ymc-sort-terms']);
+			update_post_meta($post_id, 'ymc_sort_terms', $ymc_sort_terms);
+		}
+
+		// Type Order Post By
+		if (isset($_POST['ymc-order-post-by'])) {
+			$ymc_order_post_by = sanitize_text_field($_POST['ymc-order-post-by']);
+			update_post_meta($post_id, 'ymc_order_post_by', $ymc_order_post_by);
+		}
+
+		// Type Order Post Type
+		if (isset($_POST['ymc-order-post-type'])) {
+			$ymc_order_post_type = sanitize_text_field($_POST['ymc-order-post-type']);
+			update_post_meta($post_id, 'ymc_order_post_type', $ymc_order_post_type);
+		}
+
+
+
+
+
 
 
 
