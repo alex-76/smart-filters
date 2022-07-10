@@ -1,8 +1,13 @@
 <?php
     defined('ABSPATH') or exit;
     // Add Style
-    $filter_css = "#ymc-smart-filter-container .filter-layout1 .filter-entry .filter-item .filter-link {color:".$ymc_filter_text_color.";background-color:".$ymc_filter_bg_color.";}
-                   #ymc-smart-filter-container .filter-layout1 .filter-entry .filter-item .filter-link.active {color:".$ymc_filter_active_color.";}";
+
+$ymc_filter_text_color = !empty($ymc_filter_text_color) ? "color:".$ymc_filter_text_color.";" : '';
+$ymc_filter_bg_color   = !empty($ymc_filter_bg_color) ? "background-color:".$ymc_filter_bg_color.";" : '';
+$ymc_filter_active_color = !empty($ymc_filter_active_color) ? "color:".$ymc_filter_active_color.";" : '';
+
+$filter_css = ".ymc-smart-filter-container .filter-layout.filter-layout1 .filter-entry .filter-item .filter-link {". $ymc_filter_text_color . $ymc_filter_bg_color."}
+               #ymc-smart-filter-container .filter-layout.filter-layout1 .filter-entry .filter-item .filter-link.active {".$ymc_filter_active_color."}";
     wp_add_inline_style($handle, $filter_css);
 ?>
 
