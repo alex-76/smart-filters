@@ -39,7 +39,7 @@
 
             <div class="manage-filters__section">
                 <label for="ymc-filter-layout" class="form-label">
-		            <?php echo esc_html__('Select filter layout', 'ymc-smart-filter');?>
+		            <?php echo esc_html__('Select Filter Layout', 'ymc-smart-filter');?>
                     <span class="information">
                     <?php echo esc_html__('Select design layout of filters.', 'ymc-smart-filter');?>
                 </span>
@@ -64,7 +64,7 @@
 
                 <div class="col">
                     <label for="ymc-filter-layout" class="form-label">
-		                <?php echo esc_html__('Text color', 'ymc-smart-filter');?>
+		                <?php echo esc_html__('Text Color', 'ymc-smart-filter');?>
                         <span class="information">
                             <?php echo esc_html__('Select text colors for filter layout.', 'ymc-smart-filter');?>
                         </span>
@@ -74,7 +74,7 @@
 
                 <div class="col">
                     <label for="ymc-filter-layout" class="form-label">
-			            <?php echo esc_html__('Background color', 'ymc-smart-filter');?>
+			            <?php echo esc_html__('Background Color', 'ymc-smart-filter');?>
                         <span class="information">
                     <?php echo esc_html__('Select background for filter layout.', 'ymc-smart-filter');?>
                 </span>
@@ -84,7 +84,7 @@
 
                 <div class="col">
                     <label for="ymc-filter-layout" class="form-label">
-			            <?php echo esc_html__('Active color', 'ymc-smart-filter');?>
+			            <?php echo esc_html__('Active Color', 'ymc-smart-filter');?>
                         <span class="information">
                             <?php echo esc_html__('Select active color for filter layout.', 'ymc-smart-filter');?>
                         </span>
