@@ -92,7 +92,7 @@
 
                             // Filter is act scroll top
                             if(filter === 1) {
-                                $('html, body').animate({scrollTop: container.offset().top}, 300);
+                                //$('html, body').animate({scrollTop: container.offset().top}, 300);
                             }
 
                             container.find('.container-posts').
@@ -171,8 +171,8 @@
             'paged' : 1
         });
 
-        // Filter Posts / Layout1, Layout2
-        $(document).on('click','.ymc-smart-filter-container .filter-layout .filter-link',function (e) {
+        // Filter Posts / Layout1
+        $(document).on('click','.ymc-smart-filter-container .filter-layout1 .filter-link',function (e) {
             e.preventDefault();
 
             let link = $(this);
@@ -209,6 +209,55 @@
                 'filter' : 1
             });
         });
+
+        // Filter Posts / Layout2
+        $(document).on('click','.ymc-smart-filter-container .filter-layout2 .filter-link',function (e) {
+            e.preventDefault();
+
+            let link = $(this);
+            let term_id = link.data('termid');
+
+            _global_object.current_page = 1;
+
+            if(link.hasClass('multiple')) {
+
+                link.toggleClass('active').closest('.filter-entry').find('.all').removeClass('active');
+
+                term_id = '';
+
+                $('.ymc-smart-filter-container .filter-layout .active').each(function (){
+
+                    term_id += $(this).data('termid')+',';
+
+                });
+
+                term_id = term_id.replace(/,\s*$/, "");
+            }
+            else {
+                link.addClass('active').
+                closest('.filter-item').
+                siblings().find('.filter-link').
+                removeClass('active').
+                closest('.group-filters').siblings().
+                find('.filter-link').
+                removeClass('active');
+            }
+
+            if(link.hasClass('all')) {
+                link.addClass('active').closest('.filter-item').siblings().find('.filter-link').removeClass('active');
+            }
+
+            let p = JSON.parse(document.querySelector(".ymc-smart-filter-container").dataset.params);
+            p.terms = term_id;
+            document.querySelector(".ymc-smart-filter-container").dataset.params = JSON.stringify(p);
+
+            getFilterPosts({
+                'term_id' : term_id,
+                'paged' : 1,
+                'filter' : 1
+            });
+        });
+
 
         // Pagination / Type: Default (Numeric)
         $(document).on('click','.ymc-smart-filter-container .pagination-default li a',function (e) {
