@@ -13,8 +13,8 @@
     ( typeof window.YMCGetPosts === 'undefined' ) ? window.YMCGetPosts = _YMCGetPosts : console.error('YMCGetPosts is existed');
 
 
-}(window));
-*/
+}(window))*/
+
 
 ;
 (function( $ ) {
@@ -163,6 +163,9 @@
                 }
             });
         }
+
+        // Set Function getFilterPosts global
+        ( typeof window.YMCGetPosts === 'undefined' ) ? window.YMCGetPosts = getFilterPosts : console.error('YMCGetPosts is existed');
 
 
         // Init Load Posts
