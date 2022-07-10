@@ -258,7 +258,6 @@
             });
         });
 
-
         // Pagination / Type: Default (Numeric)
         $(document).on('click','.ymc-smart-filter-container .pagination-default li a',function (e) {
             e.preventDefault();
