@@ -25,7 +25,7 @@
         const pathPreloader = _global_object.path+"/front/assets/images/preloader.gif";
 
         // Type Pagination
-        const type_pg = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params).type_pg;
+        const type_pg = JSON.parse(document.querySelector(".ymc-smart-filter-container").dataset.params).type_pg;
 
         // Options IntersectionObserver
         const optionsInfinityScroll = {
@@ -43,7 +43,7 @@
 
                     _global_object.current_page++;
 
-                    let term_id = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params).terms;
+                    let term_id = JSON.parse(document.querySelector(".ymc-smart-filter-container").dataset.params).terms;
                     let paged = _global_object.current_page;
 
                     getFilterPosts({
@@ -60,7 +60,7 @@
         // Send Main Request
         function getFilterPosts( options ) {
 
-            let container = $(".ymc-smart-container");
+            let container = $(".ymc-smart-filter-container");
             let params = container.data("params");
 
             let tr_id  = options.term_id || '';
@@ -171,12 +171,12 @@
             'paged' : 1
         });
 
-        // Filter Posts
-        $(document).on('click','.ymc-smart-container .filter-layout .filter-link',function (e) {
+        // Filter Posts / Layout1, Layout2
+        $(document).on('click','.ymc-smart-filter-container .filter-layout .filter-link',function (e) {
             e.preventDefault();
 
             let link = $(this);
-            let term_id = link.data('id');
+            let term_id = link.data('termid');
 
             _global_object.current_page = 1;
 
@@ -186,9 +186,9 @@
 
                 term_id = '';
 
-                $('.ymc-smart-container .filter-layout .active').each(function (){
+                $('.ymc-smart-filter-container .filter-layout .active').each(function (){
 
-                    term_id += $(this).data('id')+',';
+                    term_id += $(this).data('termid')+',';
 
                 });
 
@@ -196,13 +196,12 @@
 
             }
             else {
-
                 link.addClass('active').closest('.filter-item').siblings().find('.filter-link').removeClass('active');
             }
 
-            let p = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params);
+            let p = JSON.parse(document.querySelector(".ymc-smart-filter-container").dataset.params);
             p.terms = term_id;
-            document.querySelector(".ymc-smart-container").dataset.params = JSON.stringify(p);
+            document.querySelector(".ymc-smart-filter-container").dataset.params = JSON.stringify(p);
 
             getFilterPosts({
                 'term_id' : term_id,
@@ -212,11 +211,11 @@
         });
 
         // Pagination / Type: Default (Numeric)
-        $(document).on('click','.ymc-smart-container .pagination-default li a',function (e) {
+        $(document).on('click','.ymc-smart-filter-container .pagination-default li a',function (e) {
             e.preventDefault();
 
             let paged = parseInt($(this).attr("href").replace(/\D/g, ""));
-            let term_id = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params).terms;
+            let term_id = JSON.parse(document.querySelector(".ymc-smart-filter-container").dataset.params).terms;
 
             getFilterPosts({
                 'term_id' : term_id,
@@ -227,12 +226,12 @@
         });
 
         // Pagination / Type: Load More
-        $(document).on('click','.ymc-smart-container .pagination-load-more .btn-load',function (e) {
+        $(document).on('click','.ymc-smart-filter-container .pagination-load-more .btn-load',function (e) {
             e.preventDefault();
 
             _global_object.current_page++;
 
-            let term_id = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params).terms;
+            let term_id = JSON.parse(document.querySelector(".ymc-smart-filter-container").dataset.params).terms;
             let paged = _global_object.current_page;
 
             getFilterPosts({

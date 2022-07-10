@@ -30,7 +30,7 @@ $font-size: 16;
 }
 
 
-.ymc-smart-container {
+.ymc-smart-filter-container {
 
 	font-family: "Poppins";
 	font-weight: 400;
@@ -78,27 +78,69 @@ $font-size: 16;
 
 	// Filters styles
 	.filter-layout {
-		.filter-entry {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			align-items: center;
-			list-style: none;
-			margin: 0 0 rem-calc(40px) 0;
-			padding: 0;
-			.filter-item {
-				margin: 10px 10px ;
-				.filter-link {
-					display: inline-block;
-					padding: rem-calc(10px) rem-calc(10px);
-					font-size: rem-calc(16px);
-					text-decoration: none;
-					&:hover {
+
+		&.filter-layout1 {
+			.filter-entry {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				align-items: center;
+				list-style: none;
+				margin: 0 0 rem-calc(40px) 0;
+				padding: 0;
+				.filter-item {
+					margin: 10px 10px ;
+					.filter-link {
+						display: inline-block;
+						padding: rem-calc(10px) rem-calc(10px);
+						font-size: rem-calc(16px);
 						text-decoration: none;
+						&:hover {
+							text-decoration: none;
+						}
 					}
 				}
 			}
 		}
+
+		&.filter-layout2 {
+			.filter-entry {
+				list-style: none;
+				margin: 0 0 rem-calc(40px) 0;
+				padding: 0;
+
+				.group-filters {
+					margin-bottom: rem-calc(20px);
+					.name-tax {
+						font-size: rem-calc(18px);
+						text-transform: uppercase;
+						font-weight: 600;
+					}
+					.sub-filters {
+						display: flex;
+						flex-wrap: wrap;
+						align-items: center;
+					}
+				}
+
+				.filter-item {
+					margin: 10px 10px ;
+					&:first-child {
+						margin-left: 0;
+					}
+					.filter-link {
+						display: inline-block;
+						padding: rem-calc(10px) rem-calc(10px);
+						font-size: rem-calc(16px);
+						text-decoration: none;
+						&:hover {
+							text-decoration: none;
+						}
+					}
+				}
+			}
+		}
+
 	}
 
 	// Posts style
@@ -121,6 +163,17 @@ $font-size: 16;
 							width: 100%;
 							height: rem-calc(220px);
 							object-fit: cover;
+						}
+					}
+					.category {
+						margin-bottom: rem-calc(10px);
+						.cat-inner {
+							font-size: rem-calc(12px);
+							border-radius: 3px;
+							display: inline-block;
+							padding: rem-calc(7px) rem-calc(10px);
+							background: #000;
+							margin-right: 5px;
 						}
 					}
 					.title {
@@ -193,10 +246,9 @@ $font-size: 16;
 				border: 1px solid #098ab8;
 			}
 		}
-
-
 	}
 
+	// Filter sticky for pagination scroll infinity
 	&.ymc-pagination-scroll-infinity {
 		.filter-layout {
 			position: sticky;

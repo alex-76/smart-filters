@@ -55,8 +55,8 @@ class YMC_shortcode {
 				$terms = implode(',', $terms_selected);
 			}
 
-			echo '<div id="ymc-smart-container" 
-					   class="ymc-smart-container ymc-'.$ymc_filter_layout.' ymc-'. $ymc_post_layout.' ymc-pagination-'.$ymc_pagination_type.'"
+			echo '<div id="ymc-smart-filter-container" 
+					   class="ymc-smart-filter-container ymc-'.$ymc_filter_layout.' ymc-'. $ymc_post_layout.' ymc-pagination-'.$ymc_pagination_type.'"
 					   data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$terms.'","type_pg":"'.$ymc_pagination_type.'","per_page":"'.$ymc_per_page.'","post_layout":"'.$ymc_post_layout.'","filter_layout":"'.$ymc_filter_layout.'","filter_id":"'.$id.'"}\'>';
 
 			// Enable/Disable Filters
@@ -81,7 +81,7 @@ class YMC_shortcode {
 			echo '</div>'; // end ymc-layout-container
 		}
 		else {
-			echo "<div class='ymc-smart-container'><div class='notice'>" . esc_html__('ID parameter is missing or invalid.', 'ymc-smart-filter') ."</div></div>";
+			echo "<div class='ymc-smart-filter-container'><div class='notice'>" . esc_html__('ID parameter is missing or invalid.', 'ymc-smart-filter') ."</div></div>";
 		}
 
 

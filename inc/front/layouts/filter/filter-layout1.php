@@ -1,8 +1,8 @@
 <?php
     defined('ABSPATH') or exit;
     // Add Style
-    $filter_css = "#ymc-smart-container .filter-layout1 .filter-entry .filter-item .filter-link {color:".$ymc_filter_text_color.";background-color:".$ymc_filter_bg_color.";}
-                   #ymc-smart-container .filter-layout1 .filter-entry .filter-item .filter-link.active {color:".$ymc_filter_active_color.";}";
+    $filter_css = "#ymc-smart-filter-container .filter-layout1 .filter-entry .filter-item .filter-link {color:".$ymc_filter_text_color.";background-color:".$ymc_filter_bg_color.";}
+                   #ymc-smart-filter-container .filter-layout1 .filter-entry .filter-item .filter-link.active {color:".$ymc_filter_active_color.";}";
     wp_add_inline_style($handle, $filter_css);
 ?>
 
@@ -14,16 +14,16 @@
 
             $type_multiple = ( (bool) $ymc_multiple_filter ) ? 'multiple' : '';
 
-		    ( $ymc_sort_terms === 'asc' ) ? asort($terms_selected) : arsort($terms_selected);
-
             if ( is_array($terms_selected) ) {
+
+	            ( $ymc_sort_terms === 'asc' ) ? asort($terms_selected) : arsort($terms_selected);
 
                 echo '<li class="filter-item"><a class="filter-link all active" href="#" data-id="' . esc_attr($terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
 
                 foreach ($terms_selected as $term) {
 
                     echo "<li class='filter-item'>
-                            <a class='filter-link ".$type_multiple."' href='#' data-id='" . esc_attr($term) . "'>" . esc_html(get_term( $term )->name) . "</a>
+                            <a class='filter-link ".$type_multiple."' href='#' data-termid='" . esc_attr($term) . "'>" . esc_html(get_term( $term )->name) . "</a>
                           </li>";
                 }
             }
