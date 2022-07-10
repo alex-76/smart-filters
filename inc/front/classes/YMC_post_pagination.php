@@ -54,16 +54,9 @@ class YMC_post_pagination {
 		endif;
 
 		return $output;
-
 	}
 
-	public function scroll_infinity($query, $paged, $type_pagination, $filter_id) {
-
-		// do something
-
-		echo 'Scroll Infinity Pagination';
-	}
-
+	public function scroll_infinity($query, $paged, $type_pagination, $filter_id) {}
 
 }
 

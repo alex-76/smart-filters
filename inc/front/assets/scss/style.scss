@@ -36,14 +36,17 @@ $font-size: 16;
 	font-weight: 400;
 	box-sizing: border-box;
 	min-height: rem-calc(500px);
+	position: relative;
 
 	*:active, *:focus {
 		outline: none;
 		box-shadow: none;
 	}
+
 	*::-moz-focus-inner {
 		border: 0;
 	}
+
 	.far {
 		font-size: rem-calc(18px);
 	}
@@ -159,7 +162,6 @@ $font-size: 16;
 		}
 	}
 
-
 	// Pagination style
 	.ymc-pagination {
 		list-style: none;
@@ -190,6 +192,17 @@ $font-size: 16;
 				color: #098ab8;
 				border: 1px solid #098ab8;
 			}
+		}
+
+
+	}
+
+	&.ymc-pagination-scroll-infinity {
+		.filter-layout {
+			position: sticky;
+			top: rem-calc(20px);
+			z-index: 9;
+			background: #fff;
 		}
 	}
 

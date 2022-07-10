@@ -12,8 +12,8 @@ switch ( $type_pagination ) :
 			$pagin = $pagin->load_more($query, $paged, $type_pagination, $filter_id);
 		break;
 
-	case 'scroll-infinity' :
-			$pagin = $pagin->scroll_infinity($query, $paged, $type_pagination, $filter_id);
-		break;
+	//  case 'scroll-infinity' :
+	//  $pagin = $pagin->scroll_infinity($query, $paged, $type_pagination, $filter_id);
+	//	break;
 
 endswitch;

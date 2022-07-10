@@ -55,14 +55,11 @@ class YMC_shortcode {
 				$terms = implode(',', $terms_selected);
 			}
 
-			$per_page = $ymc_per_page;
-			$type_pg = $ymc_pagination_type;
-
 			echo '<div id="ymc-smart-container" 
-					   class="ymc-smart-container ymc-' . $ymc_filter_layout . ' ymc-'. $ymc_post_layout . '"
-					   data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$terms.'","type_pg":"'.$type_pg.'","per_page":"'.$per_page.'","post_layout":"'.$ymc_post_layout.'","filter_id":"'.$id.'"}\'>';
+					   class="ymc-smart-container ymc-'.$ymc_filter_layout.' ymc-'. $ymc_post_layout.' ymc-pagination-'.$ymc_pagination_type.'"
+					   data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$terms.'","type_pg":"'.$ymc_pagination_type.'","per_page":"'.$ymc_per_page.'","post_layout":"'.$ymc_post_layout.'","filter_layout":"'.$ymc_filter_layout.'","filter_id":"'.$id.'"}\'>';
 
-			// Enable / Disable Filters
+			// Enable/Disable Filters
 			if ( $ymc_filter_status === 'on' ) {
 
 				if ( $ymc_filter_layout ) {

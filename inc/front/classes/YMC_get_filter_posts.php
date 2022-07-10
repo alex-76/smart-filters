@@ -183,7 +183,7 @@ class YMC_get_filter_posts {
 			'term' => $tax_qry,
 			'max_num_pages' => $query->max_num_pages,
 			'get_current_posts' => ($query->found_posts - $paged * $per_page),
-			'pagin' => $pagin
+			'pagin' => !empty($pagin) ? $pagin : ''
 		);
 
 		wp_send_json($data);

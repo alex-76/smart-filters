@@ -23,17 +23,48 @@
 
         // Path preloader image
         const pathPreloader = _global_object.path+"/front/assets/images/preloader.gif";
+
         // Type Pagination
         const type_pg = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params).type_pg;
 
-        // Send Request
+        // Options IntersectionObserver
+        const optionsInfinityScroll = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.7
+        }
+
+        // Object Observer
+        const postsObserver = new IntersectionObserver((entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    _global_object.current_page++;
+
+                    let term_id = JSON.parse(document.querySelector(".ymc-smart-container").dataset.params).terms;
+                    let paged = _global_object.current_page;
+
+                    getFilterPosts({
+                        'term_id' : term_id,
+                        'paged' : paged
+                    });
+
+                    observer.unobserve(entry.target);
+                }
+            });
+
+        }, optionsInfinityScroll);
+
+        // Send Main Request
         function getFilterPosts( options ) {
 
             let container = $(".ymc-smart-container");
             let params = container.data("params");
 
-            let tr_id = options.term_id || '';
-            let pd    = options.paged || 1;
+            let tr_id  = options.term_id || '';
+            let paged  = options.paged || 1;
             let filter = options.filter || 0;
 
             const data = {
@@ -41,7 +72,7 @@
                 'nonce_code' : _global_object.nonce,
                 'params' : JSON.stringify(params),
                 'term_ids' : tr_id,
-                'paged' :  pd,
+                'paged' :  paged,
             };
 
             $.ajax({
@@ -59,6 +90,11 @@
 
                         case 'default' :
 
+                            // Filter is act scroll top
+                            if(filter === 1) {
+                                $('html, body').animate({scrollTop: container.offset().top}, 300);
+                            }
+
                             container.find('.container-posts').
                             removeClass('loading').
                             find('.preloader').remove().end().
@@ -70,15 +106,15 @@
 
                         case 'load-more' :
 
+                            // Filter is not act
                             if(filter === 0) {
-
                                 container.find('.container-posts').
                                 removeClass('loading').
                                 find('.preloader').remove().end().
                                 find('.post-entry').append(res.data).end().
                                 find('.ymc-pagination').remove().end().
                                 append(res.pagin);
-                            }
+                            } // Filter is act
                             else  {
                                 container.find('.container-posts').
                                 removeClass('loading').
@@ -95,12 +131,32 @@
                             break;
 
                         case 'scroll-infinity' :
-                            container.find('.container-posts').removeClass('loading').html(res.data);
-                            console.log('Scroll infinity...');
+
+                            // Filter is not act
+                            if(filter === 0) {
+                                container.find('.container-posts').
+                                removeClass('loading').
+                                find('.preloader').remove().end().
+                                find('.post-entry').append(res.data).end().
+                                append(res.pagin);
+                            } // Filter is act
+                            else  {
+                                // Filter is act scroll top
+                                $('html, body').animate({scrollTop: container.offset().top}, 300);
+
+                                container.find('.container-posts').
+                                removeClass('loading').
+                                find('.preloader').remove().end().
+                                find('.post-entry').html(res.data).end().
+                                append(res.pagin);
+                            }
+
+                            if(res.get_current_posts > 0) {
+                                postsObserver.observe(document.querySelector('.ymc-pagination-scroll-infinity .post-item:last-child'));
+                            }
+
                             break;
                     }
-
-
                 },
                 error: function (obj, err) {
                     console.log( obj, err );
@@ -108,7 +164,14 @@
             });
         }
 
-        // Filter Posts / Layout 1
+
+        // Init Load Posts
+        getFilterPosts({
+            'term_id' : '',
+            'paged' : 1
+        });
+
+        // Filter Posts
         $(document).on('click','.ymc-smart-container .filter-layout .filter-link',function (e) {
             e.preventDefault();
 
@@ -148,7 +211,7 @@
             });
         });
 
-        // Pagination / Type: Default
+        // Pagination / Type: Default (Numeric)
         $(document).on('click','.ymc-smart-container .pagination-default li a',function (e) {
             e.preventDefault();
 
@@ -157,7 +220,8 @@
 
             getFilterPosts({
                 'term_id' : term_id,
-                'paged' : paged
+                'paged' : paged,
+                'filter' : 1
             });
 
         });
@@ -178,11 +242,7 @@
 
         });
 
-        // Load posts
-        getFilterPosts({
-            'term_id' : '',
-            'paged' : 1
-        });
+
 
 
     });

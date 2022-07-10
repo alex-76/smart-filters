@@ -29,7 +29,7 @@
 
 
 
-        echo '<article class="ymc-'.$post_layout.' ymc-col" data-post-id="'. esc_attr(get_the_id()) .'">';
+        echo '<article class="ymc-'.$post_layout.' post-'.get_the_id().' post-item">';
         echo '<figure class="media"><img src="'. $image_url .'"></figure>';
         echo '<header class="title">'. esc_attr($title) .'</header>';
         echo '<div class="date"><i class="far fa-calendar-alt"></i> '. get_the_date($post_date_format) . '</div>';
