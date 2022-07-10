@@ -14,8 +14,8 @@ class YMC_admin_filters {
 	public function ymc_filter_layouts($layouts) {
 
 		$layouts = [
-			"filter-layout1" => 'Default Filter',
-			"filter-layout2" => 'Split Filter',
+			"filter-layout1" => 'Simple Posts Filter',
+			"filter-layout2" => 'Taxonomy Filter',
 			"filter-layout3" => 'Dropdown Filter'
 		];
 
