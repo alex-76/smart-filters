@@ -180,6 +180,7 @@ $font-size: 16;
 							padding: rem-calc(7px) rem-calc(10px);
 							background: #000;
 							margin-right: 5px;
+							margin-bottom: 5px;
 							color: white;
 						}
 					}
@@ -259,10 +260,10 @@ $font-size: 16;
 	// Filter sticky for pagination scroll infinity
 	&.ymc-pagination-scroll-infinity {
 		.filter-layout {
-			position: sticky;
-			top: rem-calc(20px);
-			z-index: 9;
-			background: #fff;
+			//position: sticky;
+			//top: rem-calc(20px);
+			//z-index: 9;
+			//background: #fff;
 		}
 	}
 

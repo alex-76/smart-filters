@@ -40,6 +40,8 @@ $ymc_pagination_type = 'default';
 $ymc_sort_terms = 'asc';
 $ymc_order_post_by = 'title';
 $ymc_order_post_type = 'asc';
+$ymc_special_post_class = '';
+$ymc_filter_font = 'inherit';
 
 
 // GENERAL TAB SUBMITTED VARIABLE VALUES
@@ -107,4 +109,12 @@ if (get_post_meta($post->ID, 'ymc_order_post_by')) {
 if (get_post_meta($post->ID, 'ymc_order_post_type')) {
 	$ymc_order_post_type = get_post_meta($post->ID, 'ymc_order_post_type', true);
 }
+if (get_post_meta($post->ID, 'ymc_special_post_class')) {
+	$ymc_special_post_class = get_post_meta($post->ID, 'ymc_special_post_class', true);
+}
+if (get_post_meta($post->ID, 'ymc_filter_font')) {
+	$ymc_filter_font = get_post_meta($post->ID, 'ymc_filter_font', true);
+}
+
+
 

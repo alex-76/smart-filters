@@ -68,6 +68,9 @@ if (get_post_meta($id, 'ymc_order_post_by')) {
 if (get_post_meta($id, 'ymc_order_post_type')) {
 	$ymc_order_post_type = get_post_meta($id, 'ymc_order_post_type', true);
 }
+if (get_post_meta($id, 'ymc_special_post_class')) {
+	$ymc_special_post_class = get_post_meta($id, 'ymc_special_post_class', true);
+}
 
 
 

@@ -32,9 +32,10 @@
 	    foreach($term_list as $term_single) {
 		    $list_categories .= '<span class="cat-inner">'. esc_html($term_single->name) .'</span>';
 	    }
+		$css_special =  !empty($ymc_special_post_class) ? $ymc_special_post_class : '';
 
 
-        echo '<article class="ymc-'.$post_layout.' post-'.get_the_id().' post-item">';
+        echo '<article class="ymc-'.$post_layout.' post-'.get_the_id().' post-item '.$css_special.'">';
         echo '<figure class="media"><img src="'. $image_url .'"></figure>';
 		echo '<div class="category">'. $list_categories .'</div>';
         echo '<header class="title">'. esc_attr($title) .'</header>';

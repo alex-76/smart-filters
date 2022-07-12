@@ -134,10 +134,17 @@ class YMC_meta_boxes {
 			update_post_meta($post_id, 'ymc_order_post_type', $ymc_order_post_type);
 		}
 
+		// Special Post CSS Class
+		if (isset($_POST['ymc-special-post-class'])) {
+			$ymc_special_post_class = sanitize_text_field($_POST['ymc-special-post-class']);
+			update_post_meta($post_id, 'ymc_special_post_class', $ymc_special_post_class);
+		}
 
-
-
-
+		// Filter Font
+		if (isset($_POST['ymc-filter-font'])) {
+			$ymc_filter_font = sanitize_text_field($_POST['ymc-filter-font']);
+			update_post_meta($post_id, 'ymc_filter_font', $ymc_filter_font);
+		}
 
 
 
