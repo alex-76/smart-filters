@@ -44,4 +44,32 @@
 		<?php echo esc_html__('Post Typography', 'ymc-smart-filter'); ?>
     </header>
 
+    <div class="from-element">
+        <label class="form-label">
+	    <?php echo esc_html__('Filter Posts', 'ymc-smart-filter');?>
+        <span class="information">
+                    <?php echo esc_html__('Select fonts for posts.', 'ymc-smart-filter');?>
+                </span>
+        </label>
+
+	    <?php $post_font = apply_filters('ymc_post_font', $post_font); ?>
+
+        <select class="form-select"  id="ymc-post-font" name="ymc-post-font">
+		    <?php
+		    /*foreach ($filter_font as $key => $font) {
+
+			    if ($ymc_filter_font === $key) {
+
+				    $selected = 'selected';
+			    }
+			    else {
+				    $selected = '';
+			    }
+			    echo '<option value="' . $key . '" ' . $selected . '>' . esc_html($font) . '</option>';
+		    }*/
+		    ?>
+        </select>
+
+    </div>
+
 </div>
