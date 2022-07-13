@@ -62,9 +62,8 @@ class YMC_admin_filters {
 		$font = [
 			"inherit" => 'Default',
 			"OpenSans" =>  'OpenSans',
-			"Roboto Condensed" =>  'Roboto Condensed',
-			"Playfair Display" =>    'Playfair Display',
-			"Raleway" => 'Raleway'
+			"Roboto" =>  'Roboto',
+			"PlayfairDisplay" =>    'Playfair Display'
 		];
 
 		return $font;

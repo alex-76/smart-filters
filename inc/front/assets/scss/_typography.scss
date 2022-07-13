@@ -42,6 +42,22 @@ $fa-font-display: swap;
   font-display: $fa-font-display;
   src: url('#{$fa-font-path}/Poppins-ExtraBold.woff') format('woff');
 }
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: $fa-font-display;
+  src: url('#{$fa-font-path}/Montserrat-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'PlayfairDisplay';
+  font-style: normal;
+  font-weight: 400;
+  font-display: $fa-font-display;
+  src: url('#{$fa-font-path}/PlayfairDisplay-Regular.woff') format('woff');
+}
+
+
 
 
 

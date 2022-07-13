@@ -21,22 +21,20 @@
 	    <?php $filter_font = apply_filters('ymc_filter_font', $filter_font); ?>
 
         <select class="form-select"  id="ymc-filter-font" name="ymc-filter-font">
-
 	        <?php
-	        foreach ($filter_font as $key => $font) {
+                foreach ($filter_font as $key => $font) {
 
-		        if ($ymc_filter_font === $key) {
+                    if ($ymc_filter_font === $key) {
 
-			        $selected = 'selected';
-		        }
-		        else {
-			        $selected = '';
-		        }
-		        echo '<option value="' . $key . '" ' . $selected . '>' . esc_html($font) . '</option>';
-	        }
+                        $selected = 'selected';
+                    }
+                    else {
+                        $selected = '';
+                    }
+                    echo '<option value="' . $key . '" ' . $selected . '>' . esc_html($font) . '</option>';
+                }
 	        ?>
         </select>
-
     </div>
 
     <br>

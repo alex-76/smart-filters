@@ -20,6 +20,4 @@
         <input class="input-field" type="text" name="ymc-special-post-class" value="<?php echo esc_attr($ymc_special_post_class); ?>">
     </div>
 
-
-
 </div>

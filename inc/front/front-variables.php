@@ -71,6 +71,9 @@ if (get_post_meta($id, 'ymc_order_post_type')) {
 if (get_post_meta($id, 'ymc_special_post_class')) {
 	$ymc_special_post_class = get_post_meta($id, 'ymc_special_post_class', true);
 }
+if (get_post_meta($id, 'ymc_filter_font')) {
+	$ymc_filter_font = get_post_meta($id, 'ymc_filter_font', true);
+}
 
 
 
