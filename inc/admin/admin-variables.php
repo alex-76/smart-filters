@@ -42,6 +42,7 @@ $ymc_order_post_by = 'title';
 $ymc_order_post_type = 'asc';
 $ymc_special_post_class = '';
 $ymc_filter_font = 'inherit';
+$ymc_post_font = 'inherit';
 
 
 // GENERAL TAB SUBMITTED VARIABLE VALUES
@@ -115,6 +116,8 @@ if (get_post_meta($post->ID, 'ymc_special_post_class')) {
 if (get_post_meta($post->ID, 'ymc_filter_font')) {
 	$ymc_filter_font = get_post_meta($post->ID, 'ymc_filter_font', true);
 }
-
+if (get_post_meta($post->ID, 'ymc_post_font')) {
+	$ymc_post_font = get_post_meta($post->ID, 'ymc_post_font', true);
+}
 
 

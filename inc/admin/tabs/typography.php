@@ -56,9 +56,9 @@
 
         <select class="form-select"  id="ymc-post-font" name="ymc-post-font">
 		    <?php
-		    /*foreach ($filter_font as $key => $font) {
+		    foreach ($post_font as $key => $font) {
 
-			    if ($ymc_filter_font === $key) {
+			    if ($ymc_post_font === $key) {
 
 				    $selected = 'selected';
 			    }
@@ -66,7 +66,7 @@
 				    $selected = '';
 			    }
 			    echo '<option value="' . $key . '" ' . $selected . '>' . esc_html($font) . '</option>';
-		    }*/
+		    }
 		    ?>
         </select>
 

@@ -146,7 +146,11 @@ class YMC_meta_boxes {
 			update_post_meta($post_id, 'ymc_filter_font', $ymc_filter_font);
 		}
 
-
+		// Post Font
+		if (isset($_POST['ymc-post-font'])) {
+			$ymc_filter_font = sanitize_text_field($_POST['ymc-post-font']);
+			update_post_meta($post_id, 'ymc_post_font', $ymc_filter_font);
+		}
 
     }
 
