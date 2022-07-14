@@ -263,7 +263,11 @@
 
 
         // Filter Post / Layout3 (Dropdown)
-        // do something...
+        $(document).on('click','.ymc-smart-filter-container .filter-layout3 .dropdown-filter .menu-active',function (e) {
+            e.preventDefault();
+            $el = $(this);
+            $el.find('.arrow').toggleClass('open').end().next().toggle();
+        })
 
 
 
