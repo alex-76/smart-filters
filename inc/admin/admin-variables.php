@@ -31,7 +31,7 @@ $ymc_post_layout = 'post-layout1';
 
 $ymc_post_text_color = '#fff';
 $ymc_post_bg_color = '#296ac2';
-$ymc_post_active_color = '#000';
+$ymc_post_active_color = '#7ce205';
 
 $ymc_empty_post_result = "No posts found.";
 $ymc_link_target = "_blank";
