@@ -21,22 +21,35 @@ wp_add_inline_style($handle, $filter_css);
 
 			( $ymc_sort_terms === 'asc' ) ? asort($terms_selected) : arsort($terms_selected); ?>
 
-            <div class="dropdown-filter">
-                <div class="menu-active">
-                    Filter Dropdown
-                    <i class="arrow down"></i>
-                </div>
-                <div class="menu-passive">
-                    <div class="menu-passive__item"><a class="menu-link" href="#">Item 1</a></div>
-                    <div class="menu-passive__item"><a class="menu-link" href="#">Item 1</a></div>
-                    <div class="menu-passive__item"><a class="menu-link" href="#">Item 1</a></div>
-                </div>
+            <?php
 
+                $arr_taxonomies = [];
+                foreach ($terms_selected as $term) {
 
+                    $arr_taxonomies[] = get_term( $term )->taxonomy;
+                }
+                $arr_taxonomies = array_unique($arr_taxonomies);
 
-            </div>
+                foreach ($arr_taxonomies as $tax) {
 
-            <?php //var_dump($terms_selected);?>
+                    echo '<div class="dropdown-filter">';
+                    echo '<div class="menu-active">';
+                    echo 'Select '.$tax.' <i class="arrow down"></i>';
+                    echo '</div>';
+                    echo '<div class="menu-passive">';
+
+	                foreach ($terms_selected as $term) {
+
+		                if( $tax === get_term( $term )->taxonomy ) {
+                            echo '<div class="menu-passive__item"><a class="menu-link '. $type_multiple .'" href="#" data-termid="' . esc_attr($term) . '">'. esc_html(get_term( $term )->name) .'</a></div>';
+		                }
+	                }
+
+                    echo '</div>';
+                    echo '</div>';
+                }
+
+            ?>
 
         <?php } ?>
 

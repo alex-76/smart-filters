@@ -150,10 +150,16 @@ $font-size: 16;
 		&.filter-layout3 {
 			.dropdown-filter {
 				font-size: rem-calc(16px);
+				display: inline-block;
+				position: relative;
+				margin-right: 5px;
+				&:last-child {
+					margin-right: 0;
+				}
 				.menu-active {
 					border: 1px solid #141518;
 					padding: rem-calc(10px) rem-calc(30px);
-					max-width: rem-calc(300px);
+					min-width: rem-calc(300px);
 					width: 100%;
 					position: relative;
 					cursor: pointer;
@@ -202,8 +208,43 @@ $font-size: 16;
 						padding: em-calc(8px) 0;
 						.menu-link {
 							color: #fff;
+							position: relative;
+							padding-left: rem-calc(25px);
+							font-size: rem-calc(14px);
+							display: inline-block;
+							word-break: break-word;
+							line-height: 1.35;
+							&:before {
+								content: '';
+								position: absolute;
+								left: 0;
+								top: 50%;
+								transform: translateY(-50%);
+								width: 17px;
+								height: 17px;
+								border: 1px solid #fff
+							}
+							&:after {
+								content: '';
+								position: absolute;
+								left: 4px;
+								top: 50%;
+								width: 9px;
+								height: 5px;
+								border-radius: 1px;
+								border-left: 3px solid #FAF7ED;
+								border-bottom: 3px solid #FAF7ED;
+								transform: translateY(-50%) rotate(-45deg);
+								opacity: 0;
+								transition: .3s;
+							}
 							&:hover {
 								text-decoration: none;
+							}
+							&.active {
+								&:after {
+									opacity: 1;
+								}
 							}
 						}
 					}

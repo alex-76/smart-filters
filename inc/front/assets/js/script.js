@@ -267,8 +267,39 @@
             e.preventDefault();
             $el = $(this);
             $el.find('.arrow').toggleClass('open').end().next().toggle();
-        })
 
+        });
+
+        $(document).on('click','.ymc-smart-filter-container .filter-layout3 .dropdown-filter .menu-passive .menu-link',function (e) {
+            e.preventDefault();
+
+            link = $(this);
+
+            let term_id = link.data('termid');
+
+            _global_object.current_page = 1;
+
+            if(link.hasClass('multiple')) {
+
+                link.toggleClass('active');
+                term_id = '';
+
+                $('.ymc-smart-filter-container .filter-layout .active').each(function (){
+                    term_id += $(this).data('termid')+',';
+                });
+                term_id = term_id.replace(/,\s*$/, "");
+            }
+
+            let p = JSON.parse(document.querySelector(".ymc-smart-filter-container").dataset.params);
+            p.terms = term_id;
+            document.querySelector(".ymc-smart-filter-container").dataset.params = JSON.stringify(p);
+
+            getFilterPosts({
+                'term_id' : term_id,
+                'paged' : 1,
+                'filter' : 1
+            });
+        });
 
 
         // Pagination / Type: Default (Numeric)
