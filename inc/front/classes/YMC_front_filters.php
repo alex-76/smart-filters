@@ -52,4 +52,4 @@ class YMC_front_filters {
 
 }
 
-new YMC_front_filters();
+//new YMC_front_filters();

@@ -1,16 +1,18 @@
 <?php
 
+require_once YMC_SMART_FILTER_DIR . '/front/classes/YMC_front_filters.php';
+
+
 class YMC_shortcode {
 
 	public function __construct() {
 
 		add_shortcode("ymc_filter", array($this, "ymc_filter_apply"));
+
+		new YMC_front_filters();
 	}
 
 	public function ymc_filter_apply( $atts ) {
-
-		//data-target-div="data-target-ymc' . $b . '"
-		//class="data-target-ymc1"
 
 		ob_start();
 
@@ -24,8 +26,9 @@ class YMC_shortcode {
 
 		$output = '';
 
-		require_once YMC_SMART_FILTER_DIR . '/front/classes/YMC_front_filters.php';
-		require_once YMC_SMART_FILTER_DIR . '/front/front-variables.php';
+		include YMC_SMART_FILTER_DIR . '/front/front-variables.php';
+
+		//var_dump($ymc_cpt_value);
 
 		$handle = "ymc-smartf-style-" . $ymc_filter_layout;
 
@@ -70,13 +73,13 @@ class YMC_shortcode {
 					$filepath = YMC_SMART_FILTER_DIR . "/front/layouts/filter/" . $ymc_filter_layout . ".php";
 
 					if ( file_exists($filepath) ) {
-						include_once $filepath;
+						include $filepath;
 					}
 				}
 			}
 
 			if( $ymc_post_layout !== 'post-custom-layout') :
-				require_once YMC_SMART_FILTER_DIR . '/front/layouts/post-css/'. $ymc_post_layout .'-css.php';
+				include YMC_SMART_FILTER_DIR . '/front/layouts/post-css/'. $ymc_post_layout .'-css.php';
 			endif;
 
 			echo '<div class="container-posts container-'. $ymc_post_layout .'"><div class="post-entry '. $ymc_post_layout .'"></div></div>';
