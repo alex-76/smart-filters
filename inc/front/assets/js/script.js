@@ -165,7 +165,7 @@
         }
 
         // Set Function getFilterPosts global
-        ( typeof window.YMCGetPosts === 'undefined' ) ? window.YMCGetPosts = getFilterPosts : console.error('YMCGetPosts is existed');
+        // ( typeof window.YMCGetPosts === 'undefined' ) ? window.YMCGetPosts = getFilterPosts : console.error('YMCGetPosts is existed');
 
 
         // Init Load Posts
