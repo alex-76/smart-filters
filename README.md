@@ -2,7 +2,7 @@
 Plugin YMC Smart Filters WP
 
 ####
-Filters:
+List Filters:
 add_filter('ymc_pagination_prev_text', array($this, 'ymc_pagination_prev_text'), 3, 1);
 add_filter('ymc_pagination_next_text', array($this, 'ymc_pagination_next_text'), 3, 1);
 add_filter('ymc_pagination_load_more', array($this, 'ymc_pagination_load_more'), 3, 1);
@@ -11,6 +11,7 @@ add_filter('ymc_post_excerpt_length', array($this, 'ymc_post_excerpt_length'), 3
 add_filter('ymc_post_read_more', array($this, 'ymc_post_read_more'), 3, 1);
 
 =============================
+
 Layouts:
 Custom Post Layout
 @parmas: 
@@ -19,7 +20,9 @@ $post_id - Post ID
 $cpt_id - CPT ID
 
 add_filter('ymc_post_custom_layout', 'custom_post_layout', 10, 3);
+
 ============================
+
 Custom Filter Layout
 @parmas:
 $layouts - HTML markup 
