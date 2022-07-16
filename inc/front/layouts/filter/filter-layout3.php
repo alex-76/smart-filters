@@ -11,6 +11,8 @@ wp_add_inline_style($handle, $filter_css);
 
 <div id="<?php echo $ymc_filter_layout; ?>" class="filter-layout <?php echo $ymc_filter_layout; ?>">
 
+	<?php do_action("ymc_before_filter_layout"); ?>
+
 	<div class="filter-entry">
 
 		<?php

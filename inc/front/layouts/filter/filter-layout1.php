@@ -16,6 +16,8 @@ $filter_css = ".ymc-smart-filter-container .filter-layout.filter-layout1 .filter
 
 <div id="<?php echo $ymc_filter_layout; ?>" class="filter-layout <?php echo $ymc_filter_layout; ?>">
 
+	<?php do_action("ymc_before_filter_layout"); ?>
+
     <ul class="filter-entry">
 
 		<?php

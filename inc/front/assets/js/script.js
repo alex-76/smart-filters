@@ -24,9 +24,6 @@
         // Path preloader image
         const pathPreloader = _global_object.path+"/front/assets/images/preloader.gif";
 
-        // Type Pagination
-        //const type_pg = JSON.parse(document.querySelector(".ymc-smart-filter-container").dataset.params).type_pg;
-
         // Options IntersectionObserver
         const optionsInfinityScroll = {
             root: null,
