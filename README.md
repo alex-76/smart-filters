@@ -50,7 +50,7 @@ add_filter('ymc_filter_custom_layout', 'ymc_filter_custom_layout', 10, 4);
 
 Add Hooks:
 
-Add custom content before or after filters
+Add custom content before or after filters panel
 
 do_action("ymc_before_filter_layout");
 
