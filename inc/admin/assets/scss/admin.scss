@@ -219,8 +219,10 @@ $font-size: 16;
 									display: flex;
 									flex-wrap: wrap;
 									align-items: center;
+
 									.group-elements {
 										margin-right: 20px;
+										margin-bottom: 15px;
 										label {
 											text-transform: capitalize;
 										}

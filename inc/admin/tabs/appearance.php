@@ -131,7 +131,7 @@
                 </span>
                 </label>
 
-	            <?php $pagination_type = apply_filters('ymc_pagination_type', $pagination_type); ?>
+	            <?php $pagination_type = apply_filters('ymc_pagination_type', ['ymc_pagination_type']); ?>
 
                 <select class="form-select" id="ymc-pagination-type" name="ymc-pagination-type">
 		            <?php

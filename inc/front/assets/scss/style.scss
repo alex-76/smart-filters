@@ -37,7 +37,8 @@ $font-size: 16;
 	box-sizing: border-box;
 	min-height: rem-calc(500px);
 	position: relative;
-	max-width: 100% !important;
+	max-width: 100%;
+	width: 100%;
 
 	*:active, *:focus {
 		outline: none;
@@ -87,14 +88,14 @@ $font-size: 16;
 				justify-content: center;
 				align-items: center;
 				list-style: none;
-				margin: 0 0 rem-calc(40px) 0;
+				margin: 0 0 40px 0;
 				padding: 0;
 				.filter-item {
 					margin: 10px 10px ;
 					.filter-link {
 						display: inline-block;
-						padding: rem-calc(10px) rem-calc(10px);
-						font-size: rem-calc(16px);
+						padding: 10px 10px;
+						font-size: 16px;
 						text-decoration: none;
 						&:hover {
 							text-decoration: none;
@@ -107,18 +108,18 @@ $font-size: 16;
 		&.filter-layout2 {
 			.filter-entry {
 				list-style: none;
-				margin: 0 0 rem-calc(40px) 0;
+				margin: 0 0 40px 0;
 				padding: 0;
 
 				.group-filters {
-					margin-bottom: rem-calc(20px);
 					.name-tax {
-						font-size: rem-calc(18px);
+						font-size: 18px;
 						text-transform: uppercase;
 						font-weight: 600;
 						border-bottom: 2px solid;
 						display: inline-block;
 						padding-bottom: 3px;
+						margin: 0;
 					}
 					.sub-filters {
 						display: flex;
@@ -137,8 +138,8 @@ $font-size: 16;
 					}
 					.filter-link {
 						display: inline-block;
-						padding: rem-calc(10px) rem-calc(10px);
-						font-size: rem-calc(16px);
+						padding: 10px 10px;
+						font-size: 16px;
 						text-decoration: none;
 						&:hover {
 							text-decoration: none;
@@ -150,7 +151,7 @@ $font-size: 16;
 
 		&.filter-layout3 {
 			.dropdown-filter {
-				font-size: rem-calc(16px);
+				font-size: 16px;
 				display: inline-block;
 				position: relative;
 				margin-right: 5px;
@@ -159,12 +160,12 @@ $font-size: 16;
 				}
 				.menu-active {
 					border: 1px solid #141518;
-					padding: rem-calc(10px) rem-calc(30px);
-					min-width: rem-calc(300px);
+					padding: 10px 30px;
+					min-width: 300px;
 					width: 100%;
 					position: relative;
 					cursor: pointer;
-					margin-bottom: rem-calc(30px);
+					margin-bottom: 30px;
 					.arrow {
 						position: absolute;
 						right: 13px;
@@ -184,14 +185,14 @@ $font-size: 16;
 				}
 				.menu-passive {
 					display: none;
-					max-width: rem-calc(300px);
-					margin-top: rem-calc(12px);
-					padding: em-calc(15px) em-calc(20px);
+					max-width: 300px;
+					margin-top: 12px;
+					padding: 15px 20px;
 					background: #141518;
 					color: #FAF7ED;
 					position: absolute;
 					left: 0;
-					top: rem-calc(35px);
+					top: 40px;
 					width: 100%;
 					z-index: 2;
 					transition: .3s;
@@ -205,13 +206,14 @@ $font-size: 16;
 						top: -14px;
 						clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
 					}
+
 					&__item {
-						padding: em-calc(8px) 0;
+						padding: 8px 0;
 						.menu-link {
 							color: #fff;
 							position: relative;
-							padding-left: rem-calc(25px);
-							font-size: rem-calc(14px);
+							padding-left: 25px;
+							font-size: 14px;
 							display: inline-block;
 							word-break: break-word;
 							line-height: 1.35;
@@ -262,28 +264,28 @@ $font-size: 16;
 			display: grid;
 			grid-gap: 20px;
 			grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
-			margin-bottom: rem-calc(40px);
+			margin-bottom: 40px;
 
 			// Style for Post Layout 1
 			&.post-layout1 {
 				.ymc-post-layout1 {
-					padding: rem-calc(20px);
+					padding: 20px;
 					.media {
 						margin: 0 0 20px 0;
 						overflow: hidden;
 						img {
 							width: 100%;
-							height: rem-calc(220px);
+							height: 220px;
 							object-fit: cover;
 						}
 					}
 					.category {
-						margin-bottom: rem-calc(20px);
+						margin-bottom: 20px;
 						.cat-inner {
-							font-size: rem-calc(12px);
+							font-size: 12px;
 							border-radius: 3px;
 							display: inline-block;
-							padding: rem-calc(7px) rem-calc(10px);
+							padding: 7px 10px;
 							background: #000;
 							margin-right: 5px;
 							margin-bottom: 5px;
@@ -291,23 +293,23 @@ $font-size: 16;
 						}
 					}
 					.title {
-						font-size: rem-calc(22px);
+						font-size: 22px;
 						font-weight: 600;
-						margin-bottom: rem-calc(10px);
+						margin-bottom: 10px;
 					}
 					.date {
-						font-size: rem-calc(14px);
-						margin-bottom: rem-calc(10px);
+						font-size: 14px;
+						margin-bottom: 10px;
 						border-bottom: 1px solid #fff;
-						padding-bottom: rem-calc(5px);
+						padding-bottom: 5px;
 						i {
-							margin-right: rem-calc(5px);
+							margin-right: 5px;
 						}
 					}
 					.excerpt {
-						font-size: rem-calc(16px);
+						font-size: 16px;
 						line-height: 1.4;
-						margin-bottom: rem-calc(10px);
+						margin-bottom: 10px;
 					}
 					.read-more {
 						text-align: right;
@@ -315,8 +317,8 @@ $font-size: 16;
 							text-decoration: none;
 							background: #000;
 							color: white;
-							padding: rem-calc(5px) rem-calc(10px);
-							font-size: rem-calc(12px);
+							padding: 5px 10px;
+							font-size: 12px;
 						}
 					}
 					&:hover {
@@ -340,7 +342,7 @@ $font-size: 16;
 			justify-content: center;
 			align-items: center;
 			li {
-				margin-right: rem-calc(15px);
+				margin-right: 15px;
 				a {
 					padding: 5px 10px;
 					text-decoration: none;
@@ -372,7 +374,6 @@ $font-size: 16;
 			//background: #fff;
 		}
 	}
-
 }
 
 

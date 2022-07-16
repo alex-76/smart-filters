@@ -43,6 +43,7 @@ $ymc_order_post_type = 'asc';
 $ymc_special_post_class = '';
 $ymc_filter_font = 'inherit';
 $ymc_post_font = 'inherit';
+$ymc_multiple_filter = 0;
 
 
 // GENERAL TAB SUBMITTED VARIABLE VALUES

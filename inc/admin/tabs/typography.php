@@ -18,7 +18,7 @@
                 </span>
         </label>
 
-	    <?php $filter_font = apply_filters('ymc_filter_font', $filter_font); ?>
+	    <?php $filter_font = apply_filters('ymc_filter_font', ['ymc_filter_font']); ?>
 
         <select class="form-select"  id="ymc-filter-font" name="ymc-filter-font">
 	        <?php
@@ -52,7 +52,7 @@
                 </span>
         </label>
 
-	    <?php $post_font = apply_filters('ymc_post_font', $post_font); ?>
+	    <?php $post_font = apply_filters('ymc_post_font', ['ymc_post_font']); ?>
 
         <select class="form-select"  id="ymc-post-font" name="ymc-post-font">
 		    <?php
