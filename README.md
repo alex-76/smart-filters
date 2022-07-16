@@ -1,4 +1,4 @@
-# smart-filters
+# YMC SMART FILTER
 Plugin YMC Smart Filters WP
 
 ####
