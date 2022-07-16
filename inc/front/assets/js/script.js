@@ -91,9 +91,9 @@
                         case 'default' :
 
                             // Filter is act scroll top
-                            //if(filter === 1) {
-                                //$('html, body').animate({scrollTop: container.offset().top}, 300);
-                            //}
+                            if(filter === 1) {
+                                $('html, body').animate({scrollTop: container.offset().top}, 300);
+                            }
 
                             container.find('.container-posts').
                             removeClass('loading').

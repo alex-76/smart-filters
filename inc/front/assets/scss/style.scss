@@ -37,6 +37,7 @@ $font-size: 16;
 	box-sizing: border-box;
 	min-height: rem-calc(500px);
 	position: relative;
+	max-width: 100% !important;
 
 	*:active, *:focus {
 		outline: none;
