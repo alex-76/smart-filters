@@ -25,7 +25,7 @@
         const pathPreloader = _global_object.path+"/front/assets/images/preloader.gif";
 
         // Type Pagination
-        const type_pg = JSON.parse(document.querySelector(".ymc-smart-filter-container").dataset.params).type_pg;
+        //const type_pg = JSON.parse(document.querySelector(".ymc-smart-filter-container").dataset.params).type_pg;
 
         // Options IntersectionObserver
         const optionsInfinityScroll = {
@@ -41,14 +41,15 @@
 
                 if (entry.isIntersecting) {
 
-                    _global_object.current_page++;
-
-                    let term_id = JSON.parse(document.querySelector(".ymc-smart-filter-container").dataset.params).terms;
-                    let paged = _global_object.current_page;
+                    let params =  JSON.parse(entry.target.closest('.ymc-smart-filter-container').dataset.params);
+                    params.page++;
+                    entry.target.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
                     getFilterPosts({
-                        'term_id' : term_id,
-                        'paged' : paged
+                        'term_id' : params.terms,
+                        'paged'   : params.page,
+                        'target'  : params.data_target,
+                        'type_pg' : params.type_pg
                     });
 
                     observer.unobserve(entry.target);
@@ -64,10 +65,12 @@
             let paged  = options.paged   || 1;
             let filter = options.filter  || 0;
             let target = options.target  || 'data-target-ymc1';
+            let type_pg = options.type_pg  || 'default';
 
             let container = $("."+target+"");
             let params = container.data("params");
 
+            //console.log(type_pg);
 
             const data = {
                 'action': 'ymc_get_posts',
@@ -93,9 +96,9 @@
                         case 'default' :
 
                             // Filter is act scroll top
-                            if(filter === 1) {
+                            //if(filter === 1) {
                                 //$('html, body').animate({scrollTop: container.offset().top}, 300);
-                            }
+                            //}
 
                             container.find('.container-posts').
                             removeClass('loading').
@@ -144,7 +147,7 @@
                             } // Filter is act
                             else  {
                                 // Filter is act scroll top
-                                $('html, body').animate({scrollTop: container.offset().top}, 300);
+                                //$('html, body').animate({scrollTop: container.offset().top}, 300);
 
                                 container.find('.container-posts').
                                 removeClass('loading').
@@ -154,7 +157,7 @@
                             }
 
                             if(res.get_current_posts > 0) {
-                                postsObserver.observe(document.querySelector('.ymc-pagination-scroll-infinity .post-item:last-child'));
+                                postsObserver.observe(document.querySelector('.'+target+' .post-entry .post-item:last-child'));
                             }
 
                             break;
@@ -173,25 +176,29 @@
         // Init Load Posts
         document.querySelectorAll('.ymc-smart-filter-container').forEach(function (el) {
 
-            let data_target = JSON.parse(el.dataset.params).data_target;
+            let params = JSON.parse(el.dataset.params);
+            let data_target = params.data_target;
+            let type_pg     = params.type_pg;
+            let terms = params.terms;
 
             // Init Load Posts
             getFilterPosts({
-                'term_id' : '',
+                'term_id' : terms,
                 'paged' : 1,
-                'target' : data_target
+                'target' : data_target,
+                'type_pg' : type_pg
             });
         });
 
 
-        // Filter Posts / Layout1 +++
+        /*** FILTERS LAYOUTS ***/
+
+        // Filter Posts / Layout1 / Simple Posts Filter
         $(document).on('click','.ymc-smart-filter-container .filter-layout1 .filter-link',function (e) {
             e.preventDefault();
 
             let link = $(this);
             let term_id = link.data('termid');
-
-            _global_object.current_page = 1;
 
             if(link.hasClass('multiple')) {
 
@@ -209,27 +216,26 @@
                 link.addClass('active').closest('.filter-item').siblings().find('.filter-link').removeClass('active');
             }
 
-
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
+            params.page = 1;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
             getFilterPosts({
                 'term_id' : term_id,
-                'paged' : 1,
-                'filter' : 1,
-                'target' : params.data_target
+                'paged'   : 1,
+                'filter'  : 1,
+                'target'  : params.data_target,
+                'type_pg' : params.type_pg
             });
         });
 
-        // Filter Posts / Layout2 +++
+        // Filter Posts / Layout2 / Taxonomy Filter
         $(document).on('click','.ymc-smart-filter-container .filter-layout2 .filter-link',function (e) {
             e.preventDefault();
 
             let link = $(this);
             let term_id = link.data('termid');
-
-            _global_object.current_page = 1;
 
             if(link.hasClass('multiple')) {
 
@@ -238,9 +244,7 @@
                 term_id = '';
 
                 link.closest('.filter-entry').find('.active').each(function (){
-
                     term_id += $(this).data('termid')+',';
-
                 });
 
                 term_id = term_id.replace(/,\s*$/, "");
@@ -261,6 +265,7 @@
 
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
+            params.page = 1;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
 
@@ -268,17 +273,16 @@
                 'term_id' : term_id,
                 'paged'  : 1,
                 'filter' : 1,
-                'target' : params.data_target
+                'target' : params.data_target,
+                'type_pg' : params.type_pg
             });
         });
 
-
-        // Filter Post / Layout3 (Dropdown) +++
+        // Filter Post / Layout3 (Dropdown) / Dropdown Filter
         $(document).on('click','.ymc-smart-filter-container .filter-layout3 .dropdown-filter .menu-active',function (e) {
             e.preventDefault();
             $el = $(this);
             $el.find('.arrow').toggleClass('open').end().next().toggle();
-
         });
 
         $(document).on('click','.ymc-smart-filter-container .filter-layout3 .dropdown-filter .menu-passive .menu-link',function (e) {
@@ -286,8 +290,6 @@
             link = $(this);
             link.toggleClass('checked');
             let term_id = link.data('termid');
-
-            _global_object.current_page = 1;
 
             if(link.hasClass('multiple')) {
                 link.toggleClass('active');
@@ -311,54 +313,62 @@
 
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
+            params.page = 1;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
             getFilterPosts({
                 'term_id' : term_id,
                 'paged'  : 1,
                 'filter' : 1,
-                'target' : params.data_target
+                'target' : params.data_target,
+                'type_pg' : params.type_pg
             });
         });
 
-        // Pagination / Type: Default (Numeric) +++
+
+        /*** PAGINATION TYPES***/
+
+        // Pagination / Type: Default (Numeric)
         $(document).on('click','.ymc-smart-filter-container .pagination-default li a',function (e) {
             e.preventDefault();
 
             let paged = parseInt($(this).attr("href").replace(/\D/g, ""));
             let term_id = JSON.parse(this.closest('.ymc-smart-filter-container').dataset.params).terms;
             let data_target = JSON.parse(this.closest('.ymc-smart-filter-container').dataset.params).data_target;
+            let type_pg = JSON.parse(this.closest('.ymc-smart-filter-container').dataset.params).type_pg;
 
             getFilterPosts({
                 'term_id' : term_id,
                 'paged'  : paged,
                 'filter' : 1,
-                'target' : data_target
+                'target' : data_target,
+                'type_pg' : type_pg
             });
 
         });
 
-        // Pagination / Type: Load More +++
+        // Pagination / Type: Load More
         $(document).on('click','.ymc-smart-filter-container .pagination-load-more .btn-load',function (e) {
             e.preventDefault();
 
-            _global_object.current_page++;
+            let params = JSON.parse(this.closest('.ymc-smart-filter-container').dataset.params);
+            params.page++;
+            this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
-            let term_id = JSON.parse(this.closest('.ymc-smart-filter-container').dataset.params).terms;
-            let data_target = JSON.parse(this.closest('.ymc-smart-filter-container').dataset.params).data_target;
-            let paged = _global_object.current_page;
+            let term_id     = params.terms;
+            let data_target = params.data_target;
+            let type_pg     = params.type_pg;
+            let paged       = params.page;
 
             getFilterPosts({
                 'term_id' : term_id,
-                'paged'  : paged,
-                'target' : data_target
+                'paged'   : paged,
+                'target'  : data_target,
+                'type_pg' : type_pg
             });
 
         });
 
-
-
-
     });
 
-}( jQuery ))
+}( jQuery ));
