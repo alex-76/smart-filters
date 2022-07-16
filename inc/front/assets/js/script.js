@@ -70,14 +70,12 @@
             let container = $("."+target+"");
             let params = container.data("params");
 
-            //console.log(type_pg);
-
             const data = {
-                'action': 'ymc_get_posts',
+                'action'     : 'ymc_get_posts',
                 'nonce_code' : _global_object.nonce,
-                'params' : JSON.stringify(params),
-                'term_ids' : tr_id,
-                'paged' :  paged,
+                'params'     : JSON.stringify(params),
+                'term_ids'   : tr_id,
+                'paged'      :  paged,
             };
 
             $.ajax({

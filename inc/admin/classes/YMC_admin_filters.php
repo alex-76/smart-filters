@@ -28,10 +28,10 @@ class YMC_admin_filters {
 	public function ymc_post_layouts($layouts) {
 
 		$layouts = [
-			"post-layout1" => 'Default',
-			"post-layout2" => 'Layout 2',
-			"post-layout3" => 'Layout 3',
-			"post-custom-layout"  => 'Custom Layout'
+			"post-layout1" => 'Default Post Layout',
+			"post-layout2" => 'Post Layout 2',
+			"post-layout3" => 'Post Layout 3',
+			"post-custom-layout"  => 'Custom Post Layout'
 		];
 
 		return $layouts;
