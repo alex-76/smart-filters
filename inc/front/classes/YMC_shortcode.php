@@ -28,8 +28,6 @@ class YMC_shortcode {
 
 		include YMC_SMART_FILTER_DIR . '/front/front-variables.php';
 
-		//var_dump($ymc_cpt_value);
-
 		$handle = "ymc-smartf-style-" . $ymc_filter_layout;
 
 		wp_enqueue_style($handle, YMC_SMART_FILTER_URL . '/front/assets/css/style.css', array(), YMC_SMART_FILTER_VERSION);

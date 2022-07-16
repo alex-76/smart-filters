@@ -41,8 +41,6 @@ class YMC_post_pagination {
 
 		if ( ! $query ) return;
 
-		// do something
-
 		$output = '';
 
 		$load_more = apply_filters('ymc_pagination_load_more', $load_more);
@@ -56,7 +54,7 @@ class YMC_post_pagination {
 		return $output;
 	}
 
-	public function scroll_infinity($query, $paged, $type_pagination, $filter_id) {}
+	//public function scroll_infinity($query, $paged, $type_pagination, $filter_id) {}
 
 }
 

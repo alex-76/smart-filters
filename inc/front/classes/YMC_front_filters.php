@@ -32,8 +32,6 @@ class YMC_front_filters {
 		return $button;
 	}
 
-
-
 	// Date publish post
 	public function ymc_post_date_format($default) {
 		return 'd, M Y';
@@ -49,7 +47,5 @@ class YMC_front_filters {
 		return 'Read More';
 	}
 
-
 }
 
-//new YMC_front_filters();
