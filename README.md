@@ -33,21 +33,6 @@ add_filter('ymc_post_custom_layout', 'custom_post_layout', 10, 3);
 
 ============================
 
-Custom Filter Layout
-@parmas:
-
-$layouts - HTML markup 
-
-$terms_selected - Ids terms
-
-$tax - slug taxonomies
-
-$ymc_multiple_filter - multiple / single
-
-add_filter('ymc_filter_custom_layout', 'ymc_filter_custom_layout', 10, 4);
-
-============================
-
 Add Hooks:
 
 Add custom content before or after filters panel
