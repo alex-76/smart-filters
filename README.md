@@ -4,17 +4,17 @@ Plugin YMC Smart Filters WP
 ####
 List Filters:
 
-add_filter('ymc_pagination_prev_text', array($this, 'ymc_pagination_prev_text'), 3, 1);
+add_filter('ymc_pagination_prev_text', $ymc_pagination_prev_text, 3, 1);
 
-add_filter('ymc_pagination_next_text', array($this, 'ymc_pagination_next_text'), 3, 1);
+add_filter('ymc_pagination_next_text', $ymc_pagination_next_text, 3, 1);
 
-add_filter('ymc_pagination_load_more', array($this, 'ymc_pagination_load_more'), 3, 1);
+add_filter('ymc_pagination_load_more', $ymc_pagination_load_more, 3, 1);
 
-add_filter('ymc_post_date_format', array($this, 'ymc_post_date_format'), 3, 1);
+add_filter('ymc_post_date_format', $ymc_post_date_format, 3, 1);
 
-add_filter('ymc_post_excerpt_length', array($this, 'ymc_post_excerpt_length'), 3, 1);
+add_filter('ymc_post_excerpt_length', $ymc_post_excerpt_length, 3, 1);
 
-add_filter('ymc_post_read_more', array($this, 'ymc_post_read_more'), 3, 1);
+add_filter('ymc_post_read_more', $ymc_post_read_more, 3, 1);
 
 =============================
 
@@ -28,6 +28,14 @@ $layouts - HTML markup
 $post_id - Post ID
 
 $cpt_id - CPT ID
+
+add_filter('ymc_post_custom_layout', $layouts, 10, 3);
+
+Example:
+
+function custom_post_layout($layouts, $post_id, $cpt_id) {   
+   return $layouts;
+}
 
 add_filter('ymc_post_custom_layout', 'custom_post_layout', 10, 3);
 
