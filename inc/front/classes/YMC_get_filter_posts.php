@@ -28,8 +28,7 @@ class YMC_get_filter_posts {
 		$filter_id = $clean_data['filter_id'];
 		$type_pagination = $clean_data['type_pg'];
 
-		$paged     = (int) $_POST['paged'];
-		//$term_ids  = $_POST['term_ids'];
+		$paged = (int) $_POST['paged'];
 
 		$id = $filter_id;
 
@@ -42,10 +41,8 @@ class YMC_get_filter_posts {
 		// Convert Taxonomy & Terms to Array
 		$taxonomy = !empty($taxonomy) ? explode(',', $taxonomy) : false;
 		$terms    = !empty($terms)    ? explode(',', $terms)    : false;
-		//$term_ids = !empty($term_ids) ? explode(',', $term_ids) : false;
 
 
-		// If default load posts
 		if ( is_array($taxonomy) && is_array($terms) ) :
 
 			foreach ($taxonomy as $tax) :

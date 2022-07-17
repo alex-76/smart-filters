@@ -196,11 +196,18 @@
 
                 term_id = '';
 
-                link.closest('.filter-entry').find('.active').each(function (){
-                    term_id += $(this).data('termid')+',';
-                });
+                let listActiveItems = link.closest('.filter-entry').find('.active');
+                if(listActiveItems.length > 0) {
 
-                term_id = term_id.replace(/,\s*$/, "");
+                    link.closest('.filter-entry').find('.active').each(function (){
+                        term_id += $(this).data('termid')+',';
+                    });
+
+                    term_id = term_id.replace(/,\s*$/, "");
+                }
+                else {
+                    term_id = link.closest('.filter-entry').find('.all').data('termid');
+                }
             }
             else {
                 link.addClass('active').closest('.filter-item').siblings().find('.filter-link').removeClass('active');
@@ -232,11 +239,18 @@
 
                 term_id = '';
 
-                link.closest('.filter-entry').find('.active').each(function (){
-                    term_id += $(this).data('termid')+',';
-                });
+                let listActiveItems = link.closest('.filter-entry').find('.active');
+                if(listActiveItems.length > 0) {
 
-                term_id = term_id.replace(/,\s*$/, "");
+                    link.closest('.filter-entry').find('.active').each(function (){
+                        term_id += $(this).data('termid')+',';
+                    });
+
+                    term_id = term_id.replace(/,\s*$/, "");
+                }
+                else {
+                    term_id = link.closest('.filter-entry').find('.all').data('termid');
+                }
             }
             else {
                 link.addClass('active').
@@ -280,14 +294,21 @@
         $(document).on('click','.ymc-smart-filter-container .filter-layout3 .dropdown-filter .menu-passive .menu-link',function (e) {
             e.preventDefault();
             link = $(this);
-            //link.toggleClass('checked');
             let term_id = '';
+            link.toggleClass('active');
 
-            // Multiple selected
-            if(link.hasClass('multiple')) {
+            // Single selected terms
+            if( !link.hasClass('multiple') ) {
 
-                link.toggleClass('active');
-                term_id = '';
+                link.closest('.menu-passive__item').
+                siblings().find('.menu-link').
+                removeClass('active');
+
+                link.closest('.dropdown-filter').find('.menu-active span').html($(this).text());
+            }
+
+            let listActiveItems = link.closest('.filter-entry').find('.active');
+            if(listActiveItems.length > 0) {
 
                 link.closest('.filter-entry').find('.active').each(function (){
                     term_id += $(this).data('termid')+',';
@@ -298,37 +319,19 @@
                 // Add selected terms
                 let allLinks = $(link.closest('.filter-entry')).find('.dropdown-filter .menu-link');
                 let selItem = '';
-
                 term_id.split(',').forEach(function (el) {
                     allLinks.each(function () {
                         if ($(this).data('termid') === parseInt(el)) {
-                            selItem += `<span data-trm="${el}" class="item">${$(this).text()} <i>x</i></span>`;
+                            selItem += `<span data-trm="${el}" class="item">${$(this).text()} <small>x</small></span>`;
                         }
                     });
                 });
-
                 $(link.closest('.filter-entry')).find('.selected-items').html(selItem);
 
             }
-            // Single selected
             else {
-
-                link.toggleClass('active');
-
-                link.closest('.menu-passive__item').
-                siblings().find('.menu-link').
-                removeClass('active');
-
-                link.closest('.filter-entry').find('.active').each(function (){
-                    term_id += $(this).data('termid')+',';
-                });
-                term_id = term_id.replace(/,\s*$/, "");
-
-                link.closest('.dropdown-filter').find('.menu-active span').html($(this).text());
-
-                console.log($(this).text());
+                term_id = link.closest('.filter-entry').data('terms');
             }
-
 
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
@@ -341,6 +344,44 @@
                 'target'    : params.data_target,
                 'type_pg'   : params.type_pg
             });
+        });
+
+        $(document).on('click','.ymc-smart-filter-container .filter-layout3 .filter-entry .selected-items small',function (e) {
+            e.preventDefault();
+
+            let _self = $(this);
+
+            let term_id = _self.closest('.item').data('trm');
+
+            let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
+            let arrTerms = params.terms.split(',');
+            let newTerms = arrTerms.filter(function(f) { return parseInt(f) !== term_id });
+            if(newTerms.length > 0) {
+                newTerms = newTerms.join(',');
+            }
+            else {
+                newTerms = _self.closest('.filter-entry').data('terms');
+            }
+
+            params.terms = newTerms;
+            params.page = 1;
+            this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
+
+            _self.closest('.filter-entry').find('.active').each(function () {
+                if(parseInt($(this).data('termid')) === term_id) {
+                    $(this).removeClass('active');
+                }
+            });
+
+            _self.closest('.item').remove();
+
+            getFilterPosts({
+                'paged'     : 1,
+                'toggle_pg' : 1,
+                'target'    : params.data_target,
+                'type_pg'   : params.type_pg
+            });
+
         });
 
 

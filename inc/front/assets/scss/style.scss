@@ -273,11 +273,16 @@ $font-size: 16;
 					background: #000;
 					color: #fff;
 					position: relative;
-					i {
+					small {
 						position: absolute;
 						right: 10px;
 						top: 6px;
-						font-style: normal;
+						width: 11px;
+						height: 11px;
+						font-size: 12px;
+						display: inline-block;
+						text-align: center;
+						cursor: pointer;
 					}
 				}
 			}

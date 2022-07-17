@@ -13,51 +13,58 @@ wp_add_inline_style($handle, $filter_css);
 
 	<?php do_action("ymc_before_filter_layout"); ?>
 
-	<div class="filter-entry">
+	<?php if( is_array($terms_selected) ) :
+
+		$all_terms = implode(',', $terms_selected);
+    ?>
+
+    <div class="filter-entry" data-terms="<?php echo $all_terms; ?>">
 
 		<?php
 
 		$type_multiple = ( (bool) $ymc_multiple_filter ) ? 'multiple' : '';
 
-		if ( is_array($terms_selected) ) {
+        ( $ymc_sort_terms === 'asc' ) ? asort($terms_selected) : arsort($terms_selected); ?>
 
-			( $ymc_sort_terms === 'asc' ) ? asort($terms_selected) : arsort($terms_selected); ?>
+        <?php
 
-            <?php
+            $arr_taxonomies = [];
 
-                $arr_taxonomies = [];
+            foreach ($terms_selected as $term) {
+
+                $arr_taxonomies[] = get_term( $term )->taxonomy;
+            }
+            $arr_taxonomies = array_unique($arr_taxonomies);
+
+            foreach ($arr_taxonomies as $tax) {
+
+                echo '<div class="dropdown-filter">';
+                echo '<div class="menu-active">';
+                echo '<span>Select '.$tax.'</span> <i class="arrow down"></i>';
+                echo '</div>';
+                echo '<div class="menu-passive">';
+                echo '<i class="btn-close">x</i>';
+
                 foreach ($terms_selected as $term) {
 
-                    $arr_taxonomies[] = get_term( $term )->taxonomy;
-                }
-                $arr_taxonomies = array_unique($arr_taxonomies);
-
-                foreach ($arr_taxonomies as $tax) {
-
-                    echo '<div class="dropdown-filter">';
-                    echo '<div class="menu-active">';
-                    echo '<span>Select '.$tax.'</span> <i class="arrow down"></i>';
-                    echo '</div>';
-                    echo '<div class="menu-passive">';
-                    echo '<i class="btn-close">x</i>';
-
-	                foreach ($terms_selected as $term) {
-
-		                if( $tax === get_term( $term )->taxonomy ) {
-                            echo '<div class="menu-passive__item"><a class="menu-link '. $type_multiple .'" href="#" data-termid="' . esc_attr($term) . '">'. esc_html(get_term( $term )->name) .'</a></div>';
-		                }
-	                }
-
-                    echo '</div>';
-                    echo '</div>';
+                    if( $tax === get_term( $term )->taxonomy ) {
+                        echo '<div class="menu-passive__item"><a class="menu-link '. $type_multiple .'" href="#" data-termid="' . esc_attr($term) . '">'. esc_html(get_term( $term )->name) .'</a></div>';
+                    }
                 }
 
-            ?>
-            <div class="selected-items"></div>
+                echo '</div>';
+                echo '</div>';
+            }
 
-        <?php } ?>
+        ?>
+
+        <div class="selected-items"></div>
 
 	</div>
+
+    <?php endif; ?>
+
+
 
 	<?php do_action("ymc_after_filter_layout"); ?>
 
