@@ -36,11 +36,17 @@ wp_add_inline_style($handle, $filter_css);
             }
             $arr_taxonomies = array_unique($arr_taxonomies);
 
+            $show_all = apply_filters('ymc_button_show_all', 'Show All');
+
+            echo '<a class="btn-all" href="#" data-terms="' . $all_terms . '">'. $show_all .'</a>';
+
             foreach ($arr_taxonomies as $tax) {
+
+	            $select_term = apply_filters('ymc_select_term_dropdown', $tax);
 
                 echo '<div class="dropdown-filter">';
                 echo '<div class="menu-active">';
-                echo '<span>Select '.$tax.'</span> <i class="arrow down"></i>';
+                echo '<span>'.$select_term.'</span> <i class="arrow down"></i>';
                 echo '</div>';
                 echo '<div class="menu-passive">';
                 echo '<i class="btn-close">x</i>';

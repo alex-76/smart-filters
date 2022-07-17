@@ -10,6 +10,7 @@ class YMC_front_filters {
 		add_filter('ymc_post_date_format', array($this, 'ymc_post_date_format'), 3, 1);
 		add_filter('ymc_post_excerpt_length', array($this, 'ymc_post_excerpt_length'), 3, 1);
 		add_filter('ymc_post_read_more', array($this, 'ymc_post_read_more'), 3, 1);
+		add_filter('ymc_button_show_all', array($this, 'ymc_button_show_all'), 3, 1);
 
 	}
 
@@ -38,13 +39,18 @@ class YMC_front_filters {
 	}
 
 	// Date excerpt post
-	public function ymc_post_excerpt_length($default) {
+	public function ymc_post_excerpt_length($text) {
 		return 30;
 	}
 
 	// Button Read More
-	public function ymc_post_read_more($default) {
+	public function ymc_post_read_more($text) {
 		return 'Read More';
+	}
+
+	// Button Show All
+	public function ymc_button_show_all($text) {
+		return 'Show All';
 	}
 
 }

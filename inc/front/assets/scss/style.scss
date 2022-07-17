@@ -151,11 +151,20 @@ $font-size: 16;
 		}
 
 		&.filter-layout3 {
+			.btn-all {
+				display: inline-block;
+				border: 1px solid #141518;
+				padding: 10px;
+				font-size: 16px;
+				margin-right: 10px;
+				text-decoration: none;
+				color: #141518;
+			}
 			.dropdown-filter {
 				font-size: 16px;
 				display: inline-block;
 				position: relative;
-				margin-right: 5px;
+				margin-right: 10px;
 				&:last-child {
 					margin-right: 0;
 				}
@@ -167,6 +176,7 @@ $font-size: 16;
 					position: relative;
 					cursor: pointer;
 					margin-bottom: 20px;
+					text-transform: capitalize;
 					.arrow {
 						position: absolute;
 						right: 13px;

@@ -161,7 +161,7 @@
         }
 
         // Set Function getFilterPosts global
-         ( typeof window.YMCGetPosts === 'undefined' ) ? window.YMCGetPosts = getFilterPosts : console.error('YMCGetPosts is existed');
+        // ( typeof window.YMCGetPosts === 'undefined' ) ? window.YMCGetPosts = getFilterPosts : console.error('YMCGetPosts is existed');
 
 
         // Init Load Posts
@@ -389,6 +389,28 @@
 
         });
 
+        $(document).on('click','.ymc-smart-filter-container .filter-layout3 .filter-entry .btn-all',function (e) {
+            e.preventDefault();
+
+            let _self = $(this);
+            let terms = _self.data('terms');
+
+            let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
+            params.terms = terms;
+            params.page = 1;
+            this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
+
+            _self.siblings('.selected-items').empty();
+            _self.siblings('.dropdown-filter').find('.active').removeClass('active');
+            _self.siblings('.dropdown-filter').find('.menu-passive').hide();
+
+            getFilterPosts({
+                'paged'     : 1,
+                'toggle_pg' : 1,
+                'target'    : params.data_target,
+                'type_pg'   : params.type_pg
+            });
+        });
 
         /*** PAGINATION TYPES***/
 
