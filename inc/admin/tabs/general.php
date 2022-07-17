@@ -10,7 +10,7 @@
 	<label for="ymc-cpt-select" class="form-label">
 		<?php echo esc_html__('Custom Post Type','ymc-smart-filter'); ?>
 		<span class="information">
-        <?php echo esc_html__('Select post type to filter.','ymc-smart-filter'); ?>
+        <?php echo esc_html__('Select post type.','ymc-smart-filter'); ?>
         </span>
 	</label>
 
@@ -87,7 +87,7 @@
 
 	<label for="ymc-terms" class="form-label">
 		<?php echo esc_html__('Terms','ymc-smart-filter'); ?>
-		<span class="information"><?php echo esc_html__('Select terms that want to show on frontend','ymc-smart-filter'); ?></span>
+		<span class="information"><?php echo esc_html__('Select terms','ymc-smart-filter'); ?></span>
 	</label>
 
 	<div class="category-list" id="ymc-terms">
