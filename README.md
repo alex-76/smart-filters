@@ -34,7 +34,7 @@ add_filter('ymc_post_custom_layout', $layouts, 10, 3);
 Example:
 
 function custom_post_layout($layouts, $post_id, $cpt_id) {
-   $layouts = "<article><h2>get_the_title($post_id)</h2></article>";
+   $layouts = "<article>get_the_title($post_id)</article>";
    return $layouts;
 }
 
