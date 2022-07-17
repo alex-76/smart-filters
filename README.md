@@ -33,8 +33,7 @@ add_filter('ymc_post_custom_layout', $layouts, 10, 3);
 
 Example:
 
-function custom_post_layout($layouts, $post_id, $cpt_id) {
-   $layouts = "<article>get_the_title($post_id)</article>";
+function custom_post_layout($layouts, $post_id, $cpt_id) {   
    return $layouts;
 }
 
