@@ -18,13 +18,13 @@ $small:  570px;
 $font-size: 16;
 
 @function rem-calc($size, $font-size : $font-size) {
-	$font-size: $font-size + 0px;
+	$font-size: $font-size;
 	$remSize: $size / $font-size;
 	@return #{$remSize}rem;
 }
 
 @function em-calc($size, $font-size : $font-size) {
-	$font-size: $font-size + 0px;
+	$font-size: $font-size;
 	$remSize: $size / $font-size;
 	@return #{$remSize}em;
 }
@@ -35,10 +35,11 @@ $font-size: 16;
 	font-family: "Poppins";
 	font-weight: 400;
 	box-sizing: border-box;
-	min-height: rem-calc(500px);
+	min-height: 500px;
 	position: relative;
 	max-width: 100%;
 	width: 100%;
+
 
 	*:active, *:focus {
 		outline: none;
@@ -50,7 +51,7 @@ $font-size: 16;
 	}
 
 	.far {
-		font-size: rem-calc(18px);
+		font-size: 18p;
 	}
 
 	.notice {

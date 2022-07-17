@@ -8,17 +8,18 @@
 $color: #1fc4ff;
 $text_color: #1f1f1f;
 
+
 // Convert px to (r)em
 $font-size: 16;
 
 @function rem-calc($size, $font-size : $font-size) {
-	$font-size: $font-size + 0px;
+	$font-size: $font-size;
 	$remSize: $size / $font-size;
 	@return #{$remSize}rem;
 }
 
 @function em-calc($size, $font-size : $font-size) {
-	$font-size: $font-size + 0px;
+	$font-size: $font-size;
 	$remSize: $size / $font-size;
 	@return #{$remSize}em;
 }
@@ -41,7 +42,7 @@ $font-size: 16;
 		border: 0;
 	}
 	.far {
-		font-size: rem-calc(18px);
+		font-size: 18px;
 	}
 
 	.postbox-header {
@@ -68,7 +69,7 @@ $font-size: 16;
 				}
 				.manage-dash {
 					flex: 1 1 70%;
-					padding: rem-calc(20px);
+					padding: 20px;
 					background: #fff;
 					.dashicons {
 						background: $color;
@@ -81,7 +82,7 @@ $font-size: 16;
 						}
 					}
 					.title {
-						font-size: rem-calc(20px);
+						font-size: 20px;
 						font-weight: 500;
 						color: $text_color;
 						line-height: 1.4;
@@ -105,20 +106,20 @@ $font-size: 16;
 						.nav-item {
 							margin-bottom: 0;
 							.link {
-								font-size: rem-calc(13px);
+								font-size: 13px;
 								font-weight: 700;
 								line-height: 1.4;
 								text-transform: uppercase;
 								color: $text_color;
 								text-decoration: none;
 								display: block;
-								padding: rem-calc(20px);
+								padding: 20px;
 								position: relative;
 								border-left: 3px solid #f0f0f1;
 								outline: none;
 								transition: .3s;
 								.info {
-									font-size: rem-calc(10px);
+									font-size: 10px;
 									color: #949494;
 									font-style: normal;
 									text-transform: capitalize;
@@ -127,11 +128,11 @@ $font-size: 16;
 								}
 								.dashicons {
 									position: absolute;
-									right: rem-calc(20px);
+									right: 20px;
 									top: 50%;
 									transform: translateY(-50%);
 									&:before {
-										font-size: rem-calc(24px);
+										font-size: 24px;
 									}
 								}
 								&.active, &:hover {
@@ -153,7 +154,7 @@ $font-size: 16;
 						display: none;
 						opacity: 0;
 						transition: .3s;
-						padding: rem-calc(10px) rem-calc(20px);
+						padding: 10px 20px;
 
 						&.active {
 							display: block;
@@ -179,18 +180,18 @@ $font-size: 16;
 						.tab-entry {
 
 							.header {
-								padding: rem-calc(15px) rem-calc(20px);
+								padding: 15px 20px;
 								background: #098ab8;
 								color: #fff;
-								font-size: rem-calc(18px);
+								font-size: 18px;
 								font-weight: 300;
-								margin-bottom: rem-calc(30px);
+								margin-bottom: 30px;
 							}
 
 							.content {
 
 								.form-group {
-									margin-bottom: rem-calc(25px);
+									margin-bottom: 25px;
 								}
 
 								.form-label {
@@ -198,10 +199,10 @@ $font-size: 16;
 									font-weight: 600;
 									margin: 2px 0;
 									color: #000;
-									font-size: rem-calc(13px);
+									font-size: 13px;
 									.information {
 										display: block;
-										font-size: rem-calc(12px);
+										font-size: 12px;
 										font-style: italic;
 										font-weight: 400;
 										color: #999;
@@ -213,7 +214,7 @@ $font-size: 16;
 									text-transform: capitalize;
 									border: 1px solid #e0e4e9;
 									color: $text_color;
-									font-size: rem-calc(13px);
+									font-size: 13px;
 									height: 35px;
 									border-radius: 0;
 								}
@@ -256,7 +257,7 @@ $font-size: 16;
 									border-radius: 0;
 									width: 100%;
 									padding: 5px 10px;
-									font-size: rem-calc(13px);
+									font-size: 13px;
 									font-weight: 300;
 								}
 
@@ -314,7 +315,7 @@ $font-size: 16;
 												display: flex;
 												align-items: center;
 												justify-content: center;
-												font-size: rem-calc(12px);
+												font-size: 12px;
 											}
 										}
 										input[type="checkbox"]:checked ~ .slider:after {
@@ -324,10 +325,10 @@ $font-size: 16;
 								}
 
 								.sub-header {
-									font-size: rem-calc(16px);
+									font-size: 16px;
 									border-bottom: 3px solid #1fc4ff;
 									color: #1fc4ff;
-									margin-bottom: rem-calc(30px);
+									margin-bottom: 30px;
 								}
 
 								input[type="checkbox"] {
@@ -352,11 +353,11 @@ $font-size: 16;
 
 								label {
 									font-weight: 400;
-									font-size: rem-calc(13px);
+									font-size: 13px;
 								}
 
 								hr {
-									margin: rem-calc(10px) 0;
+									margin: 10px 0;
 								}
 
 							}
@@ -367,7 +368,7 @@ $font-size: 16;
 						.tab-entry {
 							.content {
 								.manage-filters {
-									margin-top: rem-calc(40px);
+									margin-top: 40px;
 									&__section {
 										margin-bottom: 20px;
 									}
@@ -380,10 +381,10 @@ $font-size: 16;
 								}
 
 								.manage-post {
-									margin-top: rem-calc(40px);
+									margin-top: 40px;
 
 									&__section {
-										margin-bottom: rem-calc(30px);
+										margin-bottom: 30px;
 									}
 
 									.color-setting {
@@ -402,9 +403,9 @@ $font-size: 16;
 						.tab-entry {
 							.content {
 								.appearance-section {
-									margin-bottom: rem-calc(30px);
+									margin-bottom: 30px;
 									.from-element {
-										margin-bottom: rem-calc(20px);
+										margin-bottom: 20px;
 									}
 
 
