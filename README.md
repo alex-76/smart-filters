@@ -18,6 +18,8 @@ add_filter('ymc_post_read_more', $ymc_post_read_more, 3, 1);
 
 add_filter('ymc_button_show_all', $ymc_button_show_all, 3, 1);
 
+add_filter('ymc_select_term_dropdown', $ymc_select_term_dropdown, 3, 1);
+
 =============================
 
 Layouts:
