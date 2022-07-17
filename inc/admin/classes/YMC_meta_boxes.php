@@ -198,6 +198,13 @@ class YMC_meta_boxes {
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="link" id="search-tab" href="#search">
+                            <span class="text"><?php echo esc_html__('Search','ymc-smart-filter');?></span>
+                            <span class="info"><?php echo esc_html__('Post search','ymc-smart-filter'); ?></span>
+                            <span class="dashicons dashicons-search"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="link" id="typography-tab" href="#typography">
                             <span class="text"><?php echo esc_html__('Typography','ymc-smart-filter');?></span>
                             <span class="info"><?php echo esc_html__('Title, Description Fonts','ymc-smart-filter'); ?></span>
@@ -242,6 +249,12 @@ class YMC_meta_boxes {
                 <div class="tab-panel" id="appearance">
                     <div class="tab-entry">
 	                    <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/appearance.php'; ?>
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="search">
+                    <div class="tab-entry">
+			            <?php require_once YMC_SMART_FILTER_DIR . '/admin/tabs/search.php'; ?>
                     </div>
                 </div>
 
