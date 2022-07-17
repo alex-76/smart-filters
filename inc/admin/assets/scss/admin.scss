@@ -23,6 +23,10 @@ $font-size: 16;
 	@return #{$remSize}em;
 }
 
+.menu-top.menu-icon-ymc_filters div.wp-menu-image:before {
+	color: #1fc4ff !important;
+}
+
 
 #ymc_top_meta_box {
 	font-family: "Poppins";
