@@ -19,7 +19,7 @@ class YMC_admin_filters {
 			"filter-layout1" => 'Simple Posts Filter',
 			"filter-layout2" => 'Taxonomy Filter',
 			"filter-layout3" => 'Dropdown Filter',
-			"filter-custom-layout" => 'Custom Filter'
+			//"filter-custom-layout" => 'Custom Filter'
 		];
 
 		return $layouts;
@@ -28,9 +28,9 @@ class YMC_admin_filters {
 	public function ymc_post_layouts($layouts) {
 
 		$layouts = [
-			"post-layout1" => 'Default Post Layout',
+			"post-layout1" => 'Post Layout 1',
 			"post-layout2" => 'Post Layout 2',
-			"post-layout3" => 'Post Layout 3',
+			//"post-layout3" => 'Post Layout 3',
 			"post-custom-layout"  => 'Custom Post Layout'
 		];
 

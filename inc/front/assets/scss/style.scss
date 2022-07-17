@@ -94,7 +94,8 @@ $font-size: 16;
 					margin: 10px 10px ;
 					.filter-link {
 						display: inline-block;
-						padding: 10px 10px;
+						padding: 7px 15px;
+						border-radius: 5px;
 						font-size: 16px;
 						text-decoration: none;
 						&:hover {
@@ -301,7 +302,9 @@ $font-size: 16;
 			// Style for Post Layout 1
 			&.post-layout1 {
 				.ymc-post-layout1 {
+					position: relative;
 					padding: 20px;
+					border: 1px solid #222;
 					.media {
 						margin: 0 0 20px 0;
 						overflow: hidden;
@@ -346,17 +349,72 @@ $font-size: 16;
 					.read-more {
 						text-align: right;
 						.btn {
+							display: inline-block;
 							text-decoration: none;
 							background: #000;
 							color: white;
 							padding: 5px 10px;
 							font-size: 12px;
+							line-height: 1.5;
 						}
 					}
 					&:hover {
 						img {
 							transform: scale(1.2);
 							transition: .3s;
+						}
+					}
+				}
+			}
+
+			// Style for Post Layout 2
+			&.post-layout2 {
+				.ymc-post-layout2 {
+					position: relative;
+					padding: 20px 20px 40px 20px;
+					border: 1px solid #222;
+					.category {
+						margin-bottom: 20px;
+						.cat-inner {
+							font-size: 12px;
+							border-radius: 20px;
+							display: inline-block;
+							padding: 3px 15px;
+							background: #000;
+							margin-right: 5px;
+							margin-bottom: 4px;
+							color: white;
+						}
+					}
+					.title {
+						font-size: 22px;
+						font-weight: 600;
+						margin-bottom: 10px;
+					}
+					.date {
+						font-size: 14px;
+						margin-bottom: 10px;
+						border-bottom: 1px solid #fff;
+						padding-bottom: 5px;
+						i {
+							margin-right: 5px;
+						}
+					}
+					.excerpt {
+						font-size: 16px;
+						line-height: 1.4;
+						margin-bottom: 10px;
+					}
+					.read-more {
+						position: absolute;
+						right: 15px;
+						bottom: 10px;
+						.btn {
+							display: inline-block;
+							text-decoration: underline;
+							padding: 5px 10px;
+							font-size: 12px;
+							line-height: 1.5;
 						}
 					}
 				}
@@ -394,6 +452,7 @@ $font-size: 16;
 				transition: .3s;
 				color: #098ab8;
 				border: 1px solid #098ab8;
+				font-size: 14px;
 			}
 		}
 	}
