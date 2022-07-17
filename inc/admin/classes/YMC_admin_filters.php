@@ -39,7 +39,7 @@ class YMC_admin_filters {
 
 	public function ymc_pagination_type($type) {
 		$type = [
-			"default" => 'Number',
+			"numeric" => 'Number',
 			"load-more" => 'Load more',
 			"scroll-infinity" => 'Scroll infinity'
 		];

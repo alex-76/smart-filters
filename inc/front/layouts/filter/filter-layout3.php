@@ -36,9 +36,10 @@ wp_add_inline_style($handle, $filter_css);
 
                     echo '<div class="dropdown-filter">';
                     echo '<div class="menu-active">';
-                    echo 'Select '.$tax.' <i class="arrow down"></i>';
+                    echo '<span>Select '.$tax.'</span> <i class="arrow down"></i>';
                     echo '</div>';
                     echo '<div class="menu-passive">';
+                    echo '<i class="btn-close">x</i>';
 
 	                foreach ($terms_selected as $term) {
 
@@ -52,6 +53,7 @@ wp_add_inline_style($handle, $filter_css);
                 }
 
             ?>
+            <div class="selected-items"></div>
 
         <?php } ?>
 

@@ -4,7 +4,7 @@ $pagin = new YMC_post_pagination();
 
 switch ( $type_pagination ) :
 
-	case 'default' :
+	case 'numeric' :
 			$pagin = $pagin->number($query, $paged, $type_pagination, $filter_id);
 		break;
 

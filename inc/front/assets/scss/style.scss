@@ -165,7 +165,7 @@ $font-size: 16;
 					width: 100%;
 					position: relative;
 					cursor: pointer;
-					margin-bottom: 30px;
+					margin-bottom: 20px;
 					.arrow {
 						position: absolute;
 						right: 13px;
@@ -187,7 +187,7 @@ $font-size: 16;
 					display: none;
 					max-width: 300px;
 					margin-top: 12px;
-					padding: 15px 20px;
+					padding: 30px 20px 15px 20px;
 					background: #141518;
 					color: #FAF7ED;
 					position: absolute;
@@ -205,6 +205,15 @@ $font-size: 16;
 						left: 10px;
 						top: -14px;
 						clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+					}
+
+					.btn-close {
+						position: absolute;
+						right: 15px;
+						top: 15px;
+						font-size: 14px;
+						font-style: normal;
+						cursor: pointer;
 					}
 
 					&__item {
@@ -253,8 +262,26 @@ $font-size: 16;
 					}
 				}
 			}
+			.selected-items {
+				.item {
+					border: 1px solid #000;
+					padding: 7px 30px 7px 10px;
+					margin: 0 10px 10px 0;
+					display: inline-block;
+					border-radius: 15px;
+					font-size: 12px;
+					background: #000;
+					color: #fff;
+					position: relative;
+					i {
+						position: absolute;
+						right: 10px;
+						top: 6px;
+						font-style: normal;
+					}
+				}
+			}
 		}
-
 	}
 
 	// Posts style
@@ -335,9 +362,10 @@ $font-size: 16;
 	// Pagination style
 	.ymc-pagination {
 		list-style: none;
+		margin: 0;
 		min-height: 0;
 
-		&.pagination-default {
+		&.pagination-numeric {
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -365,15 +393,6 @@ $font-size: 16;
 		}
 	}
 
-	// Filter sticky for pagination scroll infinity
-	&.ymc-pagination-scroll-infinity {
-		.filter-layout {
-			//position: sticky;
-			//top: rem-calc(20px);
-			//z-index: 9;
-			//background: #fff;
-		}
-	}
 }
 
 

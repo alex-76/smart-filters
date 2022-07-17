@@ -19,6 +19,7 @@ class YMC_get_filter_posts {
 		$temp_data = str_replace("\\", "", $posted_data);
 		$clean_data = json_decode($temp_data, true);
 
+		// Get data from json
 		$post_type = $clean_data['cpt'];
 		$taxonomy  = $clean_data['tax'];
 		$terms     = $clean_data['terms'];
@@ -26,8 +27,9 @@ class YMC_get_filter_posts {
 		$post_layout = $clean_data['post_layout'];
 		$filter_id = $clean_data['filter_id'];
 		$type_pagination = $clean_data['type_pg'];
+
 		$paged     = (int) $_POST['paged'];
-		$term_ids  = $_POST['term_ids'];
+		//$term_ids  = $_POST['term_ids'];
 
 		$id = $filter_id;
 
@@ -39,12 +41,12 @@ class YMC_get_filter_posts {
 
 		// Convert Taxonomy & Terms to Array
 		$taxonomy = !empty($taxonomy) ? explode(',', $taxonomy) : false;
-		$terms    = !empty($terms)    ? explode(',', $terms) : false;
-		$term_ids = !empty($term_ids) ? explode(',', $term_ids) : false;
+		$terms    = !empty($terms)    ? explode(',', $terms)    : false;
+		//$term_ids = !empty($term_ids) ? explode(',', $term_ids) : false;
 
 
 		// If default load posts
-		if ( !is_array($term_ids) && is_array($taxonomy) && is_array($terms) ) :
+		if ( is_array($taxonomy) && is_array($terms) ) :
 
 			foreach ($taxonomy as $tax) :
 
@@ -71,6 +73,7 @@ class YMC_get_filter_posts {
 			endforeach;
 
 		// If selected term
+		/*
 		else :
 
 			foreach ($taxonomy as $tax) :
@@ -96,7 +99,7 @@ class YMC_get_filter_posts {
 				$term_id = [];
 
 			endforeach;
-
+		*/
 		endif;
 
 

@@ -20,8 +20,21 @@
                  * Selected Terms: $terms_selected
                  * Taxonomies: $tax
                  * Multiply Filter: $ymc_multiple_filter
+                 * Target
+                 * Type Pagination
 				 */
-				$filter_layout = apply_filters('ymc_filter_custom_layout', $layouts, $terms_selected, $tax, $ymc_multiple_filter );
+
+
+
+                $target = 'data-target-ymc'.$c_target;
+
+				$filter_layout = apply_filters('ymc_filter_custom_layout',
+                                     $layouts,
+                                     $terms_selected,
+                                     $tax,
+                                     $ymc_multiple_filter,
+                                     $target,
+                                     $ymc_pagination_type );
 
 				echo $filter_layout;
 

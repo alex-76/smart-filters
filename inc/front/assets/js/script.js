@@ -43,10 +43,10 @@
                     entry.target.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
                     getFilterPosts({
-                        'term_id' : params.terms,
-                        'paged'   : params.page,
-                        'target'  : params.data_target,
-                        'type_pg' : params.type_pg
+                        'paged'     : params.page,
+                        'toggle_pg' : 0,
+                        'target'    : params.data_target,
+                        'type_pg'   : params.type_pg
                     });
 
                     observer.unobserve(entry.target);
@@ -58,21 +58,19 @@
         // Send Main Request
         function getFilterPosts( options ) {
 
-            let tr_id  = options.term_id || '';
-            let paged  = options.paged   || 1;
-            let filter = options.filter  || 0;
-            let target = options.target  || 'data-target-ymc1';
-            let type_pg = options.type_pg  || 'default';
+            let paged     = options.paged;
+            let toggle_pg = options.toggle_pg; // if 1 use func: html() or 0 append()
+            let target    = options.target;
+            let type_pg   = options.type_pg; // pagination type
 
             let container = $("."+target+"");
-            let params = container.data("params");
+            let params = JSON.parse(document.querySelector('.'+target+'').dataset.params);
 
             const data = {
                 'action'     : 'ymc_get_posts',
                 'nonce_code' : _global_object.nonce,
                 'params'     : JSON.stringify(params),
-                'term_ids'   : tr_id,
-                'paged'      :  paged,
+                'paged'      : paged,
             };
 
             $.ajax({
@@ -88,10 +86,10 @@
 
                     switch ( type_pg ) {
 
-                        case 'default' :
+                        case 'numeric' :
 
                             // Filter is act scroll top
-                            // if(filter === 1) {
+                            // if(toggle_pg === 1) {
                             //     $('html, body').animate({scrollTop: container.offset().top}, 300);
                             // }
 
@@ -106,15 +104,14 @@
 
                         case 'load-more' :
 
-                            // Filter is not act
-                            if(filter === 0) {
+                            if(toggle_pg === 0) {
                                 container.find('.container-posts').
                                 removeClass('loading').
                                 find('.preloader').remove().end().
                                 find('.post-entry').append(res.data).end().
                                 find('.ymc-pagination').remove().end().
                                 append(res.pagin);
-                            } // Filter is act
+                            }
                             else  {
                                 container.find('.container-posts').
                                 removeClass('loading').
@@ -132,14 +129,13 @@
 
                         case 'scroll-infinity' :
 
-                            // Filter is not act
-                            if(filter === 0) {
+                            if(toggle_pg === 0) {
                                 container.find('.container-posts').
                                 removeClass('loading').
                                 find('.preloader').remove().end().
                                 find('.post-entry').append(res.data).end().
                                 append(res.pagin);
-                            } // Filter is act
+                            }
                             else  {
                                 // Filter is act scroll top
                                 //$('html, body').animate({scrollTop: container.offset().top}, 300);
@@ -171,17 +167,16 @@
         // Init Load Posts
         document.querySelectorAll('.ymc-smart-filter-container').forEach(function (el) {
 
-            let params = JSON.parse(el.dataset.params);
+            let params      = JSON.parse(el.dataset.params);
             let data_target = params.data_target;
             let type_pg     = params.type_pg;
-            let terms = params.terms;
 
             // Init Load Posts
             getFilterPosts({
-                'term_id' : terms,
-                'paged' : 1,
-                'target' : data_target,
-                'type_pg' : type_pg
+                'paged'     : 1,
+                'toggle_pg' : 1,
+                'target'    : data_target,
+                'type_pg'   : type_pg
             });
         });
 
@@ -217,11 +212,10 @@
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
             getFilterPosts({
-                'term_id' : term_id,
-                'paged'   : 1,
-                'filter'  : 1,
-                'target'  : params.data_target,
-                'type_pg' : params.type_pg
+                'paged'      : 1,
+                'toggle_pg'  : 1,
+                'target'     : params.data_target,
+                'type_pg'    : params.type_pg
             });
         });
 
@@ -263,13 +257,11 @@
             params.page = 1;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
-
             getFilterPosts({
-                'term_id' : term_id,
-                'paged'  : 1,
-                'filter' : 1,
-                'target' : params.data_target,
-                'type_pg' : params.type_pg
+                'paged'     : 1,
+                'toggle_pg' : 1,
+                'target'    : params.data_target,
+                'type_pg'   : params.type_pg
             });
         });
 
@@ -280,13 +272,20 @@
             $el.find('.arrow').toggleClass('open').end().next().toggle();
         });
 
+        $(document).on('click','.ymc-smart-filter-container .filter-layout3 .dropdown-filter .menu-passive .btn-close',function (e) {
+            e.preventDefault();
+            $(this).closest('.dropdown-filter').find('.down').removeClass('open').end().find('.menu-passive').hide();
+        });
+
         $(document).on('click','.ymc-smart-filter-container .filter-layout3 .dropdown-filter .menu-passive .menu-link',function (e) {
             e.preventDefault();
             link = $(this);
-            link.toggleClass('checked');
-            let term_id = link.data('termid');
+            //link.toggleClass('checked');
+            let term_id = '';
 
+            // Multiple selected
             if(link.hasClass('multiple')) {
+
                 link.toggleClass('active');
                 term_id = '';
 
@@ -295,16 +294,41 @@
                 });
 
                 term_id = term_id.replace(/,\s*$/, "");
+
+                // Add selected terms
+                let allLinks = $(link.closest('.filter-entry')).find('.dropdown-filter .menu-link');
+                let selItem = '';
+
+                term_id.split(',').forEach(function (el) {
+                    allLinks.each(function () {
+                        if ($(this).data('termid') === parseInt(el)) {
+                            selItem += `<span data-trm="${el}" class="item">${$(this).text()} <i>x</i></span>`;
+                        }
+                    });
+                });
+
+                $(link.closest('.filter-entry')).find('.selected-items').html(selItem);
+
             }
+            // Single selected
             else {
-                link.addClass('active').
-                closest('.menu-passive__item').
+
+                link.toggleClass('active');
+
+                link.closest('.menu-passive__item').
                 siblings().find('.menu-link').
-                removeClass('active').
-                closest('.dropdown-filter').siblings().
-                find('.menu-link').
                 removeClass('active');
+
+                link.closest('.filter-entry').find('.active').each(function (){
+                    term_id += $(this).data('termid')+',';
+                });
+                term_id = term_id.replace(/,\s*$/, "");
+
+                link.closest('.dropdown-filter').find('.menu-active span').html($(this).text());
+
+                console.log($(this).text());
             }
+
 
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
@@ -312,11 +336,10 @@
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
             getFilterPosts({
-                'term_id' : term_id,
-                'paged'  : 1,
-                'filter' : 1,
-                'target' : params.data_target,
-                'type_pg' : params.type_pg
+                'paged'     : 1,
+                'toggle_pg' : 1,
+                'target'    : params.data_target,
+                'type_pg'   : params.type_pg
             });
         });
 
@@ -324,20 +347,18 @@
         /*** PAGINATION TYPES***/
 
         // Pagination / Type: Default (Numeric)
-        $(document).on('click','.ymc-smart-filter-container .pagination-default li a',function (e) {
+        $(document).on('click','.ymc-smart-filter-container .pagination-numeric li a',function (e) {
             e.preventDefault();
 
             let paged = parseInt($(this).attr("href").replace(/\D/g, ""));
-            let term_id = JSON.parse(this.closest('.ymc-smart-filter-container').dataset.params).terms;
             let data_target = JSON.parse(this.closest('.ymc-smart-filter-container').dataset.params).data_target;
             let type_pg = JSON.parse(this.closest('.ymc-smart-filter-container').dataset.params).type_pg;
 
             getFilterPosts({
-                'term_id' : term_id,
-                'paged'  : paged,
-                'filter' : 1,
-                'target' : data_target,
-                'type_pg' : type_pg
+                'paged'     : paged,
+                'toggle_pg' : 1,
+                'target'    : data_target,
+                'type_pg'   : type_pg
             });
 
         });
@@ -350,16 +371,15 @@
             params.page++;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
-            let term_id     = params.terms;
             let data_target = params.data_target;
             let type_pg     = params.type_pg;
             let paged       = params.page;
 
             getFilterPosts({
-                'term_id' : term_id,
-                'paged'   : paged,
-                'target'  : data_target,
-                'type_pg' : type_pg
+                'paged'      : paged,
+                'toggle_pg'  : 0,
+                'target'     : data_target,
+                'type_pg'    : type_pg
             });
 
         });

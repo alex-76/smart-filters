@@ -28,7 +28,7 @@ class YMC_shortcode {
 
 		include YMC_SMART_FILTER_DIR . '/front/front-variables.php';
 
-		$handle = "ymc-smartf-style-" . $ymc_filter_layout;
+		$handle = "ymc-smartf-style-" . $c_target;
 
 		wp_enqueue_style($handle, YMC_SMART_FILTER_URL . '/front/assets/css/style.css', array(), YMC_SMART_FILTER_VERSION);
 		wp_enqueue_script('ymc-smart-frontend-scripts', YMC_SMART_FILTER_URL . '/front/assets/js/script.js', array('jquery'), YMC_SMART_FILTER_VERSION);
