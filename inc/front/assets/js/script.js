@@ -335,6 +335,7 @@
             }
             else {
                 term_id = link.closest('.filter-entry').data('terms');
+                $(link.closest('.filter-entry')).find('.selected-items').empty();
             }
 
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
