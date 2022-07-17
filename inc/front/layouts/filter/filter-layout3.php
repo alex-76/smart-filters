@@ -64,8 +64,6 @@ wp_add_inline_style($handle, $filter_css);
 
     <?php endif; ?>
 
-
-
 	<?php do_action("ymc_after_filter_layout"); ?>
 
 </div>

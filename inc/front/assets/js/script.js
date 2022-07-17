@@ -308,6 +308,7 @@
             }
 
             let listActiveItems = link.closest('.filter-entry').find('.active');
+
             if(listActiveItems.length > 0) {
 
                 link.closest('.filter-entry').find('.active').each(function (){
@@ -316,18 +317,21 @@
 
                 term_id = term_id.replace(/,\s*$/, "");
 
-                // Add selected terms
-                let allLinks = $(link.closest('.filter-entry')).find('.dropdown-filter .menu-link');
-                let selItem = '';
-                term_id.split(',').forEach(function (el) {
-                    allLinks.each(function () {
-                        if ($(this).data('termid') === parseInt(el)) {
-                            selItem += `<span data-trm="${el}" class="item">${$(this).text()} <small>x</small></span>`;
-                        }
-                    });
-                });
-                $(link.closest('.filter-entry')).find('.selected-items').html(selItem);
+                if( link.hasClass('multiple') ) {
+                    // Add selected terms
+                    let allLinks = $(link.closest('.filter-entry')).find('.dropdown-filter .menu-link');
+                    let selItem = '';
 
+                    term_id.split(',').forEach(function (el) {
+                        allLinks.each(function () {
+                            if ($(this).data('termid') === parseInt(el)) {
+                                selItem += `<span data-trm="${el}" class="item">${$(this).text()} <small>x</small></span>`;
+                            }
+                        });
+                    });
+
+                    $(link.closest('.filter-entry')).find('.selected-items').html(selItem);
+                }
             }
             else {
                 term_id = link.closest('.filter-entry').data('terms');
