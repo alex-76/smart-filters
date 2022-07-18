@@ -177,6 +177,15 @@
             }
         });
 
+        // Set checkbox All marked
+        $('#general #ymc-terms .group-term').each(function () {
+            let total = $(this).find('input[type="checkbox"]').length - 1;
+            let totalChecked = $(this).find('input[checked]').length;
+            if(total === totalChecked) {
+                $(this).find('.all-categories input[type="checkbox"]').attr('checked','checked');
+            }
+        });
+
 
         // Toggle Filter Status
         $(document).on('click', '.ymc__container-settings .ymc-toggle-group .slider', function (e) {
