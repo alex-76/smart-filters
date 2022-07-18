@@ -156,6 +156,7 @@ $font-size: 16;
 			.filter-entry {
 				display: flex;
 				flex-wrap: wrap;
+				align-items: baseline;
 				margin-bottom: 20px;
 			}
 
@@ -462,8 +463,13 @@ $font-size: 16;
 			li {
 				margin-right: 15px;
 				a {
-					padding: 5px 10px;
+					display: inline-block;
+					padding: 10px 10px;
 					text-decoration: none;
+					min-width: 40px;
+					text-align: center;
+					line-height: 1;
+					font-size: 16px;
 					&:hover {
 						text-decoration: none;
 					}
