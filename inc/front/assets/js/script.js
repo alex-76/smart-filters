@@ -284,6 +284,7 @@
             e.preventDefault();
             $el = $(this);
             $el.find('.arrow').toggleClass('open').end().next().toggle();
+            $el.closest('.dropdown-filter').siblings().find('.menu-passive').hide();
         });
 
         $(document).on('click','.ymc-smart-filter-container .filter-layout3 .dropdown-filter .menu-passive .btn-close',function (e) {
