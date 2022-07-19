@@ -294,7 +294,7 @@
 
         $(document).on('click','.ymc-smart-filter-container .filter-layout3 .dropdown-filter .menu-passive .menu-link',function (e) {
             e.preventDefault();
-            link = $(this);
+            let link = $(this);
             let term_id = '';
             link.toggleClass('active');
 
@@ -339,6 +339,7 @@
                 $(link.closest('.filter-entry')).find('.selected-items').empty();
             }
 
+            // Update data params
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
             params.page = 1;
