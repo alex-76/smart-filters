@@ -305,7 +305,7 @@
                 siblings().find('.menu-link').
                 removeClass('active');
 
-                link.closest('.dropdown-filter').find('.menu-active span').html($(this).text());
+                link.closest('.dropdown-filter').find('.menu-active span').html($(this).data('name'));
             }
 
             let listActiveItems = link.closest('.filter-entry').find('.active');

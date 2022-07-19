@@ -53,8 +53,16 @@ wp_add_inline_style($handle, $filter_css);
 
                 foreach ($terms_selected as $term) {
 
+
                     if( $tax === get_term( $term )->taxonomy ) {
-                        echo '<div class="menu-passive__item"><a class="menu-link '. $type_multiple .'" href="#" data-termid="' . esc_attr($term) . '">'. esc_html(get_term( $term )->name) .'</a></div>';
+
+
+                        echo '<div class="menu-passive__item">
+                                  <a class="menu-link '. $type_multiple .'" 
+                                  href="#" data-termid="' . esc_attr($term) . '" data-name="'.esc_attr(get_term( $term )->name).'">'.
+                                  esc_html(get_term( $term )->name) . ' (' .esc_html(get_term( $term )->count) . ')'.
+                             '</a></div>';
+
                     }
                 }
 
