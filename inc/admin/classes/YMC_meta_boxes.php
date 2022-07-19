@@ -152,6 +152,12 @@ class YMC_meta_boxes {
 			update_post_meta($post_id, 'ymc_post_font', $ymc_filter_font);
 		}
 
+		// Search Posts Status (on/off)
+		if( isset($_POST['ymc-filter-search']) ) {
+			$search_status = sanitize_text_field( $_POST['ymc-filter-search']);
+			update_post_meta( $post_id, 'ymc_filter_search', $search_status );
+		}
+
     }
 
 	public function add_post_metabox() {

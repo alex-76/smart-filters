@@ -32,7 +32,9 @@ $wpdb->get_results('DELETE FROM wp_postmeta WHERE meta_key IN (
                                   "ymc_order_post_type",
                                   "ymc_special_post_class",
                                   "ymc_filter_font",
-                                  "ymc_post_font")');
+                                  "ymc_post_font",
+                                  "ymc_filter_search"                                          
+                                  )');
 
 
 // Delete data from table wp_posts

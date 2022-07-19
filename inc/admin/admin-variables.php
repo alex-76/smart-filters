@@ -45,6 +45,8 @@ $ymc_filter_font = 'inherit';
 $ymc_post_font = 'inherit';
 $ymc_multiple_filter = 0;
 
+$ymc_filter_search = 'on';
+
 
 // GENERAL TAB SUBMITTED VARIABLE VALUES
 if( get_post_meta($post->ID, 'ymc_cpt_value') ) {
@@ -120,5 +122,7 @@ if (get_post_meta($post->ID, 'ymc_filter_font')) {
 if (get_post_meta($post->ID, 'ymc_post_font')) {
 	$ymc_post_font = get_post_meta($post->ID, 'ymc_post_font', true);
 }
-
+if( get_post_meta($post->ID, 'ymc_filter_search') ) {
+	$ymc_filter_search = get_post_meta($post->ID, 'ymc_filter_search', true);
+}
 

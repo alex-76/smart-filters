@@ -63,21 +63,36 @@ class YMC_shortcode {
 				  class="ymc-smart-filter-container ymc-'.$ymc_filter_layout.' ymc-'. $ymc_post_layout.' ymc-pagination-'.$ymc_pagination_type.' data-target-ymc'.$c_target.'"
 				  data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$terms.'","type_pg":"'.$ymc_pagination_type.'","per_page":"'.$ymc_per_page.'","page":"1","post_layout":"'.$ymc_post_layout.'","filter_layout":"'.$ymc_filter_layout.'","filter_id":"'.$id.'","data_target":"data-target-ymc'.$c_target.'"}\'>';
 
-			// Enable/Disable Filters
+
+			if ( $ymc_filter_search === 'on' ) {
+
+				$filepath_search = YMC_SMART_FILTER_DIR . "/front/layouts/search/search-layout.php";
+
+				if ( file_exists($filepath_search) ) {
+					include $filepath_search;
+				}
+			}
+
 			if ( $ymc_filter_status === 'on' ) {
 
 				if ( $ymc_filter_layout ) {
 
-					$filepath = YMC_SMART_FILTER_DIR . "/front/layouts/filter/" . $ymc_filter_layout . ".php";
+					$filepath_filter = YMC_SMART_FILTER_DIR . "/front/layouts/filter/" . $ymc_filter_layout . ".php";
 
-					if ( file_exists($filepath) ) {
-						include $filepath;
+					if ( file_exists($filepath_filter) ) {
+						include $filepath_filter;
 					}
 				}
 			}
 
 			if( $ymc_post_layout !== 'post-custom-layout') :
-				include YMC_SMART_FILTER_DIR . '/front/layouts/post-css/'. $ymc_post_layout .'-css.php';
+
+				$filepath_post_css = YMC_SMART_FILTER_DIR . '/front/layouts/post-css/'. $ymc_post_layout .'-css.php';
+
+				if ( file_exists($filepath_post_css) ) {
+					include $filepath_post_css;
+				}
+
 			endif;
 
 			echo '<div class="container-posts container-'. $ymc_post_layout .'"><div class="post-entry '. $ymc_post_layout .'"></div></div>';

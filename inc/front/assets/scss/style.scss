@@ -490,6 +490,21 @@ $font-size: 16;
 		}
 	}
 
+	// Search style
+	.search-layout {
+		.search-entry {
+			text-align: right;
+			input {
+				max-width: 50%;
+				width: 100%;
+				padding: 7px 10px;
+				border: 1px solid #222;
+				color: #000;
+				margin-bottom: 20px;
+			}
+		}
+	}
+
 }
 
 
