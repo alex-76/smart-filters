@@ -303,6 +303,10 @@ $font-size: 16;
 									opacity: 1;
 								}
 							}
+							&.isDisabled {
+								pointer-events: none;
+								color: #adadad;
+							}
 						}
 					}
 				}
@@ -314,13 +318,15 @@ $font-size: 16;
 					display: none;
 				}
 				.item {
-					padding: 7px 30px 7px 10px;
+					padding: 7px 30px 7px 15px;
 					margin: 0 5px 5px 0;
 					display: inline-block;
 					font-size: 12px;
 					background: #000;
 					color: #fff;
+					border-radius: 15px;
 					position: relative;
+					line-height: 1;
 					small {
 						position: absolute;
 						right: 7px;
@@ -328,10 +334,11 @@ $font-size: 16;
 						transform: translateY(-50%);
 						width: 11px;
 						height: 11px;
-						font-size: 12px;
+						font-size: 11px;
 						display: inline-block;
 						text-align: center;
 						cursor: pointer;
+						line-height: 1;
 					}
 				}
 			}

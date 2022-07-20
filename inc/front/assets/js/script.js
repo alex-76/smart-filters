@@ -64,6 +64,8 @@
             let type_pg   = options.type_pg;  // pagination type
             let term_sel  = options.term_sel || 'all'; // selected term
 
+            console.log(term_sel);
+
             let container = $("."+target+"");
             let params = JSON.parse(document.querySelector('.'+target+'').dataset.params);
 
@@ -340,7 +342,7 @@
                     term_id.split(',').forEach(function (el) {
                         allLinks.each(function () {
                             if ($(this).data('termid') === parseInt(el)) {
-                                selItem += `<span data-trm="${el}" class="item">${$(this).text()} <small>x</small></span>`;
+                                selItem += `<span data-trm="${el}" class="item">${$(this).data('name')} <small>x</small></span>`;
                             }
                         });
                     });
@@ -375,6 +377,10 @@
 
             let term_id = _self.closest('.item').data('trm');
 
+            let isItems = _self.closest('.selected-items').find('.item').length - 1;
+
+            let term_sel = (isItems > 0 ) ? isItems : 'all';
+
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             let arrTerms = params.terms.split(',');
             let newTerms = arrTerms.filter(function(f) { return parseInt(f) !== term_id });
@@ -401,7 +407,8 @@
                 'paged'     : 1,
                 'toggle_pg' : 1,
                 'target'    : params.data_target,
-                'type_pg'   : params.type_pg
+                'type_pg'   : params.type_pg,
+                'term_sel'  : term_sel
             });
 
         });

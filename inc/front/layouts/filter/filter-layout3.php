@@ -55,13 +55,18 @@ wp_add_inline_style($handle, $filter_css);
 
                     if( $tax === get_term( $term )->taxonomy ) {
 
+                     $is_disabled = ( get_term( $term )->count === 0 ) ? 'isDisabled' : '';
+
+
                         echo '<div class="menu-passive__item">
-                                  <a class="menu-link '. $type_multiple .'" 
+                                  <a class="menu-link '. $is_disabled .' '. $type_multiple .'" 
                                   href="#" data-selected="'.esc_attr(get_term( $term )->slug).'" data-termid="' . esc_attr($term) . '" data-name="'.esc_attr(get_term( $term )->name).'">'.
-                                  esc_html(get_term( $term )->name) . ' (' .esc_html(get_term( $term )->count) . ')'.
+                                  esc_html(get_term( $term )->name) . ' <span class="count">(' .esc_html(get_term( $term )->count) . ')</span>'.
                              '</a></div>';
 
                     }
+
+
                 }
 
                 echo '</div>';
