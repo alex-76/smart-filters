@@ -38,7 +38,7 @@ wp_add_inline_style($handle, $filter_css);
 
             $show_all = apply_filters('ymc_button_show_all', 'Show All');
 
-            echo '<a class="btn-all" href="#" data-terms="' . $all_terms . '">'. $show_all .'</a>';
+            echo '<a class="btn-all" href="#" data-selected="all" data-terms="' . $all_terms . '">'. $show_all .'</a>';
 
             foreach ($arr_taxonomies as $tax) {
 
@@ -53,13 +53,11 @@ wp_add_inline_style($handle, $filter_css);
 
                 foreach ($terms_selected as $term) {
 
-
                     if( $tax === get_term( $term )->taxonomy ) {
-
 
                         echo '<div class="menu-passive__item">
                                   <a class="menu-link '. $type_multiple .'" 
-                                  href="#" data-termid="' . esc_attr($term) . '" data-name="'.esc_attr(get_term( $term )->name).'">'.
+                                  href="#" data-selected="'.esc_attr(get_term( $term )->slug).'" data-termid="' . esc_attr($term) . '" data-name="'.esc_attr(get_term( $term )->name).'">'.
                                   esc_html(get_term( $term )->name) . ' (' .esc_html(get_term( $term )->count) . ')'.
                              '</a></div>';
 
@@ -75,6 +73,8 @@ wp_add_inline_style($handle, $filter_css);
         <div class="selected-items"></div>
 
 	</div>
+
+    <div class="posts-found"></div>
 
     <?php endif; ?>
 

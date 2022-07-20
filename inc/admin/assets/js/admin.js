@@ -230,8 +230,8 @@
 
         // Set Cookie for Tab
         $(".ymc__container-settings #ymcTab a").click(function(e) {
-            let hashurl = $(this).attr('href');
-            setCookie("hashymc", hashurl,30);
+            let hashUrl = $(this).attr('href');
+            setCookie("hashymc", hashUrl,30);
         });
 
         // Display selected tab

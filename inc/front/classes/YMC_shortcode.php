@@ -40,14 +40,7 @@ class YMC_shortcode {
 				'path' => YMC_SMART_FILTER_URL
 			));
 
-
 		$ymc_post_type = get_post_type($id);
-
-		// $ymc_post_type - ymc_filters
-		// $ymc_cpt_value - post, book, car etc.
-		// $ymc_post_layout - post-layout1
-		// $ymc_filter_layout - filter-layout1
-
 
 		if ( !empty($id) && $ymc_post_type === 'ymc_filters' ) {
 
@@ -97,7 +90,7 @@ class YMC_shortcode {
 
 			echo '<div class="container-posts container-'. $ymc_post_layout .'"><div class="post-entry '. $ymc_post_layout .'"></div></div>';
 
-			echo '</div>'; // end ymc-layout-container
+			echo '</div>';
 		}
 		else {
 			echo "<div class='ymc-smart-filter-container'><div class='notice'>" . esc_html__('ID parameter is missing or invalid.', 'ymc-smart-filter') ."</div></div>";

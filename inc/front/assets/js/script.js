@@ -61,7 +61,8 @@
             let paged     = options.paged;
             let toggle_pg = options.toggle_pg; // if 1 use func: html() or 0 append()
             let target    = options.target;
-            let type_pg   = options.type_pg; // pagination type
+            let type_pg   = options.type_pg;  // pagination type
+            let term_sel  = options.term_sel || 'all'; // selected term
 
             let container = $("."+target+"");
             let params = JSON.parse(document.querySelector('.'+target+'').dataset.params);
@@ -83,6 +84,13 @@
                     prepend(`<img class="preloader" src="${pathPreloader}">`);
                 },
                 success: function (res) {
+
+                    if(term_sel !== 'all') {
+                        container.find('.filter-layout .posts-found').html(`<b>${res.found}</b> posts selected.`);
+                    }
+                    else {
+                        container.find('.filter-layout .posts-found').empty();
+                    }
 
                     switch ( type_pg ) {
 
@@ -189,6 +197,7 @@
 
             let link = $(this);
             let term_id = link.data('termid');
+            let term_sel = link.data('selected');
 
             if(link.hasClass('multiple')) {
 
@@ -222,7 +231,8 @@
                 'paged'      : 1,
                 'toggle_pg'  : 1,
                 'target'     : params.data_target,
-                'type_pg'    : params.type_pg
+                'type_pg'    : params.type_pg,
+                'term_sel'   : term_sel
             });
         });
 
@@ -232,6 +242,7 @@
 
             let link = $(this);
             let term_id = link.data('termid');
+            let term_sel = link.data('selected');
 
             if(link.hasClass('multiple')) {
 
@@ -275,7 +286,8 @@
                 'paged'     : 1,
                 'toggle_pg' : 1,
                 'target'    : params.data_target,
-                'type_pg'   : params.type_pg
+                'type_pg'   : params.type_pg,
+                'term_sel'   : term_sel
             });
         });
 
@@ -296,6 +308,8 @@
             e.preventDefault();
             let link = $(this);
             let term_id = '';
+            let term_sel = link.data('selected');
+
             link.toggleClass('active');
 
             // Single selected terms
@@ -349,7 +363,8 @@
                 'paged'     : 1,
                 'toggle_pg' : 1,
                 'target'    : params.data_target,
-                'type_pg'   : params.type_pg
+                'type_pg'   : params.type_pg,
+                'term_sel'  : term_sel
             });
         });
 
