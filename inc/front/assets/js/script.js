@@ -62,7 +62,7 @@
             let toggle_pg = options.toggle_pg; // if 1 use func: html() or 0 append()
             let target    = options.target;
             let type_pg   = options.type_pg;  // pagination type
-            let term_sel  = options.term_sel || 'all'; // selected term
+            let term_sel  = options.term_sel || 'all'; // selected term (use found posts)
 
             console.log(term_sel);
 

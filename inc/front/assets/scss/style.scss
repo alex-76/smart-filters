@@ -86,7 +86,7 @@ $font-size: 16;
 			.filter-entry {
 				display: flex;
 				flex-wrap: wrap;
-				justify-content: center;
+				justify-content: flex-start;
 				align-items: center;
 				list-style: none;
 				margin: 0 0 20px 0;
@@ -519,15 +519,33 @@ $font-size: 16;
 
 	// Search style
 	.search-layout {
-		.search-entry {
-			text-align: right;
-			input {
+		.search-form {
+			&__inner {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				margin-bottom: 20px;
+				padding: 0 10px;
+			}
+			&__input {
+				font-family: "Poppins";
 				max-width: 50%;
 				width: 100%;
-				padding: 7px 10px;
+				height: 40px;
+				padding: 0 10px;
 				border: 1px solid #222;
+				border-radius: 0;
 				color: #000;
-				margin-bottom: 20px;
+				font-size: 16px;
+			}
+			&__submit {
+				font-family: "Poppins";
+				border: 1px solid #222;
+				border-left: none;
+				height: 42px;
+				padding: 0 15px;
+				font-size: 16px;
+				cursor: pointer;
 			}
 		}
 	}

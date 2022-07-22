@@ -5,11 +5,17 @@
 
 <div id="search-layout" class="search-layout">
 
-    <div class="search-entry">
+    <form class="search-form">
 
-        <input type="text" name="search" value="" placeholder="Search posts...">
+        <div class="search-form__inner">
 
-    </div>
+            <input class="search-form__input" type="text" name="search" autocomplete="off" value="" placeholder="Search posts...">
+
+            <button class="search-form__submit">Search</button>
+
+        </div>
+
+    </form>
 
 </div>
 
