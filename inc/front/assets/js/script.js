@@ -55,14 +55,14 @@
 
         }, optionsInfinityScroll);
 
+
         // Send Main Request
         function getFilterPosts( options ) {
 
-            let paged     = options.paged; // required
-            let toggle_pg = options.toggle_pg; // if 1 use func: html() or 0 append() / required
-            let target    = options.target; // required
-            let type_pg   = options.type_pg;  // pagination type / required
-            let term_sel  = options.term_sel || 'all'; // selected term (use found posts)
+            let paged     = options.paged;
+            let toggle_pg = options.toggle_pg; // if 1 use func: html() or 0 append(): use load-more && scroll-infinity
+            let target    = options.target;
+            let type_pg   = options.type_pg;  // pagination type
 
             let container = $("."+target+"");
             let params = JSON.parse(document.querySelector('.'+target+'').dataset.params);
@@ -85,7 +85,7 @@
                 },
                 success: function (res) {
 
-                    if(term_sel !== 'all') {
+                    if(params.post_sel !== 'all') {
                         container.find('.filter-layout .posts-found').html(`<b>${res.found}</b> posts selected.`);
                     }
                     else {
@@ -225,14 +225,14 @@
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
             params.page = 1;
+            params.post_sel = term_sel;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
             getFilterPosts({
                 'paged'      : 1,
                 'toggle_pg'  : 1,
                 'target'     : params.data_target,
-                'type_pg'    : params.type_pg,
-                'term_sel'   : term_sel
+                'type_pg'    : params.type_pg
             });
         });
 
@@ -280,14 +280,14 @@
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
             params.page = 1;
+            params.post_sel = term_sel;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
             getFilterPosts({
                 'paged'     : 1,
                 'toggle_pg' : 1,
                 'target'    : params.data_target,
-                'type_pg'   : params.type_pg,
-                'term_sel'   : term_sel
+                'type_pg'   : params.type_pg
             });
         });
 
@@ -357,14 +357,14 @@
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
             params.page = 1;
+            params.post_sel = term_sel;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
             getFilterPosts({
                 'paged'     : 1,
                 'toggle_pg' : 1,
                 'target'    : params.data_target,
-                'type_pg'   : params.type_pg,
-                'term_sel'  : term_sel
+                'type_pg'   : params.type_pg
             });
         });
 
@@ -391,6 +391,7 @@
 
             params.terms = newTerms;
             params.page = 1;
+            params.post_sel = term_sel;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
             _self.closest('.filter-entry').find('.active').each(function () {
@@ -405,8 +406,7 @@
                 'paged'     : 1,
                 'toggle_pg' : 1,
                 'target'    : params.data_target,
-                'type_pg'   : params.type_pg,
-                'term_sel'  : term_sel
+                'type_pg'   : params.type_pg
             });
 
         });
@@ -416,10 +416,12 @@
 
             let _self = $(this);
             let terms = _self.data('terms');
+            let term_sel = _self.data('selected');
 
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = terms;
             params.page = 1;
+            params.post_sel = term_sel;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
             _self.siblings('.selected-items').empty();
@@ -474,41 +476,50 @@
 
         });
 
-        /*** SEARCH POSTS ***/
+
+
+        /*** SEARCH POSTS ===> DEV ***/
 
         $(document).on('click','.ymc-smart-filter-container .search-form .btn-submit',function (e) {
             e.preventDefault();
 
-            console.log($(this));
+            let btn       = $(this);
+            let phrase    = btn.siblings('.field-search').val();
+            let container = btn.closest('.ymc-smart-filter-container')
 
-            const data = {
-                'action'     : 'ymc_search_post',
-                //'nonce_code' : _global_object.nonce,
-                //'params'     : JSON.stringify(params),
-                //'paged'      : paged,
-            };
+            if( phrase.trim() !== '' ) {
 
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: _global_object.ajax_url,
-                data: data,
-                beforeSend: function () {
-                    //container.find('.container-posts').addClass('loading').
-                    //prepend(`<img class="preloader" src="${pathPreloader}">`);
-                },
-                success: function (res) {
+                let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
 
-                    console.log(res.data);
+                //let cpt = params.cpt;
+                //let per_page = params.per_page;
+                //let id = params.filter_id;
 
-                },
-                error: function (obj, err) {
-                    console.log( obj, err );
-                }
-            });
+                console.log(params);
+
+                getFilterPosts({
+                    'paged'      : 1,
+                    'toggle_pg'  : 1,
+                    'target'     : params.data_target,
+                    'type_pg'    : params.type_pg
+                });
+
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+
 
         });
-
 
 
 

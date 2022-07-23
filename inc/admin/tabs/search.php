@@ -27,27 +27,25 @@
             </label>
         </div>
 
-
 	    <?php $ymc_hide = ($ymc_filter_search_status === 'on') ? '' : 'ymc_hidden'; ?>
 
         <div class="manage-filters <?php echo esc_attr($ymc_hide); ?>">
 
             <div class="from-element">
+
                 <label class="form-label">
 			        <?php echo esc_html__('Text Button Search', 'ymc-smart-filter');?>
-                    <span class="information">
-                    <?php echo esc_html__('Change name of Search button.', 'ymc-smart-filter');?>
-                </span>
+                        <span class="information">
+                        <?php echo esc_html__('Change name of Search button.', 'ymc-smart-filter');?>
+                    </span>
                 </label>
 
                 <input class="input-field" type="text" name="ymc-search-text-button" value="<?php echo esc_attr($ymc_search_text_button); ?>">
+
             </div>
 
         </div>
 
     </div>
-
-
-
 
 </div>

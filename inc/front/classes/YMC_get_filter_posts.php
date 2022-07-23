@@ -100,6 +100,11 @@ class YMC_get_filter_posts {
 		endif;
 
 
+		//add_filter( 'posts_join', 'search_join' );
+		//add_filter( 'posts_where', 'search_where' );
+		//add_filter( 'posts_distinct', 'search_distinct' );
+
+
 		$args = [
 			'post_type' => $post_type,
 			'post_status' => 'publish',
@@ -108,6 +113,8 @@ class YMC_get_filter_posts {
 			'paged' => $paged,
 			'orderby' => $default_order_by,
 			'order' => $default_order,
+			//'sentence' => true,
+			//'s' => $phrase
 		];
 
 		$query = new WP_Query($args);
@@ -187,6 +194,32 @@ class YMC_get_filter_posts {
 		);
 
 		wp_send_json($data);
+	}
+
+	private function search_join( $join ) {
+
+		global $wpdb;
+
+		$join .= " LEFT JOIN $wpdb->postmeta ON ID = $wpdb->postmeta.post_id ";
+
+		return $join;
+	}
+
+	private function search_where( $where ) {
+
+		global $wpdb;
+
+		$where = preg_replace(
+			"/\(\s*$wpdb->posts.post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+			"($wpdb->posts.post_title LIKE $1) OR ($wpdb->postmeta.meta_value LIKE $1)", $where );
+
+
+		return $where;
+	}
+
+	private function search_distinct( $where ) {
+
+		return  'DISTINCT' ;
 	}
 }
 
