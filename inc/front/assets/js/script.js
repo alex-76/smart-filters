@@ -58,13 +58,11 @@
         // Send Main Request
         function getFilterPosts( options ) {
 
-            let paged     = options.paged;
-            let toggle_pg = options.toggle_pg; // if 1 use func: html() or 0 append()
-            let target    = options.target;
-            let type_pg   = options.type_pg;  // pagination type
+            let paged     = options.paged; // required
+            let toggle_pg = options.toggle_pg; // if 1 use func: html() or 0 append() / required
+            let target    = options.target; // required
+            let type_pg   = options.type_pg;  // pagination type / required
             let term_sel  = options.term_sel || 'all'; // selected term (use found posts)
-
-            console.log(term_sel);
 
             let container = $("."+target+"");
             let params = JSON.parse(document.querySelector('.'+target+'').dataset.params);
@@ -436,7 +434,7 @@
             });
         });
 
-        /*** PAGINATION TYPES***/
+        /*** PAGINATION TYPES ***/
 
         // Pagination / Type: Default (Numeric)
         $(document).on('click','.ymc-smart-filter-container .pagination-numeric li a',function (e) {
@@ -475,6 +473,45 @@
             });
 
         });
+
+        /*** SEARCH POSTS ***/
+
+        $(document).on('click','.ymc-smart-filter-container .search-form .btn-submit',function (e) {
+            e.preventDefault();
+
+            console.log($(this));
+
+            const data = {
+                'action'     : 'ymc_search_post',
+                //'nonce_code' : _global_object.nonce,
+                //'params'     : JSON.stringify(params),
+                //'paged'      : paged,
+            };
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: _global_object.ajax_url,
+                data: data,
+                beforeSend: function () {
+                    //container.find('.container-posts').addClass('loading').
+                    //prepend(`<img class="preloader" src="${pathPreloader}">`);
+                },
+                success: function (res) {
+
+                    console.log(res.data);
+
+                },
+                error: function (obj, err) {
+                    console.log( obj, err );
+                }
+            });
+
+        });
+
+
+
+
 
     });
 

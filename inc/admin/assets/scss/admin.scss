@@ -415,6 +415,16 @@ $font-size: 16;
 						}
 					}
 
+					#search {
+						.tab-entry {
+							.content {
+								.manage-filters {
+									margin-top: 20px;
+								}
+							}
+						}
+					}
+
 					#typography {
 						.tab-entry {
 							.content {}

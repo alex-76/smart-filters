@@ -57,7 +57,7 @@ class YMC_shortcode {
 				  data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$terms.'","type_pg":"'.$ymc_pagination_type.'","per_page":"'.$ymc_per_page.'","page":"1","post_layout":"'.$ymc_post_layout.'","filter_layout":"'.$ymc_filter_layout.'","filter_id":"'.$id.'","data_target":"data-target-ymc'.$c_target.'"}\'>';
 
 
-			if ( $ymc_filter_search === 'on' ) {
+			if ( $ymc_filter_search_status === 'on' ) {
 
 				$filepath_search = YMC_SMART_FILTER_DIR . "/front/layouts/search/search-layout.php";
 

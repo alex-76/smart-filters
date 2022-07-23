@@ -153,10 +153,17 @@ class YMC_meta_boxes {
 		}
 
 		// Search Posts Status (on/off)
-		if( isset($_POST['ymc-filter-search']) ) {
-			$search_status = sanitize_text_field( $_POST['ymc-filter-search']);
-			update_post_meta( $post_id, 'ymc_filter_search', $search_status );
+		if( isset($_POST['ymc-filter-search-status']) ) {
+			$search_status = sanitize_text_field( $_POST['ymc-filter-search-status']);
+			update_post_meta( $post_id, 'ymc_filter_search_status', $search_status );
 		}
+
+		// Text Search Button
+		if( isset($_POST['ymc-search-text-button']) ) {
+			$search_text_button = sanitize_text_field( $_POST['ymc-search-text-button']);
+			update_post_meta( $post_id, 'ymc_search_text_button', $search_text_button );
+		}
+
 
     }
 

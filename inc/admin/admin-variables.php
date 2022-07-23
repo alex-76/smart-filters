@@ -45,7 +45,8 @@ $ymc_filter_font = 'inherit';
 $ymc_post_font = 'inherit';
 $ymc_multiple_filter = 0;
 
-$ymc_filter_search = 'on';
+$ymc_filter_search_status = 'off';
+$ymc_search_text_button = 'Search';
 
 
 // GENERAL TAB SUBMITTED VARIABLE VALUES
@@ -122,7 +123,11 @@ if (get_post_meta($post->ID, 'ymc_filter_font')) {
 if (get_post_meta($post->ID, 'ymc_post_font')) {
 	$ymc_post_font = get_post_meta($post->ID, 'ymc_post_font', true);
 }
-if( get_post_meta($post->ID, 'ymc_filter_search') ) {
-	$ymc_filter_search = get_post_meta($post->ID, 'ymc_filter_search', true);
+if( get_post_meta($post->ID, 'ymc_filter_search_status') ) {
+	$ymc_filter_search_status = get_post_meta($post->ID, 'ymc_filter_search_status', true);
 }
+if( get_post_meta($post->ID, 'ymc_search_text_button') ) {
+	$ymc_search_text_button = get_post_meta($post->ID, 'ymc_search_text_button', true);
+}
+
 

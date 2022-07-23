@@ -195,10 +195,10 @@
            // ( input.is(':checked') ) ? input.siblings('input[type="hidden"]').val('on') : input.siblings('input[type="hidden"]').val('off');
 
             if(input.is(':checked')) {
-                input.siblings('input[type="hidden"]').val('on').closest('.wrapper-layout').find('.manage-filters').show();
+                input.siblings('input[type="hidden"]').val('on').closest('.form-group').find('.manage-filters').show();
             }
             else  {
-                input.siblings('input[type="hidden"]').val('off').closest('.wrapper-layout').find('.manage-filters').hide();
+                input.siblings('input[type="hidden"]').val('off').closest('.form-group').find('.manage-filters').hide();
             }
 
         });

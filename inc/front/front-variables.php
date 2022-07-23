@@ -77,7 +77,9 @@ if (get_post_meta($id, 'ymc_filter_font')) {
 if (get_post_meta($id, 'ymc_post_font')) {
 	$ymc_post_font = get_post_meta($id, 'ymc_post_font', true);
 }
-if (get_post_meta($id, 'ymc_filter_search', true)) {
-	$ymc_filter_search = get_post_meta($id, 'ymc_filter_search', true);
+if (get_post_meta($id, 'ymc_filter_search_status', true)) {
+	$ymc_filter_search_status = get_post_meta($id, 'ymc_filter_search_status', true);
 }
-
+if (get_post_meta($id, 'ymc_search_text_button', true)) {
+	$ymc_search_text_button = get_post_meta($id, 'ymc_search_text_button', true);
+}

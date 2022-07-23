@@ -2,13 +2,17 @@
 
 class YMC_search_post {
 
-	public function __construct() {}
+	public function __construct() {
+		add_action('wp_ajax_ymc_search_post', array($this, 'ymc_search_post'));
+		add_action('wp_ajax_nopriv_ymc_search_post', array($this, 'search_post'));
+	}
 
-	public function search_post() {
+	public function ymc_search_post() {
 
 		$search = $_POST['search'];
 		$html = '';
 
+		/*
 		add_filter( 'posts_join', 'search_join' );
 		add_filter( 'posts_where', 'search_where' );
 		add_filter( 'posts_distinct', 'search_distinct' );
@@ -36,10 +40,17 @@ class YMC_search_post {
 
 			//wp_reset_query();
 		}
+		*/
+
+		$data = array(
+			'data' => 'Data...'
+		);
+
+		wp_send_json($data);
 
 	}
 
-	function search_join( $join ){
+	private function search_join( $join ){
 
 		global $wpdb;
 
@@ -48,7 +59,7 @@ class YMC_search_post {
 		return $join;
 	}
 
-	function search_where( $where ) {
+	private function search_where( $where ) {
 
 		global $wpdb;
 
@@ -60,13 +71,11 @@ class YMC_search_post {
 		return $where;
 	}
 
-	function search_distinct( $where ) {
+	private function search_distinct( $where ) {
 
 		return  'DISTINCT' ;
 	}
 
-
-
-
-
 }
+
+new YMC_search_post();
