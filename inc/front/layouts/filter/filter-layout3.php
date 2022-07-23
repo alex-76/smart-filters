@@ -61,7 +61,7 @@ wp_add_inline_style($handle, $filter_css);
                         echo '<div class="menu-passive__item">
                                   <a class="menu-link '. $is_disabled .' '. $type_multiple .'" 
                                   href="#" data-selected="'.esc_attr(get_term( $term )->slug).'" data-termid="' . esc_attr($term) . '" data-name="'.esc_attr(get_term( $term )->name).'">'.
-                                  esc_html(get_term( $term )->name) . ' <span class="count">(' .esc_html(get_term( $term )->count) . ')</span>'.
+                                  esc_html(get_term( $term )->name) . ' <span class="count">' .esc_html(get_term( $term )->count) . '</span>'.
                              '</a></div>';
 
                     }
