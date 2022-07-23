@@ -225,6 +225,7 @@
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
             params.page = 1;
+            params.search = '';
             params.post_sel = term_sel;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
@@ -280,6 +281,7 @@
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
             params.page = 1;
+            params.search = '';
             params.post_sel = term_sel;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
@@ -357,6 +359,7 @@
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = term_id;
             params.page = 1;
+            params.search = '';
             params.post_sel = term_sel;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
@@ -391,6 +394,7 @@
 
             params.terms = newTerms;
             params.page = 1;
+            params.search = '';
             params.post_sel = term_sel;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
@@ -421,6 +425,7 @@
             let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
             params.terms = terms;
             params.page = 1;
+            params.search = '';
             params.post_sel = term_sel;
             this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
@@ -477,25 +482,35 @@
         });
 
 
-
-        /*** SEARCH POSTS ===> DEV ***/
+        /*** SEARCH POSTS ***/
 
         $(document).on('click','.ymc-smart-filter-container .search-form .btn-submit',function (e) {
             e.preventDefault();
 
-            let btn       = $(this);
-            let phrase    = btn.siblings('.field-search').val();
-            let container = btn.closest('.ymc-smart-filter-container')
+            let phrase = $(this).siblings('.field-search').val();
 
-            if( phrase.trim() !== '' ) {
+            if( phrase.trim() !== '' )
+            {
+
+                let allTerms = $(this).
+                    closest('.ymc-smart-filter-container').
+                    find('.filter-layout .filter-link.all').
+                    data('termid');
+
 
                 let params = JSON.parse( this.closest('.ymc-smart-filter-container').dataset.params);
+                params.search = phrase;
+                params.terms = allTerms;
+                params.post_sel = 'all';
+                this.closest('.ymc-smart-filter-container').dataset.params = JSON.stringify(params);
 
-                //let cpt = params.cpt;
-                //let per_page = params.per_page;
-                //let id = params.filter_id;
+                let container =  $('.'+params.data_target+'');
+                container.find('.filter-layout .filter-link').removeClass('active');
 
-                console.log(params);
+                container.find('.filter-layout3').find('.selected-items').empty();
+                container.find('.filter-entry .active').each(function () {
+                    $(this).removeClass('active');
+                });
 
                 getFilterPosts({
                     'paged'      : 1,
@@ -503,22 +518,7 @@
                     'target'     : params.data_target,
                     'type_pg'    : params.type_pg
                 });
-
-
-
-
-
-
-
             }
-
-
-
-
-
-
-
-
         });
 
 

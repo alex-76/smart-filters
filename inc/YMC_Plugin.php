@@ -42,7 +42,6 @@ class YMC_Plugin {
 
 		require_once YMC_SMART_FILTER_DIR . '/front/classes/YMC_shortcode.php';
 		require_once YMC_SMART_FILTER_DIR . '/front/classes/YMC_get_filter_posts.php';
-		//require_once YMC_SMART_FILTER_DIR . '/front/classes/YMC_search_post.php';
 
 	}
 

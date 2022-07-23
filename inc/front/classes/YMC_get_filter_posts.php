@@ -27,6 +27,7 @@ class YMC_get_filter_posts {
 		$post_layout = $clean_data['post_layout'];
 		$filter_id = $clean_data['filter_id'];
 		$type_pagination = $clean_data['type_pg'];
+		$keyword = $clean_data['search'];
 
 		$paged = (int) $_POST['paged'];
 
@@ -69,40 +70,7 @@ class YMC_get_filter_posts {
 
 			endforeach;
 
-		// If selected term
-		/*
-		else :
-
-			foreach ($taxonomy as $tax) :
-
-				foreach ($term_ids as $term) :
-
-					if($tax === get_term( $term )->taxonomy) :
-						$term_id[] = (int) $term;
-					endif;
-
-				endforeach;
-
-				if( count($term_id) > 0 ) :
-
-					$tax_qry[] = [
-						'taxonomy' => $tax,
-						'field' => 'term_id',
-						'terms' => $term_id
-					];
-
-				endif;
-
-				$term_id = [];
-
-			endforeach;
-		*/
 		endif;
-
-
-		//add_filter( 'posts_join', 'search_join' );
-		//add_filter( 'posts_where', 'search_where' );
-		//add_filter( 'posts_distinct', 'search_distinct' );
 
 
 		$args = [
@@ -113,9 +81,17 @@ class YMC_get_filter_posts {
 			'paged' => $paged,
 			'orderby' => $default_order_by,
 			'order' => $default_order,
-			//'sentence' => true,
-			//'s' => $phrase
 		];
+
+		if( !empty($keyword) ) {
+
+			add_filter( 'posts_join', array($this,'search_join') );
+			add_filter( 'posts_where',  array($this,'search_where') );
+			add_filter( 'posts_distinct', array($this,'search_distinct') );
+
+			$args['sentence'] = true;
+			$args['s'] = trim($keyword);
+		}
 
 		$query = new WP_Query($args);
 
@@ -196,7 +172,7 @@ class YMC_get_filter_posts {
 		wp_send_json($data);
 	}
 
-	private function search_join( $join ) {
+	public function search_join( $join ) {
 
 		global $wpdb;
 
@@ -205,7 +181,7 @@ class YMC_get_filter_posts {
 		return $join;
 	}
 
-	private function search_where( $where ) {
+	public function search_where( $where ) {
 
 		global $wpdb;
 
@@ -217,7 +193,7 @@ class YMC_get_filter_posts {
 		return $where;
 	}
 
-	private function search_distinct( $where ) {
+	public function search_distinct( $where ) {
 
 		return  'DISTINCT' ;
 	}
