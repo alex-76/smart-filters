@@ -51,7 +51,7 @@ $font-size: 16;
 	}
 
 	.far {
-		font-size: 18p;
+		font-size: 18px;
 	}
 
 	.notice {
@@ -92,15 +92,21 @@ $font-size: 16;
 				margin: 0 0 20px 0;
 				padding: 0;
 				.filter-item {
-					margin: 10px 10px ;
+					margin: 10px 5px ;
 					.filter-link {
 						display: inline-block;
 						padding: 7px 15px;
-						border-radius: 5px;
 						font-size: 16px;
 						text-decoration: none;
+						line-height: 1.3;
+						color: #fff;
+						background-color: #098ab8;
 						&:hover {
 							text-decoration: none;
+						}
+						&.active {
+							color: #222;
+							font-weight: 600;
 						}
 					}
 				}
@@ -141,17 +147,24 @@ $font-size: 16;
 				}
 
 				.filter-item {
-					margin: 10px 10px ;
+					margin: 10px 5px ;
 					&:first-child {
 						margin-left: 0;
 					}
 					.filter-link {
 						display: inline-block;
-						padding: 10px 10px;
+						padding: 10px 15px;
 						font-size: 16px;
 						text-decoration: none;
+						line-height: 1.3;
+						color: #fff;
+						background-color: #098ab8;
 						&:hover {
 							text-decoration: none;
+						}
+						&.active {
+							color: #222;
+							font-weight: 600;
 						}
 					}
 				}
@@ -373,9 +386,10 @@ $font-size: 16;
 						margin-bottom: 20px;
 						.cat-inner {
 							font-size: 12px;
-							border-radius: 3px;
+							line-height: 1.3;
+							border: none;
 							display: inline-block;
-							padding: 7px 10px;
+							padding: 3px 10px;
 							background: #000;
 							margin-right: 5px;
 							margin-bottom: 5px;
@@ -398,7 +412,7 @@ $font-size: 16;
 					}
 					.excerpt {
 						font-size: 16px;
-						line-height: 1.4;
+						line-height: 1.3;
 						margin-bottom: 10px;
 					}
 					.read-more {
@@ -408,9 +422,9 @@ $font-size: 16;
 							text-decoration: none;
 							background: #000;
 							color: white;
-							padding: 5px 10px;
-							font-size: 12px;
-							line-height: 1.5;
+							padding: 8px 15px;
+							font-size: 14px;
+							line-height: 1.3;
 						}
 					}
 					&:hover {
@@ -468,8 +482,38 @@ $font-size: 16;
 							display: inline-block;
 							text-decoration: underline;
 							padding: 5px 10px;
-							font-size: 12px;
+							font-size: 14px;
 							line-height: 1.5;
+						}
+					}
+				}
+			}
+
+			// Style for Custom Post Layout 2
+			&.post-custom-layout {
+				.post-item {
+					border: 1px solid #ccc;
+					padding: 10px;
+					font-size: 14px;
+					line-height: 1.3;
+					color: #222;
+					word-break: break-word;
+					.head-post {
+						font-size: 18px;
+						border-bottom: 1px solid #ccc;
+						margin-bottom: 10px;
+						padding-bottom: 5px;
+						font-weight: 500;
+					}
+					.inform {
+						color: #949494;
+						line-height: 1.6;
+						.doc-text {
+							font-size: 12px;
+							color: #098ab8;
+							font-weight: 500;
+							border: 0.5px dashed #098ab8;
+							padding: 1px 5px;
 						}
 					}
 				}
@@ -520,12 +564,13 @@ $font-size: 16;
 	// Search style
 	.search-layout {
 		.search-form {
-			&__inner {
+			.form-inner {
 				display: flex;
 				justify-content: flex-start;
 				align-items: center;
 				margin-bottom: 20px;
 				padding: 0 10px;
+
 			}
 			&__input {
 				font-family: "Poppins";
@@ -533,14 +578,17 @@ $font-size: 16;
 				width: 100%;
 				height: 40px;
 				padding: 0 10px;
-				border: 1px solid #222;
+				border: 1px solid #c6c6c6;
 				border-radius: 0;
 				color: #000;
 				font-size: 16px;
 			}
 			&__submit {
 				font-family: "Poppins";
-				border: 1px solid #222;
+				border: 1px solid #098ab8;
+				background: #098ab8;
+				color: #fff;
+				line-height: 1.25;
 				border-left: none;
 				height: 42px;
 				padding: 0 15px;
@@ -549,7 +597,6 @@ $font-size: 16;
 			}
 		}
 	}
-
 }
 
 

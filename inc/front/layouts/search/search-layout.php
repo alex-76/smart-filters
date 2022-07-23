@@ -7,7 +7,7 @@
 
     <form class="search-form">
 
-        <div class="search-form__inner">
+        <div class="form-inner">
 
             <input class="search-form__input" type="text" name="search" autocomplete="off" value="" placeholder="Search posts...">
 
