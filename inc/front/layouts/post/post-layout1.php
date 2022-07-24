@@ -6,7 +6,7 @@
 
         // Get data
 	    $post_id = get_the_ID();
-	    $title   = get_the_title($post_id);
+	    $title   = wp_trim_words(get_the_title($post_id), 15, '...');
 	    $link    = get_the_permalink($post_id);
 	    $post_date_format = apply_filters('ymc_post_date_format', 'd, M Y');
 	    $image_url = YMC_SMART_FILTER_URL . '/front/assets/images/dummy-Image.svg';
@@ -28,7 +28,7 @@
 	    $target = "target='" . $ymc_link_target . "'";
 
 	    $term_list = get_the_terms($post_id, $taxonomy);
-	    $list_categories ='';
+	    $list_categories = '';
 	    foreach($term_list as $term_single) {
 		    $list_categories .= '<span class="cat-inner">'. esc_html($term_single->name) .'</span>';
 	    }
