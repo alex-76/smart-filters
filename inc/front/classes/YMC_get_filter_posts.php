@@ -41,8 +41,8 @@ class YMC_get_filter_posts {
 		$default_order    = apply_filters('ymc_filter_posts_order', $ymc_order_post_type);
 
 		// Convert Taxonomy & Terms to Array
-		$taxonomy = !empty($taxonomy) ? explode(',', $taxonomy) : false;
-		$terms    = !empty($terms)    ? explode(',', $terms)    : false;
+		$taxonomy = !empty( $taxonomy ) ? explode(',', $taxonomy) : false;
+		$terms    = !empty( $terms )    ? explode(',', $terms)    : false;
 
 
 		if ( is_array($taxonomy) && is_array($terms) ) :
