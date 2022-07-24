@@ -27,7 +27,7 @@ wp_add_inline_style($handle, $filter_css);
 
                 ( $ymc_sort_terms === 'asc' ) ? asort($terms_selected) : arsort($terms_selected);
 
-                echo '<li class="filter-item"><a class="filter-link all active" href="#" data-selected="all" data-termid="' . esc_attr($terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
+                echo '<li class="filter-item"><a class="filter-link all active" href="#" data-selected="all" data-termid="' . esc_attr($ymc_terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
 
                 $arr_taxonomies = [];
                 foreach ($terms_selected as $term) {

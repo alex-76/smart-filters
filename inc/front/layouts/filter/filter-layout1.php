@@ -28,7 +28,7 @@ $filter_css = "#ymc-smart-filter-container-".$c_target." .filter-layout.filter-l
 
 	            ( $ymc_sort_terms === 'asc' ) ? asort($terms_selected) : arsort($terms_selected);
 
-                echo '<li class="filter-item"><a class="filter-link all active" href="#" data-selected="all" data-termid="' . esc_attr($terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
+                echo '<li class="filter-item"><a class="filter-link all active" href="#" data-selected="all" data-termid="' . esc_attr($ymc_terms) . '">' . __("All",'ymc-smart-filter') . '</a></li>';
 
                 foreach ($terms_selected as $term) {
 

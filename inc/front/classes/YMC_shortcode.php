@@ -45,16 +45,16 @@ class YMC_shortcode {
 		if ( !empty($id) && $ymc_post_type === 'ymc_filters' ) {
 
 			if (is_array($tax_selected)) {
-				$tax = implode(",", $tax_selected);
+				$ymc_tax = implode(",", $tax_selected);
 			}
 
 			if(is_array($terms_selected)) {
-				$terms = implode(',', $terms_selected);
+				$ymc_terms = implode(',', $terms_selected);
 			}
 
 			echo '<div id="ymc-smart-filter-container-'.$c_target.'" 
 				  class="ymc-smart-filter-container ymc-'.$ymc_filter_layout.' ymc-'. $ymc_post_layout.' ymc-pagination-'.$ymc_pagination_type.' data-target-ymc'.$c_target.'"
-				  data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$tax.'","terms":"'.$terms.'","type_pg":"'.$ymc_pagination_type.'","per_page":"'.$ymc_per_page.'","page":"1","post_layout":"'.$ymc_post_layout.'","filter_layout":"'.$ymc_filter_layout.'","filter_id":"'.$id.'","post_sel":"all","search":"","data_target":"data-target-ymc'.$c_target.'"}\'>';
+				  data-params=\'{"cpt":"'.$ymc_cpt_value.'","tax":"'.$ymc_tax.'","terms":"'.$ymc_terms.'","type_pg":"'.$ymc_pagination_type.'","per_page":"'.$ymc_per_page.'","page":"1","post_layout":"'.$ymc_post_layout.'","filter_layout":"'.$ymc_filter_layout.'","filter_id":"'.$id.'","post_sel":"all","search":"","data_target":"data-target-ymc'.$c_target.'"}\'>';
 
 
 			if ( $ymc_filter_search_status === 'on' ) {

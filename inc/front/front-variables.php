@@ -1,10 +1,12 @@
 <?php
 // DEFAULT VALUES
 $ymc_cpt_value = 'post';
-$tax = 'category';
-$term = '';
+$ymc_tax = 'category';
+$ymc_terms = '';
 $ymc_post_layout = 'post-layout1';
 $ymc_filter_layout = 'filter-layout1';
+$tax_selected = '';
+$terms_selected = '';
 
 
 // APPEARANCE TAB SUBMITTED VARIABLE VALUES
