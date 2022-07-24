@@ -28,6 +28,7 @@ class YMC_get_filter_posts {
 		$filter_id = $clean_data['filter_id'];
 		$type_pagination = $clean_data['type_pg'];
 		$keyword = $clean_data['search'];
+		$post_sel = $clean_data['post_sel'];
 
 		$paged = (int) $_POST['paged'];
 
@@ -42,6 +43,10 @@ class YMC_get_filter_posts {
 		// Convert Taxonomy & Terms to Array
 		$taxonomy = !empty($taxonomy) ? explode(',', $taxonomy) : false;
 		$terms    = !empty($terms)    ? explode(',', $terms)    : false;
+
+		if( $post_sel === 'all' ) {
+			$tax_qry = ['relation' => 'OR',];
+		}
 
 
 		if ( is_array($taxonomy) && is_array($terms) ) :
