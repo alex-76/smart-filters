@@ -44,12 +44,12 @@ class YMC_get_filter_posts {
 		$taxonomy = !empty($taxonomy) ? explode(',', $taxonomy) : false;
 		$terms    = !empty($terms)    ? explode(',', $terms)    : false;
 
-		if( $post_sel === 'all' ) {
-			$tax_qry = ['relation' => 'OR',];
-		}
-
 
 		if ( is_array($taxonomy) && is_array($terms) ) :
+
+			if( $post_sel === 'all' ) {
+				$tax_qry = [ 'relation' => 'OR', ];
+			}
 
 			foreach ($taxonomy as $tax) :
 
