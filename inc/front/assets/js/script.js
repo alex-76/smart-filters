@@ -97,9 +97,9 @@
                         case 'numeric' :
 
                             // Filter is act scroll top
-                            if(toggle_pg === 1) {
-                                $('html, body').animate({scrollTop: container.offset().top - 100}, 300);
-                            }
+                            // if(toggle_pg === 1) {
+                            //     $('html, body').animate({scrollTop: container.offset().top - 100}, 300);
+                            // }
 
                             container.find('.container-posts').
                             removeClass('loading').
@@ -487,10 +487,9 @@
         $(document).on('click','.ymc-smart-filter-container .search-form .btn-submit',function (e) {
             e.preventDefault();
 
-            let phrase = $(this).siblings('.field-search').val();
+            let phrase = $(this).siblings('.component-input').find('.field-search').val();
 
-            if( phrase.trim() !== '' )
-            {
+            if( phrase.trim() !== '' ) {
 
                 let allTerms = $(this).
                     closest('.ymc-smart-filter-container').
@@ -520,6 +519,70 @@
                 });
             }
         });
+
+
+
+
+        /*** Autocomplete search ======> DEV***/
+        // https://w3collective.com/autocomplete-search-javascript/
+
+        $(document).on('input','.ymc-smart-filter-container .search-form .field-search',function (e) {
+
+            let _self = $(this);
+
+            let resultsHTML = _self.siblings("#results");
+
+            let results = '';
+
+            let userInput = _self.val();
+
+            resultsHTML.innerHTML = "";
+
+            console.log(userInput);
+
+            if (userInput.length > 0) {
+                results = getResults(userInput);
+                resultsHTML.show();
+                for (i = 0; i < results.length; i++) {
+                    results +=("<li>" + results[i] + "</li>");
+                }
+
+                resultsHTML.html(results);
+            }
+
+            resultsHTML.on('click', function (event) {
+                const setValue = event.target.innerText;
+                _self.val(setValue);
+                //this.innerHTML = "";
+            });
+
+            // resultsHTML.onclick = function (event) {
+            //     const setValue = event.target.innerText;
+            //     console.log(event);
+            //     _self.val(setValue);
+            //     this.innerHTML = "";
+            // };
+
+        });
+
+
+        function getResults(input) {
+
+            const data = ["red", "blue", "green", "yellow", "purple", "orange", "black", "white", "brown"];
+
+            const results = [];
+            for (i = 0; i < data.length; i++) {
+                //if (input === data[i].slice(0, input.length)) {
+                    results.push(data[i]);
+                //}
+            }
+            return results;
+        }
+
+
+
+
+
 
 
 

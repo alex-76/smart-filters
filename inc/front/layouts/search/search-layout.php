@@ -9,7 +9,10 @@
 
         <div class="form-inner">
 
-            <input class="search-form__input field-search" type="text" name="search" autocomplete="off" value="" placeholder="Search posts...">
+            <div class="component-input">
+                <input id="field-search" class="search-form__input field-search" type="text" name="search" autocomplete="off" value="" placeholder="Search posts...">
+                <ul id="results"></ul>
+            </div>
 
             <button class="search-form__submit btn-submit">
                 <?php echo esc_html__($ymc_search_text_button, 'ymc-smart-filter');  ?>

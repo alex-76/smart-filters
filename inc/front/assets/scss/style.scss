@@ -628,10 +628,28 @@ $font-size: 16;
 				justify-content: flex-start;
 				align-items: center;
 				margin-bottom: 20px;
+				.component-input {
+					max-width: 50%;
+					width: 100%;
+					position: relative;
+					#results {
+						display: none;
+						position: absolute;
+						top: 40px;
+						left: 0;
+						width: 100%;
+						border: 1px solid #222;
+						min-height: 50px;
+						z-index: 9;
+						background: #fff;
+						li {
+							cursor: pointer;
+						}
+					}
+				}
 			}
 			&__input {
 				font-family: "Poppins";
-				max-width: 50%;
 				width: 100%;
 				height: 40px;
 				padding: 0 10px;
