@@ -526,6 +526,8 @@
         /*** Autocomplete search ======> DEV***/
         // https://w3collective.com/autocomplete-search-javascript/
 
+
+        /*
         $(document).on('input','.ymc-smart-filter-container .search-form .field-search',function (e) {
 
             let _self = $(this);
@@ -564,6 +566,7 @@
             // };
 
         });
+        */
 
 
         function getResults(input) {
